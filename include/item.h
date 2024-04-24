@@ -1,0 +1,4 @@
+#ifndef CETMODITY_ITEM_H
+#define CETMODITY_ITEM_H
+
+#endif // !CETMODITY_ITEM_H

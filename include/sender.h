@@ -1,0 +1,4 @@
+#ifndef CETMODITY_SENDER_H
+#define CETMODITY_SENDER_H
+
+#endif // !CETMODITY_SENDER_H
