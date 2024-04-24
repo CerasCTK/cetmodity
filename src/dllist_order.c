@@ -1,4 +1,5 @@
 #include "dllist_order.h"
+#include "dllist_item.h"
 #include "order.h"
 
 #include <stdio.h>
@@ -202,10 +203,10 @@ void do_free(dllist_order *list) {
     order_node *runner = list->head;
     while (runner != NULL) {
         order_node *temp = runner;
+
         runner = runner->next;
 
-        // TODO: free item list in temp
-
+        di_free(&temp->order.items);
         free(temp);
     }
 
