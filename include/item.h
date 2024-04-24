@@ -2,6 +2,7 @@
 #define CETMODITY_ITEM_H
 
 #include "define.h"
+#include "bool.h"
 
 struct _item {
     char product_name[PRODUCT_MAX_NAME_LEN];
@@ -9,5 +10,7 @@ struct _item {
     unsigned long unit_price;
 };
 typedef struct _item item;
+
+bool is_same_item(item, item);
 
 #endif // !CETMODITY_ITEM_H
