@@ -28,8 +28,6 @@ void do_insert_begin(dllist_order *, order);
 
 void do_insert_end(dllist_order *, order);
 
-void do_insert(dllist_order *, order);
-
 void do_insert_after(dllist_order *, order_node *, order);
 
 void do_insert_before(dllist_order *, order_node *, order);
