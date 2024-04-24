@@ -40,13 +40,19 @@ order_node *do_search_by_sender_name(dllist_order, char *);
 
 order_node *do_search_by_receiver_name(dllist_order, char *);
 
+void do_delete(dllist_order *, order_node *);
+
+void do_delete_begin(dllist_order *);
+
+void do_delete_end(dllist_order *);
+
 void do_delete_by_id(dllist_order *, char *);
 
 void do_delete_before(dllist_order *, order_node *);
 
 void do_delete_after(dllist_order *, order_node *);
 
-void do_delete(dllist_order *, order_node *);
+void do_show_list(dllist_order);
 
 void do_free(dllist_order *);
 
