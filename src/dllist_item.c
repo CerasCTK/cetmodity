@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void di_init(dllist_item *list) {
     list->head = NULL;
@@ -36,14 +37,131 @@ int di_size(dllist_item list) {
 }
 
 void di_insert_begin(dllist_item *list, item item) {
-    if (di_is_empty(*list)) return;
-
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
     new_node->prev = NULL;
 
-    new_node->next = list->head;
-    list->head->prev = new_node;
+    if (di_is_empty(*list)) {
+        new_node->next = NULL;
+        list->tail = new_node;
+    } else {
+        new_node->next = list->head;
+        list->head->prev = new_node;
+    }
     list->head = new_node;
 }
 
+void di_insert_end(dllist_item *list, item item) {
+    item_node *new_node = (item_node *)malloc(sizeof(item_node));
+    new_node->item = item;
+    new_node->next = NULL;
+
+    if (di_is_empty(*list)) {
+        new_node->prev = NULL;
+        list->head = new_node;
+    } else {
+        new_node->prev = list->tail;
+        list->tail->next = new_node;
+    }
+    list->tail = new_node;
+}
+
+void di_insert_after(dllist_item *list, item_node *node, item item) {
+    if (di_is_empty(*list)) return;
+    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item))) return;
+
+    item_node *new_node = (item_node *)malloc(sizeof(item_node));
+    new_node->item = item;
+
+    if (new_node = list->tail) {
+        di_insert_end(list, item);
+    } else {
+        new_node->next = node->next;
+        new_node->next->prev = new_node;
+        new_node->next = new_node;
+        new_node->prev = node;
+    }
+}
+
+void di_insert_before(dllist_item *list, item_node *node, item item) {
+    if (di_is_empty(*list)) return;
+    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item))) return;
+
+    item_node *new_node = (item_node *)malloc(sizeof(item_node));
+    new_node->item = item;
+
+    if (new_node = list->head) {
+        di_insert_begin(list, item);
+    } else {
+        node->prev->next = new_node;
+        new_node->prev = new_node->prev;
+        new_node->next = node;
+        node->prev = new_node;
+    }
+}
+
+item_node *di_get_by_index(dllist_item list, int index) {
+    if (di_is_empty(list)) return NULL;
+
+    if (index < 0 || index >= di_size(list)) return NULL;
+
+    if (index == 0) return list.head;
+    if (index == di_size(list) - 1) return list.tail;
+
+    item_node *node = list.head;
+    int count = 0;
+    while (node != NULL) {
+        if (count == index) return node;
+        count++;
+        node = node->next;
+    }
+}
+
+item_node *di_search_node_by_name(dllist_item list, char* item_name) {
+    if (di_is_empty(list)) return NULL;
+
+    item_node *node = list.head;
+
+    while (node != NULL) {
+        if (strcmp(item_name, node->item.product_name)) return node;
+        node = node->next;
+    }
+
+    return NULL;
+}
+
+void di_delete(dllist_item *list, item_node *node) {
+    if (di_is_empty(*list)) return;
+    if (!(di_is_in_list(*list, node->item))) return;
+
+    if (list->head == node && list->tail == node) {
+        list->head = list->tail = NULL;
+    } else if (list->head == node) {
+        list->head = node->next;
+        node->next->prev = NULL;
+    } else if (list->tail == node) {
+        list->tail = node ->prev;
+        node->prev->next = NULL;
+    } else {
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+    free(node);
+}
+
+
+void di_delete_begin(dllist_item *list) {
+    di_delete(list, list->head);
+}
+
+void di_delete_end(dllist_item *list) {
+    di_delete(list, list->tail);
+}
+
+void di_delete_before(dllist_item *list, item_node *node) {
+    di_delete(list, node->prev);
+}
+
+void di_delete_after(dllist_item *list, item_node *node) {
+    di_delete(list, node->next);
+}
