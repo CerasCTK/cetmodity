@@ -16,7 +16,8 @@ struct _order {
     sender sender;
     receiver receiver;
     dllist_item items;
-    long total_price;
+    unsigned long items_price;
+    unsigned int shipping_fee;
 };
 typedef struct _order order;
 
