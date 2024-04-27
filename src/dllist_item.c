@@ -9,15 +9,15 @@ void di_init(dllist_item *list) {
     list->tail = NULL;
 }
 
-bool di_is_empty(dllist_item list) {
-    return !list.head && !list.tail;
-}
+bool di_is_empty(dllist_item list) { return !list.head && !list.tail; }
 
 bool di_is_in_list(dllist_item list, item item) {
-    if (di_is_empty(list)) return false;
+    if (di_is_empty(list))
+        return false;
 
     while (list.head != NULL) {
-        if (is_same_item(list.head->item, item)) return true;
+        if (is_same_item(list.head->item, item))
+            return true;
         list.head = list.head->next;
     }
 
@@ -25,7 +25,8 @@ bool di_is_in_list(dllist_item list, item item) {
 }
 
 int di_size(dllist_item list) {
-    if (di_is_empty(list)) return 0;
+    if (di_is_empty(list))
+        return 0;
 
     int counter = 0;
     while (list.head != NULL) {
@@ -67,8 +68,10 @@ void di_insert_end(dllist_item *list, item item) {
 }
 
 void di_insert_after(dllist_item *list, item_node *node, item item) {
-    if (di_is_empty(*list)) return;
-    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item))) return;
+    if (di_is_empty(*list))
+        return;
+    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
+        return;
 
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
@@ -84,8 +87,10 @@ void di_insert_after(dllist_item *list, item_node *node, item item) {
 }
 
 void di_insert_before(dllist_item *list, item_node *node, item item) {
-    if (di_is_empty(*list)) return;
-    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item))) return;
+    if (di_is_empty(*list))
+        return;
+    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
+        return;
 
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
@@ -101,17 +106,22 @@ void di_insert_before(dllist_item *list, item_node *node, item item) {
 }
 
 item_node *di_get_by_index(dllist_item list, int index) {
-    if (di_is_empty(list)) return NULL;
+    if (di_is_empty(list))
+        return NULL;
 
-    if (index < 0 || index >= di_size(list)) return NULL;
+    if (index < 0 || index >= di_size(list))
+        return NULL;
 
-    if (index == 0) return list.head;
-    if (index == di_size(list) - 1) return list.tail;
+    if (index == 0)
+        return list.head;
+    if (index == di_size(list) - 1)
+        return list.tail;
 
     item_node *node = list.head;
     int count = 0;
     while (node != NULL) {
-        if (count == index) return node;
+        if (count == index)
+            return node;
         count++;
         node = node->next;
     }
@@ -119,13 +129,15 @@ item_node *di_get_by_index(dllist_item list, int index) {
     return NULL;
 }
 
-item_node *di_search_node_by_name(dllist_item list, char* item_name) {
-    if (di_is_empty(list)) return NULL;
+item_node *di_search_node_by_name(dllist_item list, char *item_name) {
+    if (di_is_empty(list))
+        return NULL;
 
     item_node *node = list.head;
 
     while (node != NULL) {
-        if (strcmp(item_name, node->item.product_name)) return node;
+        if (strcmp(item_name, node->item.product_name))
+            return node;
         node = node->next;
     }
 
@@ -133,8 +145,10 @@ item_node *di_search_node_by_name(dllist_item list, char* item_name) {
 }
 
 void di_delete(dllist_item *list, item_node *node) {
-    if (di_is_empty(*list)) return;
-    if (!(di_is_in_list(*list, node->item))) return;
+    if (di_is_empty(*list))
+        return;
+    if (!(di_is_in_list(*list, node->item)))
+        return;
 
     if (list->head == node && list->tail == node) {
         list->head = list->tail = NULL;
@@ -142,7 +156,7 @@ void di_delete(dllist_item *list, item_node *node) {
         list->head = node->next;
         node->next->prev = NULL;
     } else if (list->tail == node) {
-        list->tail = node ->prev;
+        list->tail = node->prev;
         node->prev->next = NULL;
     } else {
         node->prev->next = node->next;
@@ -151,14 +165,9 @@ void di_delete(dllist_item *list, item_node *node) {
     free(node);
 }
 
+void di_delete_begin(dllist_item *list) { di_delete(list, list->head); }
 
-void di_delete_begin(dllist_item *list) {
-    di_delete(list, list->head);
-}
-
-void di_delete_end(dllist_item *list) {
-    di_delete(list, list->tail);
-}
+void di_delete_end(dllist_item *list) { di_delete(list, list->tail); }
 
 void di_delete_before(dllist_item *list, item_node *node) {
     di_delete(list, node->prev);
