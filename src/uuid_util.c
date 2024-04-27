@@ -1,4 +1,4 @@
-#include "util.h"
+#include "uuid_util.h"
 
 char *uuid(char out[UUID_STR_LEN]) {
     uuid_t buffer;
