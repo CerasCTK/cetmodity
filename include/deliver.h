@@ -11,4 +11,6 @@ struct _deliver {
 };
 typedef struct _deliver deliver;
 
+bool is_same_deliver(deliver, deliver)
+
 #endif // !CETMODITY_DELIVER_H
