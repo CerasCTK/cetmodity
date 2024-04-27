@@ -34,6 +34,8 @@ void dd_insert_before(dllist_deliver *, deliver_node *, deliver);
 
 deliver_node *dd_get_by_index(dllist_deliver, int);
 
+item_node *di_search_node_by_name(dllist_item, char*);
+
 void dd_delete(dllist_deliver *, deliver_node *);
 
 void dd_delete_begin(dllist_deliver *);
