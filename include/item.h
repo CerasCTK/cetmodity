@@ -1,8 +1,8 @@
 #ifndef CETMODITY_ITEM_H
 #define CETMODITY_ITEM_H
 
-#include "define.h"
 #include "bool.h"
+#include "define.h"
 
 struct _item {
     char product_name[PRODUCT_MAX_NAME_LEN];
