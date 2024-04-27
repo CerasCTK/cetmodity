@@ -115,6 +115,8 @@ item_node *di_get_by_index(dllist_item list, int index) {
         count++;
         node = node->next;
     }
+
+    return NULL;
 }
 
 item_node *di_search_node_by_name(dllist_item list, char* item_name) {
