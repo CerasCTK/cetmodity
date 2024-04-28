@@ -10,7 +10,7 @@ void dd_init(dllist_deliver *list) {
 }
 
 bool dd_is_empty(dllist_deliver list) {
-    return list.head = NULL && list.tail == NULL;
+    return list.head == NULL && list.tail == NULL;
 }
 
 bool dd_is_in_list(dllist_deliver list, deliver deliver) {
@@ -82,7 +82,7 @@ void dd_insert_after(
     node->deliver = deliver;
 
     if (list->tail == node) {
-        dd_insert_end(*list, deliver);
+        dd_insert_end(list, deliver);
     } else {
         new_node->next = node->next;
         node->next->prev = new_node;
@@ -104,7 +104,7 @@ void dd_insert_before(
     node->deliver = deliver;
 
     if (list->head == node) {
-        dd_insert_begin(*list, deliver);
+        dd_insert_begin(list, deliver);
     } else {
         new_node->prev = node->prev;
         node->prev->next = new_node;
@@ -137,17 +137,66 @@ deliver_node *dd_get_by_index(dllist_deliver list, int index) {
     return NULL;
 }
 
-item_node *di_search_node_by_name(dllist_item list, char *deliver_name) {
-    if (di_is_empty(list))
+deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
+    if (dd_is_empty(list))
         return NULL;
 
-    item_node *node = list.head;
+    deliver_node *node = list.head;
 
     while (node != NULL) {
-        if (strcmp(delvier_name, node->deliver.name))
+        if (strcmp(deliver_name, node->deliver.name))
             return node;
         node = node->next;
     }
 
     return NULL;
+}
+
+void dd_delete(dllist_deliver *list, deliver_node *node) {
+    if (dd_is_empty(*list)) 
+        return;
+    if (!(dd_is_in_list(*list, node->deliver)))
+        return;
+
+    if (list->head == node && list->tail == node) {
+        list->head = NULL;
+        list->tail = NULL;
+    } else if (list->head == node) {
+        list->head = node->next;
+        node->next->prev = NULL;
+    } else if (list->tail == node) {
+        list->tail = node->prev;
+        node->prev->next = NULL;
+    } else {
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+    free(node);
+}
+
+void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
+
+void dd_delete_end(dllist_deliver *list) { dd_delete(list, list->tail); }
+
+void dd_delete_before(dllist_deliver *list, deliver_node *node) {
+    dd_delete(list, node->prev);
+}
+
+void dd_delete_after(dllist_deliver *list, deliver_node *node) {
+    dd_delete(list, node->next);
+}
+
+void dd_free(dllist_deliver *list) {
+    if (dd_is_empty(*list))
+        return;
+
+    deliver_node *temp = list->head;
+    while (temp != NULL) {
+        deliver_node *new_temp = temp;
+
+        temp = temp->next;
+        free(new_temp);
+    }
+
+    list->head = list->tail = NULL;
 }
