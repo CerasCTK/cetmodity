@@ -151,7 +151,8 @@ void di_delete(dllist_item *list, item_node *node) {
         return;
 
     if (list->head == node && list->tail == node) {
-        list->head = list->tail = NULL;
+        list->head = NULL;
+        list->tail = NULL;
     } else if (list->head == node) {
         list->head = node->next;
         node->next->prev = NULL;
@@ -176,3 +177,19 @@ void di_delete_before(dllist_item *list, item_node *node) {
 void di_delete_after(dllist_item *list, item_node *node) {
     di_delete(list, node->next);
 }
+
+void di_free(dllist_item *list) {
+    if (di_is_empty(*list))
+        return;
+
+    item_node *temp = list->head;
+    while (temp != NULL) {
+        item_node *new_temp = temp;
+
+        temp = temp->next;
+        free(new_temp);
+    }
+
+    list->head = list->tail = NULL;
+}
+ 
