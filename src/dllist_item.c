@@ -192,4 +192,3 @@ void di_free(dllist_item *list) {
 
     list->head = list->tail = NULL;
 }
- 

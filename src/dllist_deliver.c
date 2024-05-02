@@ -153,7 +153,7 @@ deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
 }
 
 void dd_delete(dllist_deliver *list, deliver_node *node) {
-    if (dd_is_empty(*list)) 
+    if (dd_is_empty(*list))
         return;
     if (!(dd_is_in_list(*list, node->deliver)))
         return;
