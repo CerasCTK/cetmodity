@@ -11,4 +11,6 @@ struct _sender {
 };
 typedef struct _sender sender;
 
+sender create_sender(const char *, const char *, const coordinate);
+
 #endif // !CETMODITY_SENDER_H
