@@ -76,7 +76,7 @@ void di_insert_after(dllist_item *list, item_node *node, item item) {
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
 
-    if (new_node = list->tail) {
+    if (new_node == list->tail) {
         di_insert_end(list, item);
     } else {
         new_node->next = node->next;
@@ -95,7 +95,7 @@ void di_insert_before(dllist_item *list, item_node *node, item item) {
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
 
-    if (new_node = list->head) {
+    if (new_node == list->head) {
         di_insert_begin(list, item);
     } else {
         node->prev->next = new_node;
