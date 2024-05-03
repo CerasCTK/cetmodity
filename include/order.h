@@ -27,4 +27,6 @@ order create_empty_order(
     const sender, const receiver, unsigned long, unsigned int
 );
 
+void order_add_item(order *const, const item);
+
 #endif // !CETMODITY_ORDER_H

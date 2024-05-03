@@ -20,3 +20,7 @@ order create_empty_order(
 
     return new_order;
 }
+
+void order_add_item(order *order, item new_item) {
+    di_insert_end(&order->items, new_item);
+}
