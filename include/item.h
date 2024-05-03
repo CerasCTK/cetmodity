@@ -11,6 +11,8 @@ struct _item {
 };
 typedef struct _item item;
 
-bool is_same_item(item, item);
+bool is_same_item(const item, const item);
+
+item create_item(const char * const, const unsigned int, const unsigned long);
 
 #endif // !CETMODITY_ITEM_H
