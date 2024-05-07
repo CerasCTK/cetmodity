@@ -42,6 +42,6 @@ char *get_account(
         if (!found)
             return "-NONE-";
         else
-            return found->deliver.name;
+            return found->deliver.id;
     }
 }
