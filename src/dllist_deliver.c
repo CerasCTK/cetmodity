@@ -152,6 +152,21 @@ deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
     return NULL;
 }
 
+deliver_node *dd_find_user(dllist_deliver list, char *user, char *pass) {
+    if (dd_is_empty(list))
+        return NULL;
+
+    for (deliver_node *runner = list.head; runner != NULL;
+         runner = runner->next) {
+        if (strcmp(runner->deliver.account.username, user) == 0
+            && strcmp(runner->deliver.account.password, pass) == 0) {
+            return runner;
+        }
+    }
+
+    return NULL;
+}
+
 void dd_delete(dllist_deliver *list, deliver_node *node) {
     if (dd_is_empty(*list))
         return;

@@ -36,6 +36,8 @@ deliver_node *dd_get_by_index(dllist_deliver, int);
 
 deliver_node *dd_search_node_by_name(dllist_deliver, char *);
 
+deliver_node *dd_find_user(dllist_deliver, char *, char *);
+
 void dd_delete(dllist_deliver *, deliver_node *);
 
 void dd_delete_begin(dllist_deliver *);
