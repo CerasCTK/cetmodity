@@ -1,16 +1,21 @@
 #include "cetmodity.h"
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <uuid/uuid.h>
 
 #include "dllist_deliver.h"
+#include "dllist_order.h"
+#include "menu.h"
 
 dllist_deliver delivers;
+dllist_order orders;
 
-void cetmodity_init() { dd_init(&delivers); }
+void cetmodity_init() {
+    dd_init(&delivers);
+    do_init(&orders);
+}
 
 void cetmodity_run() {
     char *found;
@@ -30,12 +35,11 @@ RELOGIN:
 logout_state admin_menu() {
     int opt;
     while (true) {
-        system("clear");
-        show_admin_menu();
+        a_show_menu();
         printf("Input your option: ");
         scanf("%d", &opt);
         switch (opt) {
-            case 1: printf("delivers\n"); break;
+            case 1: admin_manage_delivers(); break;
             case 2: printf("orders\n"); break;
             case 0: return logout();
             default:
@@ -45,11 +49,24 @@ logout_state admin_menu() {
     }
 }
 
-void deliver_menu() { printf("Deliver menu"); }
-
-void show_admin_menu() {
-    printf("ADMIN MENU\n");
-    printf("1. Manage delivers\n");
-    printf("2. Manage orders\n");
-    printf("0. Log out\n");
+void admin_manage_delivers() {
+    int opt;
+    bool loop = true;
+    while (loop) {
+        a_show_manage_delivers_menu();
+        printf("Input your option: ");
+        scanf("%d", &opt);
+        switch (opt) {
+            case 1: break;
+            case 2: break;
+            case 3: break;
+            case 4: break;
+            case 0: loop = false; break;
+            default:
+                printf("Invalid choice, use only the options above\n");
+                break;
+        }
+    }
 }
+
+void deliver_menu() { printf("Deliver menu"); }

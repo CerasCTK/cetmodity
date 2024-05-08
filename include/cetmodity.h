@@ -11,6 +11,6 @@ logout_state admin_menu();
 
 void deliver_menu();
 
-void show_admin_menu();
+void admin_manage_delivers();
 
 #endif // !CETMODITY_CETMODITY_H
