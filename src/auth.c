@@ -45,3 +45,18 @@ char *get_account(
             return found->deliver.id;
     }
 }
+
+logout_state logout() {
+    int opt;
+    system("clear");
+    printf("Do you want to exit or only logout?\n");
+    printf("1. Logout\n");
+    printf("2. Exit\n");
+    scanf("%d", &opt);
+    char c = getchar();
+
+    if (opt == LOGOUT_STATE)
+        return LOGOUT_STATE;
+    else
+        return EXIT_STATE;
+}
