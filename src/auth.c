@@ -50,8 +50,9 @@ logout_state logout() {
     int opt;
     system("clear");
     printf("Do you want to exit or only logout?\n");
-    printf("1. Logout\n");
-    printf("2. Exit\n");
+    printf("\t1. Logout\n");
+    printf("\t2. Exit\n");
+    printf("Input your option: ");
     scanf("%d", &opt);
     char c = getchar();
 
