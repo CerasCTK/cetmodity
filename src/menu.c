@@ -27,3 +27,13 @@ void a_show_manage_delivers_menu() {
     printnl("\t4. Show list of delivers");
     printnl("\t0. Go back");
 }
+
+void a_show_manage_orders_menu() {
+    CLRSCR;
+    printnl("Admin manage orders menu:");
+    printnl("\t1. Add new order");
+    printnl("\t2. Edit the exist order");
+    printnl("\t3. Delete order");
+    printnl("\t4. Show list of orders");
+    printnl("\t0. Go back");
+}
