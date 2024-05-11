@@ -13,4 +13,6 @@ typedef struct _sender sender;
 
 sender create_sender(const char *, const char *, const coordinate);
 
+sender create_sender_input();
+
 #endif // !CETMODITY_SENDER_H
