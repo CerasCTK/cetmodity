@@ -13,4 +13,6 @@ typedef struct _receiver receiver;
 
 receiver create_receiver(const char *, const char *, const coordinate);
 
+receiver create_receiver_input();
+
 #endif // !CETMODITY_RECEIVER_H
