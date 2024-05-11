@@ -23,9 +23,7 @@ typedef struct _order order;
 
 bool is_same_order(const order, const order);
 
-order create_empty_order(
-    const sender, const receiver, unsigned long, unsigned int
-);
+order create_empty_order(const sender, const receiver);
 
 void order_add_item(order *const, const item);
 
