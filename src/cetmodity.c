@@ -40,7 +40,7 @@ logout_state admin_menu() {
         scanf("%d", &opt);
         switch (opt) {
             case 1: admin_manage_delivers(); break;
-            case 2: printf("orders\n"); break;
+            case 2: admin_manage_orders(); break;
             case 0: return logout();
             default:
                 printf("Invalid choice, use only the options above\n");
@@ -63,7 +63,29 @@ void admin_manage_delivers() {
             case 4: break;
             case 0: loop = false; break;
             default:
-                printf("Invalid choice, use only the options above\n");
+                printf("Invalid choice, use only the options above!\n");
+                sleep(1);
+                break;
+        }
+    }
+}
+
+void admin_manage_orders() {
+    int opt;
+    bool loop = true;
+    while (loop) {
+        a_show_manage_orders_menu();
+        printf("Input your option: ");
+        scanf("%d", &opt);
+        switch (opt) {
+            case 1: break;
+            case 2: break;
+            case 3: break;
+            case 4: break;
+            case 0: loop = false; break;
+            default:
+                printf("Invalid choice, use only the options above!\n");
+                sleep(1);
                 break;
         }
     }

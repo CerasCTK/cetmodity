@@ -13,4 +13,6 @@ void deliver_menu();
 
 void admin_manage_delivers();
 
+void admin_manage_orders();
+
 #endif // !CETMODITY_CETMODITY_H
