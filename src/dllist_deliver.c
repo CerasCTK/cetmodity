@@ -66,7 +66,7 @@ void dd_insert_end(dllist_deliver *list, deliver deliver) {
         node->prev = list->tail;
         list->tail->next = node;
     }
-    list->head = node;
+    list->tail = node;
 }
 
 void dd_insert_after(
