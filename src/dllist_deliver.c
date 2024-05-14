@@ -117,7 +117,7 @@ deliver_node *dd_get_by_index(dllist_deliver list, int index) {
     if (dd_is_empty(list))
         return NULL;
 
-    if (index < 0 || index >= dd_size(list) - 1)
+    if (index < 0 || index > (dd_size(list) - 1))
         return NULL;
 
     if (index == 0)
@@ -129,7 +129,7 @@ deliver_node *dd_get_by_index(dllist_deliver list, int index) {
     deliver_node *node = list.head;
     while (node != NULL) {
         if (count == index)
-            return list.head;
+            return node;
         count++;
         node = node->next;
     }
