@@ -144,7 +144,7 @@ deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
     deliver_node *node = list.head;
 
     while (node != NULL) {
-        if (strcmp(deliver_name, node->deliver.name))
+        if (strcmp(deliver_name, node->deliver.name) == 0)
             return node;
         node = node->next;
     }
