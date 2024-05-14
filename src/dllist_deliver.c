@@ -96,12 +96,12 @@ void dd_insert_before(
 ) {
     if (dd_is_empty(*list))
         return;
-    if (!(dd_is_in_list(*list, deliver))
+    if ((dd_is_in_list(*list, deliver))
         || !(dd_is_in_list(*list, node->deliver)))
         return;
 
     deliver_node *new_node = (deliver_node *)malloc(sizeof(deliver_node));
-    node->deliver = deliver;
+    new_node->deliver = deliver;
 
     if (list->head == node) {
         dd_insert_begin(list, deliver);
