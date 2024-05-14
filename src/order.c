@@ -23,4 +23,7 @@ order create_empty_order(sender sender, receiver receiver) {
 
 void order_add_item(order *order, item new_item) {
     di_insert_end(&order->items, new_item);
+
+    order->items_price = di_calculate_total_price(order->items);
+    order->shipping_fee = order->items_price * SHIP_TAX;
 }
