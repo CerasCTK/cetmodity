@@ -199,6 +199,7 @@ void dd_delete_before(dllist_deliver *list, deliver_node *node) {
 }
 
 void dd_delete_after(dllist_deliver *list, deliver_node *node) {
+    if (node == list->tail) return;
     dd_delete(list, node->next);
 }
 
