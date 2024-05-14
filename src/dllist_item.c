@@ -192,3 +192,15 @@ void di_free(dllist_item *list) {
 
     list->head = list->tail = NULL;
 }
+
+unsigned long di_calculate_total_price(dllist_item list) {
+    if (di_is_empty(list))
+        return 0;
+
+    unsigned long total = 0;
+    for (item_node *runner = list.head; runner != NULL; runner = runner->next) {
+        total += runner->item.unit_price * runner->item.quantity;
+    }
+
+    return total;
+}

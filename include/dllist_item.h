@@ -48,4 +48,6 @@ void di_delete_after(dllist_item *, item_node *);
 
 void di_free(dllist_item *);
 
+unsigned long di_calculate_total_price(dllist_item);
+
 #endif // !CETMODITY_LLIST_ITEM_H
