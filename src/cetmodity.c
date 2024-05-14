@@ -30,6 +30,9 @@ RELOGIN:
 
     if (state == LOGOUT_STATE)
         goto RELOGIN;
+
+    dd_free(&delivers);
+    do_free(&orders);
 }
 
 logout_state admin_menu() {
