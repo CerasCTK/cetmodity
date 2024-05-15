@@ -70,18 +70,18 @@ void di_insert_end(dllist_item *list, item item) {
 void di_insert_after(dllist_item *list, item_node *node, item item) {
     if (di_is_empty(*list))
         return;
-    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
+    if ((di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
         return;
 
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
 
-    if (new_node == list->tail) {
+    if (node == list->tail) {
         di_insert_end(list, item);
     } else {
+        node->next->prev = new_node;
         new_node->next = node->next;
-        new_node->next->prev = new_node;
-        new_node->next = new_node;
+        node->next = new_node;
         new_node->prev = node;
     }
 }
