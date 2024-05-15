@@ -136,7 +136,7 @@ item_node *di_search_node_by_name(dllist_item list, char *item_name) {
     item_node *node = list.head;
 
     while (node != NULL) {
-        if (strcmp(item_name, node->item.product_name))
+        if (strcmp(item_name, node->item.product_name) == 0)
             return node;
         node = node->next;
     }
