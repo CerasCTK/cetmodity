@@ -89,19 +89,19 @@ void di_insert_after(dllist_item *list, item_node *node, item item) {
 void di_insert_before(dllist_item *list, item_node *node, item item) {
     if (di_is_empty(*list))
         return;
-    if (!(di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
+    if ((di_is_in_list(*list, item)) || !(di_is_in_list(*list, node->item)))
         return;
 
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;
 
-    if (new_node == list->head) {
+    if (node == list->head) {
         di_insert_begin(list, item);
     } else {
         node->prev->next = new_node;
-        new_node->prev = new_node->prev;
-        new_node->next = node;
+        new_node->prev = node->prev;
         node->prev = new_node;
+        new_node->next = node;
     }
 }
 
