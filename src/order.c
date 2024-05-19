@@ -4,9 +4,7 @@
 
 #include <string.h>
 
-bool is_same_order(order first, order second) {
-    return strcmp(first.id, second.id) == 0;
-}
+bool is_same_order(order o1, order o2) { return strcmp(o1.id, o2.id) == 0; }
 
 order create_empty_order(sender sender, receiver receiver) {
     order new_order = { .sender = sender,

@@ -21,10 +21,10 @@ struct _order {
 };
 typedef struct _order order;
 
-bool is_same_order(const order, const order);
+bool is_same_order(const order o1, const order o2);
 
-order create_empty_order(const sender, const receiver);
+order create_empty_order(const sender sender, const receiver receiver);
 
-void order_add_item(order *const, const item);
+void order_add_item(order *const order, const item new_item);
 
 #endif // !CETMODITY_ORDER_H
