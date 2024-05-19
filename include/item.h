@@ -11,8 +11,11 @@ struct _item {
 };
 typedef struct _item item;
 
-bool is_same_item(const item, const item);
+bool is_same_item(const item i1, const item i2);
 
-item create_item(const char * const, const unsigned int, const unsigned long);
+item create_item(
+    const char *const product_name, const unsigned int quantity,
+    const unsigned long unit_price
+);
 
 #endif // !CETMODITY_ITEM_H

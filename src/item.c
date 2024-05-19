@@ -2,8 +2,8 @@
 
 #include <string.h>
 
-bool is_same_item(item first, item second) {
-    return strcmp(first.product_name, second.product_name) == 0;
+bool is_same_item(item i1, item i2) {
+    return strcmp(i1.product_name, i2.product_name) == 0;
 }
 
 item create_item(
