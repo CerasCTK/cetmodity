@@ -16,44 +16,44 @@ struct _dllist_order {
 };
 typedef struct _dllist_order dllist_order;
 
-void do_init(dllist_order *);
+void do_init(dllist_order *list);
 
-bool do_is_empty(dllist_order);
+bool do_is_empty(dllist_order list);
 
-bool do_is_in_list(dllist_order, order);
+bool do_is_in_list(dllist_order list, order order);
 
-int do_size(dllist_order);
+int do_size(dllist_order list);
 
-void do_insert_begin(dllist_order *, order);
+void do_insert_begin(dllist_order *list, order order);
 
-void do_insert_end(dllist_order *, order);
+void do_insert_end(dllist_order *list, order order);
 
-void do_insert_after(dllist_order *, order_node *, order);
+void do_insert_after(dllist_order *list, order_node *node, order order);
 
-void do_insert_before(dllist_order *, order_node *, order);
+void do_insert_before(dllist_order *list, order_node *node, order order);
 
-order_node *do_get_by_index(dllist_order, int);
+order_node *do_get_by_index(dllist_order list, int index);
 
-order_node *do_search_by_id(dllist_order, char *);
+order_node *do_search_by_id(dllist_order list, char *order_id);
 
-order_node *do_search_by_sender_name(dllist_order, char *);
+order_node *do_search_by_sender_name(dllist_order list, char *sender_name);
 
-order_node *do_search_by_receiver_name(dllist_order, char *);
+order_node *do_search_by_receiver_name(dllist_order list, char *receiver_name);
 
-void do_delete(dllist_order *, order_node *);
+void do_delete(dllist_order *list, order_node *node);
 
-void do_delete_begin(dllist_order *);
+void do_delete_begin(dllist_order *list);
 
-void do_delete_end(dllist_order *);
+void do_delete_end(dllist_order *list);
 
-void do_delete_by_id(dllist_order *, char *);
+void do_delete_by_id(dllist_order *list, char *order_id);
 
-void do_delete_before(dllist_order *, order_node *);
+void do_delete_before(dllist_order *list, order_node *node);
 
-void do_delete_after(dllist_order *, order_node *);
+void do_delete_after(dllist_order *list, order_node *node);
 
-void do_show_list(dllist_order);
+void do_show_list(dllist_order list);
 
-void do_free(dllist_order *);
+void do_free(dllist_order *list);
 
 #endif // !CETMODITY_LLIST_ORDER_H
