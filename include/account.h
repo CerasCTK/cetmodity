@@ -10,6 +10,6 @@ struct _account {
 };
 typedef struct _account account;
 
-account create_account(char*, char*);
+account create_account(char *username, char *password);
 
 #endif // !CETMODITY_ACCOUNT_H
