@@ -8,7 +8,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-void input_without_showing_char(char *dest, unsigned short size) {
+void input_without_showing_char(char *dest, unsigned short dest_size) {
     static struct termios old, new;
 
     // Saving old settings of STDIN_FILENO and copy settings for hide char
@@ -22,7 +22,7 @@ void input_without_showing_char(char *dest, unsigned short size) {
     tcsetattr(STDIN_FILENO, TCSANOW, &new);
 
     // Reading char to destination
-    input_string(dest, size);
+    input_string(dest, dest_size);
 
     // Reset STDIN_FILENO
     tcsetattr(STDIN_FILENO, TCSANOW, &old);
@@ -30,17 +30,17 @@ void input_without_showing_char(char *dest, unsigned short size) {
     printf("\n");
 }
 
-void input_string(char *dest, unsigned short size) {
+void input_string(char *dest, unsigned short dest_size) {
     int counter = 0;
     char c;
-    while ((c = getchar()) != '\n' && c != EOF && counter < size) {
+    while ((c = getchar()) != '\n' && c != EOF && counter < dest_size) {
         dest[counter++] = c;
     }
 
     dest[counter] = '\0';
 }
 
-void print_center(char **text, unsigned short lines) {
+void print_center(char **messages, unsigned short lines) {
     // Get columns and lines in output
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
@@ -55,10 +55,10 @@ void print_center(char **text, unsigned short lines) {
         printf("\n");
 
     for (int i = 0; i < lines; i++) {
-        char *current_txt = text[i];
+        char *current_txt = messages[i];
         int text_len = strlen(current_txt);
         int f_width = text_len + (cols - text_len) / 2;
-        printf("%*s\n", f_width, text[i]);
+        printf("%*s\n", f_width, messages[i]);
     }
 
     for (int i = 0; i < y; i++)
