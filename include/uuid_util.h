@@ -3,6 +3,6 @@
 
 #include <uuid/uuid.h>
 
-char *uuid(char[UUID_STR_LEN]);
+char *uuid(char dest[UUID_STR_LEN]);
 
 #endif // !CETMODITY_UUID_UTIL_H
