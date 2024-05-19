@@ -11,7 +11,9 @@ struct _receiver {
 };
 typedef struct _receiver receiver;
 
-receiver create_receiver(const char *, const char *, const coordinate);
+receiver create_receiver(
+    const char *name, const char *phone_number, const coordinate location
+);
 
 receiver create_receiver_input();
 
