@@ -31,13 +31,13 @@ REINPUT:
 }
 
 char *get_account(
-    dllist_deliver delivers, char user[USERNAME_MAX_LEN],
-    char pass[PASSWORD_MAX_LEN]
+    dllist_deliver delivers, char username[USERNAME_MAX_LEN],
+    char password[PASSWORD_MAX_LEN]
 ) {
-    if (strcmp(user, "admin") == 0 && strcmp(pass, "123") == 0)
+    if (strcmp(username, "admin") == 0 && strcmp(password, "123") == 0)
         return "-ADMIN-";
     else {
-        deliver_node *found = dd_find_user(delivers, user, pass);
+        deliver_node *found = dd_find_user(delivers, username, password);
 
         if (!found)
             return "-NONE-";
