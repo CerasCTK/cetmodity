@@ -152,14 +152,15 @@ deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
     return NULL;
 }
 
-deliver_node *dd_find_user(dllist_deliver list, char *user, char *pass) {
+deliver_node *
+dd_find_user(dllist_deliver list, char *username, char *password) {
     if (dd_is_empty(list))
         return NULL;
 
     for (deliver_node *runner = list.head; runner != NULL;
          runner = runner->next) {
-        if (strcmp(runner->deliver.account.username, user) == 0
-            && strcmp(runner->deliver.account.password, pass) == 0) {
+        if (strcmp(runner->deliver.account.username, username) == 0
+            && strcmp(runner->deliver.account.password, password) == 0) {
             return runner;
         }
     }
@@ -194,12 +195,14 @@ void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
 void dd_delete_end(dllist_deliver *list) { dd_delete(list, list->tail); }
 
 void dd_delete_before(dllist_deliver *list, deliver_node *node) {
-    if (node == list->head) return;
+    if (node == list->head)
+        return;
     dd_delete(list, node->prev);
 }
 
 void dd_delete_after(dllist_deliver *list, deliver_node *node) {
-    if (node == list->tail) return;
+    if (node == list->tail)
+        return;
     dd_delete(list, node->next);
 }
 
