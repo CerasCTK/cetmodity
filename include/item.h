@@ -2,10 +2,11 @@
 #define CETMODITY_ITEM_H
 
 #include "bool.h"
-#include "define.h"
+
+#define PRODUCT_MAX_NAME_LEN 40
 
 struct _item {
-    char product_name[PRODUCT_MAX_NAME_LEN];
+    char product_name[PRODUCT_MAX_NAME_LEN + 1];
     unsigned int quantity;
     unsigned long unit_price;
 };

@@ -4,13 +4,15 @@
 #include <uuid/uuid.h>
 
 #include "account.h"
-#include "define.h"
 #include "dllist_order.h"
+
+#define DELIVER_MAX_NAME_LEN 20
+#define DELIVER_MAX_PHONE_LEN 10
 
 struct _deliver {
     char id[UUID_STR_LEN];
-    char name[HUMAN_MAX_NAME_LEN];
-    char phone_number[HUMAN_MAX_PHONE_LEN];
+    char name[DELIVER_MAX_NAME_LEN + 1];
+    char phone_number[DELIVER_MAX_PHONE_LEN + 1];
     account account;
     dllist_order orders;
 };

@@ -2,11 +2,13 @@
 #define CETMODITY_RECEIVER_H
 
 #include "coordinate.h"
-#include "define.h"
+
+#define RECEIVER_MAX_NAME_LEN 20
+#define RECEIVER_MAX_PHONE_LEN 10
 
 struct _receiver {
-    char name[HUMAN_MAX_NAME_LEN];
-    char phone_number[HUMAN_MAX_PHONE_LEN];
+    char name[RECEIVER_MAX_NAME_LEN + 1];
+    char phone_number[RECEIVER_MAX_PHONE_LEN + 1];
     coordinate location;
 };
 typedef struct _receiver receiver;

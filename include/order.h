@@ -8,6 +8,8 @@
 #include "receiver.h"
 #include "sender.h"
 
+#define SHIP_TAX 0.05
+
 enum _order_status { IN_TRANSIT, DELIVERED };
 typedef enum _order_status order_status;
 

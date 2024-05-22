@@ -2,11 +2,13 @@
 #define CETMODITY_SENDER_H
 
 #include "coordinate.h"
-#include "define.h"
+
+#define SENDER_MAX_NAME_LEN 20
+#define SENDER_MAX_PHONE_LEN 10
 
 struct _sender {
-    char name[HUMAN_MAX_NAME_LEN];
-    char phone_number[HUMAN_MAX_PHONE_LEN];
+    char name[SENDER_MAX_NAME_LEN + 1];
+    char phone_number[SENDER_MAX_PHONE_LEN + 1];
     coordinate location;
 };
 typedef struct _sender sender;
