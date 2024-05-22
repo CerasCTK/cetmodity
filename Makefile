@@ -13,7 +13,7 @@ DEPS := $(OBJS:.o=.d)
 # INC_DIRS := $(shell find $(INC_DIR) -type d)
 # INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 INC_FLAGS := $(addprefix -I,$(INC_DIR))
-LDFLAGS := -luuid
+LDFLAGS := -luuid -lm
 
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
 
