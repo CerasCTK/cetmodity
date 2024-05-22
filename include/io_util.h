@@ -5,6 +5,6 @@ void input_without_showing_char(char *dest, unsigned short dest_size);
 
 void input_string(char *dest, unsigned short dest_size);
 
-void print_center(char **messages, unsigned short lines);
+void print_center(unsigned short msg_len, unsigned short lines, char messages[lines][msg_len]);
 
 #endif // !CETMODITY_IO_UTIL_H

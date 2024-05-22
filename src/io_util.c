@@ -40,7 +40,9 @@ void input_string(char *dest, unsigned short dest_size) {
     dest[counter] = '\0';
 }
 
-void print_center(char **messages, unsigned short lines) {
+void print_center(
+    unsigned short msg_len, unsigned short lines, char messages[lines][msg_len]
+) {
     // Get columns and lines in output
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
@@ -55,9 +57,7 @@ void print_center(char **messages, unsigned short lines) {
         printf("\n");
 
     for (int i = 0; i < lines; i++) {
-        char *current_txt = messages[i];
-        int text_len = strlen(current_txt);
-        int f_width = text_len + (cols - text_len) / 2;
+        int f_width = msg_len + (cols - msg_len) / 2;
         printf("%*s\n", f_width, messages[i]);
     }
 
