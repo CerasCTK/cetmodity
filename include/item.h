@@ -19,4 +19,8 @@ item create_item(
     const unsigned long unit_price
 );
 
+int get_item_info_len(item item);
+
+char *get_item_info_string(item item);
+
 #endif // !CETMODITY_ITEM_H
