@@ -3,7 +3,7 @@
 
 #include "bool.h"
 
-#define PRODUCT_MAX_NAME_LEN 40
+#define PRODUCT_MAX_NAME_LEN 15
 
 struct _item {
     char product_name[PRODUCT_MAX_NAME_LEN + 1];
