@@ -4,9 +4,9 @@
 
 #include <string.h>
 
-bool is_same_order(order o1, order o2) { return strcmp(o1.id, o2.id) == 0; }
+bool is_same_order(const order o1, const order o2) { return strcmp(o1.id, o2.id) == 0; }
 
-order create_empty_order(sender sender, receiver receiver) {
+order create_empty_order(const sender sender, const receiver receiver) {
     order new_order = { .sender = sender,
                         .receiver = receiver,
                         .items_price = 0,
@@ -19,7 +19,7 @@ order create_empty_order(sender sender, receiver receiver) {
     return new_order;
 }
 
-void order_add_item(order *order, item new_item) {
+void order_add_item(order *order, const item new_item) {
     di_insert_end(&order->items, new_item);
 
     order->items_price = di_calculate_total_price(order->items);

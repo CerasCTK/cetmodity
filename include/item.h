@@ -11,11 +11,11 @@ typedef struct item {
     unsigned long unit_price;
 } item;
 
-bool is_same_item(const item i1, const item i2);
+bool is_same_item(item i1, item i2);
 
 item create_item(
-    const char *const product_name, const unsigned int quantity,
-    const unsigned long unit_price
+    const char* product_name, unsigned int quantity,
+    unsigned long unit_price
 );
 
 int get_item_info_len(item item);

@@ -19,6 +19,6 @@ typedef struct deliver {
 
 bool is_same_deliver(deliver d1, deliver d2);
 
-deliver create_deliver(char *name, char *phone_number, const account account);
+deliver create_deliver(const char *name, const char *phone_number, account account);
 
 #endif // !CETMODITY_DELIVER_H

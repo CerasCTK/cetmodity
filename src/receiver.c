@@ -3,7 +3,7 @@
 #include <string.h>
 
 receiver create_receiver(
-    const char *name, const char *phone_number, coordinate location
+    const char *name, const char *phone_number, const coordinate location
 ) {
     receiver new_receiver = { .location = location };
     strcpy(new_receiver.name, name);

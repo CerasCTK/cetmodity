@@ -32,11 +32,11 @@ void do_insert_before(dllist_order *list, order_node *node, order order);
 
 order_node *do_get_by_index(dllist_order list, int index);
 
-order_node *do_search_by_id(dllist_order list, char *order_id);
+order_node *do_search_by_id(dllist_order list, const char *order_id);
 
-order_node *do_search_by_sender_name(dllist_order list, char *sender_name);
+order_node *do_search_by_sender_name(dllist_order list, const char *sender_name);
 
-order_node *do_search_by_receiver_name(dllist_order list, char *receiver_name);
+order_node *do_search_by_receiver_name(dllist_order list, const char *receiver_name);
 
 void do_delete(dllist_order *list, order_node *node);
 
@@ -44,11 +44,11 @@ void do_delete_begin(dllist_order *list);
 
 void do_delete_end(dllist_order *list);
 
-void do_delete_by_id(dllist_order *list, char *order_id);
+void do_delete_by_id(dllist_order *list, const char *order_id);
 
-void do_delete_before(dllist_order *list, order_node *node);
+void do_delete_before(dllist_order *list, const order_node *node);
 
-void do_delete_after(dllist_order *list, order_node *node);
+void do_delete_after(dllist_order *list, const order_node *node);
 
 void do_free(dllist_order *list);
 

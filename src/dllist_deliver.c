@@ -9,11 +9,11 @@ void dd_init(dllist_deliver *list) {
     list->tail = NULL;
 }
 
-bool dd_is_empty(dllist_deliver list) {
+bool dd_is_empty(const dllist_deliver list) {
     return list.head == NULL && list.tail == NULL;
 }
 
-bool dd_is_in_list(dllist_deliver list, deliver deliver) {
+bool dd_is_in_list(dllist_deliver list, const deliver deliver) {
     if (dd_is_empty(list))
         return false;
 
@@ -39,8 +39,8 @@ int dd_size(dllist_deliver list) {
     return count;
 }
 
-void dd_insert_begin(dllist_deliver *list, deliver deliver) {
-    deliver_node *node = (deliver_node *)malloc(sizeof(deliver_node));
+void dd_insert_begin(dllist_deliver *list, const deliver deliver) {
+    deliver_node *node = malloc(sizeof(deliver_node));
     node->deliver = deliver;
     node->prev = NULL;
 
@@ -54,8 +54,8 @@ void dd_insert_begin(dllist_deliver *list, deliver deliver) {
     list->head = node;
 }
 
-void dd_insert_end(dllist_deliver *list, deliver deliver) {
-    deliver_node *node = (deliver_node *)malloc(sizeof(deliver_node));
+void dd_insert_end(dllist_deliver *list, const deliver deliver) {
+    deliver_node *node = malloc(sizeof(deliver_node));
     node->deliver = deliver;
     node->next = NULL;
 
@@ -70,7 +70,7 @@ void dd_insert_end(dllist_deliver *list, deliver deliver) {
 }
 
 void dd_insert_after(
-    dllist_deliver *list, deliver_node *node, deliver deliver
+    dllist_deliver *list, deliver_node *node, const deliver deliver
 ) {
     if (dd_is_empty(*list))
         return;
@@ -78,7 +78,7 @@ void dd_insert_after(
         || !(dd_is_in_list(*list, node->deliver)))
         return;
 
-    deliver_node *new_node = (deliver_node *)malloc(sizeof(deliver_node));
+    deliver_node *new_node = malloc(sizeof(deliver_node));
     new_node->deliver = deliver;
 
     if (list->tail == node) {
@@ -92,7 +92,7 @@ void dd_insert_after(
 }
 
 void dd_insert_before(
-    dllist_deliver *list, deliver_node *node, deliver deliver
+    dllist_deliver *list, deliver_node *node, const deliver deliver
 ) {
     if (dd_is_empty(*list))
         return;
@@ -100,7 +100,7 @@ void dd_insert_before(
         || !(dd_is_in_list(*list, node->deliver)))
         return;
 
-    deliver_node *new_node = (deliver_node *)malloc(sizeof(deliver_node));
+    deliver_node *new_node = malloc(sizeof(deliver_node));
     new_node->deliver = deliver;
 
     if (list->head == node) {
@@ -113,7 +113,7 @@ void dd_insert_before(
     }
 }
 
-deliver_node *dd_get_by_index(dllist_deliver list, int index) {
+deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
     if (dd_is_empty(list))
         return NULL;
 
@@ -137,7 +137,7 @@ deliver_node *dd_get_by_index(dllist_deliver list, int index) {
     return NULL;
 }
 
-deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
+deliver_node *dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
     if (dd_is_empty(list))
         return NULL;
 
@@ -153,7 +153,7 @@ deliver_node *dd_search_node_by_name(dllist_deliver list, char *deliver_name) {
 }
 
 deliver_node *
-dd_find_user(dllist_deliver list, char *username, char *password) {
+dd_find_user(const dllist_deliver list, const char *username, const char *password) {
     if (dd_is_empty(list))
         return NULL;
 
@@ -194,13 +194,13 @@ void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
 
 void dd_delete_end(dllist_deliver *list) { dd_delete(list, list->tail); }
 
-void dd_delete_before(dllist_deliver *list, deliver_node *node) {
+void dd_delete_before(dllist_deliver *list, const deliver_node *node) {
     if (node == list->head)
         return;
     dd_delete(list, node->prev);
 }
 
-void dd_delete_after(dllist_deliver *list, deliver_node *node) {
+void dd_delete_after(dllist_deliver *list, const deliver_node *node) {
     if (node == list->tail)
         return;
     dd_delete(list, node->next);

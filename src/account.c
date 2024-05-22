@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-account create_account(char *username, char *password) {
+account create_account(const char *username, const char *password) {
     account new_account;
 
     strcpy(new_account.username, username);

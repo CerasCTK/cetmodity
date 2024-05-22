@@ -8,7 +8,7 @@
 #include "account.h"
 #include "io_util.h"
 
-char *login(dllist_deliver delivers) {
+char *login(const dllist_deliver delivers) {
     char username[USERNAME_MAX_LEN];
     char password[PASSWORD_MAX_LEN];
 
@@ -31,22 +31,21 @@ REINPUT:
 }
 
 char *get_account(
-    dllist_deliver delivers, char username[USERNAME_MAX_LEN],
+    const dllist_deliver delivers, char username[USERNAME_MAX_LEN],
     char password[PASSWORD_MAX_LEN]
 ) {
     if (strcmp(username, "admin") == 0 && strcmp(password, "123") == 0)
         return "-ADMIN-";
-    else {
-        deliver_node *found = dd_find_user(delivers, username, password);
 
-        if (!found)
-            return "-NONE-";
-        else
-            return found->deliver.id;
-    }
+    deliver_node *found = dd_find_user(delivers, username, password);
+
+    if (found == NULL)
+        return "-NONE-";
+
+    return found->deliver.id;
 }
 
-logout_state logout() {
+auth_state logout() {
     int opt;
     system("clear");
     printf("Do you want to exit or only logout?\n");
@@ -54,10 +53,11 @@ logout_state logout() {
     printf("\t2. Exit\n");
     printf("Input your option: ");
     scanf("%d", &opt);
-    char c = getchar();
 
-    if (opt == LOGOUT_STATE)
-        return LOGOUT_STATE;
-    else
-        return EXIT_STATE;
+    getchar();
+
+    if (opt == 1)
+        return logout_state;
+
+    return exit_state;
 }

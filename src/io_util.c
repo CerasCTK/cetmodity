@@ -7,7 +7,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-void input_without_showing_char(char *dest, unsigned short dest_size) {
+void input_without_showing_char(char *dest, const unsigned short dest_size) {
     static struct termios old, new;
 
     // Saving old settings of STDIN_FILENO and copy settings for hide char
@@ -29,7 +29,7 @@ void input_without_showing_char(char *dest, unsigned short dest_size) {
     printf("\n");
 }
 
-void input_string(char *dest, unsigned short dest_size) {
+void input_string(char *dest, const unsigned short dest_size) {
     int counter = 0;
     char c;
     while ((c = getchar()) != '\n' && c != EOF && counter < dest_size) {
@@ -40,18 +40,18 @@ void input_string(char *dest, unsigned short dest_size) {
 }
 
 void print_center(
-    unsigned short msg_len, unsigned short lines, char messages[lines][msg_len]
+    const unsigned short msg_len, const unsigned short lines, char messages[lines][msg_len]
 ) {
     // Get columns and lines in output
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
-    int rows = w.ws_row;
-    int cols = w.ws_col;
+    const int rows = w.ws_row;
+    const int cols = w.ws_col;
 
     system("clear");
 
-    int y = (rows - lines) / 2;
+    const int y = (rows - lines) / 2;
     for (int i = 0; i < y; i++)
         printf("\n");
 

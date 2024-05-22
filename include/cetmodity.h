@@ -7,7 +7,7 @@ void cetmodity_init();
 
 void cetmodity_run();
 
-logout_state admin_menu();
+auth_state admin_menu();
 
 void deliver_menu();
 

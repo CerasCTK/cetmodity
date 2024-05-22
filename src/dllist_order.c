@@ -8,9 +8,9 @@
 
 void do_init(dllist_order *list) { list->head = list->tail = NULL; }
 
-bool do_is_empty(dllist_order list) { return !list.head && !list.tail; }
+bool do_is_empty(const dllist_order list) { return list.head == NULL && list.tail == NULL; }
 
-bool do_is_in_list(dllist_order list, order order) {
+bool do_is_in_list(const dllist_order list, const order order) {
     if (do_is_empty(list))
         return false;
 
@@ -21,7 +21,7 @@ bool do_is_in_list(dllist_order list, order order) {
     return false;
 }
 
-int do_size(dllist_order list) {
+int do_size(const dllist_order list) {
     if (do_is_empty(list))
         return 0;
 
@@ -32,8 +32,8 @@ int do_size(dllist_order list) {
     return counter;
 }
 
-void do_insert_begin(dllist_order *list, order new_order) {
-    order_node *new_node = (order_node *)malloc(sizeof(order_node));
+void do_insert_begin(dllist_order *list, const order new_order) {
+    order_node *new_node = malloc(sizeof(order_node));
     new_node->order = new_order;
     new_node->prev = NULL;
 
@@ -49,7 +49,7 @@ void do_insert_begin(dllist_order *list, order new_order) {
 }
 
 void do_insert_end(dllist_order *list, order new_order) {
-    order_node *new_node = (order_node *)malloc(sizeof(order_node));
+    order_node *new_node = malloc(sizeof(order_node));
     new_node->order = new_order;
     new_node->next = NULL;
 
@@ -64,14 +64,14 @@ void do_insert_end(dllist_order *list, order new_order) {
     list->tail = new_node;
 }
 
-void do_insert_after(dllist_order *list, order_node *node, order new_order) {
+void do_insert_after(dllist_order *list, order_node *node, const order new_order) {
     if (do_is_empty(*list))
         return;
 
     if (!do_is_in_list(*list, node->order))
         return;
 
-    order_node *new_node = (order_node *)malloc(sizeof(order_node));
+    order_node *new_node = malloc(sizeof(order_node));
     new_node->order = new_order;
     new_node->next = node->next;
     new_node->prev = node;
@@ -84,14 +84,14 @@ void do_insert_after(dllist_order *list, order_node *node, order new_order) {
     node->next = new_node;
 }
 
-void do_insert_before(dllist_order *list, order_node *node, order new_order) {
+void do_insert_before(dllist_order *list, order_node *node, const order new_order) {
     if (do_is_empty(*list))
         return;
 
     if (!do_is_in_list(*list, node->order))
         return;
 
-    order_node *new_node = (order_node *)malloc(sizeof(order_node));
+    order_node *new_node = malloc(sizeof(order_node));
     new_node->order = new_order;
     new_node->next = node;
     new_node->prev = node->prev;
@@ -104,7 +104,7 @@ void do_insert_before(dllist_order *list, order_node *node, order new_order) {
     node->prev = new_node;
 }
 
-order_node *do_get_by_index(dllist_order list, int index) {
+order_node *do_get_by_index(const dllist_order list, int index) {
     if (do_is_empty(list))
         return NULL;
 
@@ -123,7 +123,7 @@ order_node *do_get_by_index(dllist_order list, int index) {
     return runner;
 }
 
-order_node *do_search_by_id(dllist_order list, char *order_id) {
+order_node *do_search_by_id(const dllist_order list, const char *order_id) {
     if (do_is_empty(list))
         return NULL;
 
@@ -134,7 +134,7 @@ order_node *do_search_by_id(dllist_order list, char *order_id) {
     return NULL;
 }
 
-order_node *do_search_by_sender_name(dllist_order list, char *sender_name) {
+order_node *do_search_by_sender_name(dllist_order list, const char *sender_name) {
     if (do_is_empty(list))
         return NULL;
 
@@ -145,7 +145,7 @@ order_node *do_search_by_sender_name(dllist_order list, char *sender_name) {
     return NULL;
 }
 
-order_node *do_search_by_receiver_name(dllist_order list, char *receiver_name) {
+order_node *do_search_by_receiver_name(dllist_order list, const char *receiver_name) {
     if (do_is_empty(list))
         return NULL;
 
@@ -180,17 +180,17 @@ void do_delete_begin(dllist_order *list) { do_delete(list, list->head); }
 
 void do_delete_end(dllist_order *list) { do_delete(list, list->tail); }
 
-void do_delete_by_id(dllist_order *list, char *order_id) {
+void do_delete_by_id(dllist_order *list, const char *order_id) {
     order_node *found = do_search_by_id(*list, order_id);
 
     do_delete(list, found);
 }
 
-void do_delete_before(dllist_order *list, order_node *node) {
+void do_delete_before(dllist_order *list, const order_node *node) {
     do_delete(list, node->prev);
 }
 
-void do_delete_after(dllist_order *list, order_node *node) {
+void do_delete_after(dllist_order *list, const order_node *node) {
     do_delete(list, node->next);
 }
 

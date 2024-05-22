@@ -11,8 +11,8 @@ typedef struct coordinate {
     double longitude;
 } coordinate;
 
-float _degrees_to_radians(const double degrees);
+float degrees_to_radians(double degrees);
 
-double calculate_distance(const coordinate c1, const coordinate c2);
+double calculate_distance(coordinate c1, coordinate c2);
 
 #endif // !CETMODITY_COORDINATE_H

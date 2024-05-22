@@ -4,15 +4,15 @@
 #include "account.h"
 #include "dllist_deliver.h"
 
-typedef enum logout_state { EXIT_STATE, LOGOUT_STATE } logout_state;
+typedef enum auth_state { exit_state, logout_state } auth_state;
 
-char *login(const dllist_deliver delivers);
+char *login(dllist_deliver delivers);
 
 char *get_account(
-    const dllist_deliver delivers, char username[USERNAME_MAX_LEN],
+    dllist_deliver delivers, char username[USERNAME_MAX_LEN],
     char password[PASSWORD_MAX_LEN]
 );
 
-logout_state logout();
+auth_state logout();
 
 #endif // !CETMODITY_AUTH_H
