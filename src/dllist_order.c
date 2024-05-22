@@ -194,8 +194,6 @@ void do_delete_after(dllist_order *list, order_node *node) {
     do_delete(list, node->next);
 }
 
-void do_show_list(dllist_order list) {}
-
 void do_free(dllist_order *list) {
     if (do_is_empty(*list))
         return;

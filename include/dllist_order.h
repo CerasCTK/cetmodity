@@ -52,8 +52,6 @@ void do_delete_before(dllist_order *list, order_node *node);
 
 void do_delete_after(dllist_order *list, order_node *node);
 
-void do_show_list(dllist_order list);
-
 void do_free(dllist_order *list);
 
 #endif // !CETMODITY_LLIST_ORDER_H
