@@ -6,11 +6,10 @@
 #define EARTH_RADIUS 6371;
 #define EARTH_PERIMETER (2 * EARTH_RADIUS * M_PI)
 
-struct _coordinate {
+typedef struct coordinate {
     double latitude;
     double longitude;
-};
-typedef struct _coordinate coordinate;
+} coordinate;
 
 float _degrees_to_radians(const double degrees);
 

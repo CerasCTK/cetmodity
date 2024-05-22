@@ -4,17 +4,15 @@
 #include "bool.h"
 #include "deliver.h"
 
-struct _deliver_node {
+typedef struct deliver_node {
     deliver deliver;
-    struct _deliver_node *next, *prev;
-};
-typedef struct _deliver_node deliver_node;
+    struct deliver_node *next, *prev;
+} deliver_node;
 
-struct _dllist_deliver {
+typedef struct dllist_deliver {
     deliver_node *head;
     deliver_node *tail;
-};
-typedef struct _dllist_deliver dllist_deliver;
+} dllist_deliver;
 
 void dd_init(dllist_deliver *list);
 

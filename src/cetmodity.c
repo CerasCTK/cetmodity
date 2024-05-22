@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <uuid/uuid.h>
 
+#include "cetmodity_menu.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
-#include "cetmodity_menu.h"
 
 dllist_deliver delivers;
 dllist_order orders;

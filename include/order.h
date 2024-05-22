@@ -10,18 +10,16 @@
 
 #define SHIP_TAX 0.05
 
-enum _order_status { IN_TRANSIT, DELIVERED };
-typedef enum _order_status order_status;
+typedef enum order_status { IN_TRANSIT, DELIVERED } order_status;
 
-struct _order {
+typedef struct order {
     char id[UUID_STR_LEN];
     sender sender;
     receiver receiver;
     dllist_item items;
     unsigned long items_price;
     unsigned int shipping_fee;
-};
-typedef struct _order order;
+} order;
 
 bool is_same_order(const order o1, const order o2);
 

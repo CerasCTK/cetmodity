@@ -4,17 +4,15 @@
 #include "bool.h"
 #include "item.h"
 
-struct _item_node {
+typedef struct item_node {
     item item;
-    struct _item_node *next, *prev;
-};
-typedef struct _item_node item_node;
+    struct item_node *next, *prev;
+} item_node;
 
-struct _dllist_item {
+typedef struct dllist_item {
     item_node *head;
     item_node *tail;
-};
-typedef struct _dllist_item dllist_item;
+} dllist_item;
 
 void di_init(dllist_item *list);
 

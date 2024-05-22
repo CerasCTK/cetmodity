@@ -1,9 +1,9 @@
 #include "item.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 bool is_same_item(item i1, item i2) {
     return strcmp(i1.product_name, i2.product_name) == 0;
@@ -24,14 +24,14 @@ int get_item_info_len(item item) {
     int n_digits_quantity = floor(log10(item.quantity)) + 1;
 
     int n_spaces_char = 3; // [space]-[space]
-    int n_end_char = 1; // \0 char
+    int n_end_char = 1;    // \0 char
 
     return product_name_len + n_digits_quantity + n_spaces_char + n_end_char;
 }
 
-char* get_item_info_string(item item) {
+char *get_item_info_string(item item) {
     int info_len = get_item_info_len(item);
-    char* array = (char*)malloc(info_len * sizeof(char));
+    char *array = (char *)malloc(info_len * sizeof(char));
     sprintf(array, "%s - %u", item.product_name, item.quantity);
     array[info_len - 1] = '\0';
     return array;

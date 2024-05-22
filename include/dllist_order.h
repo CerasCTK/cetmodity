@@ -4,17 +4,15 @@
 #include "bool.h"
 #include "order.h"
 
-struct _order_node {
+typedef struct order_node {
     order order;
-    struct _order_node *next, *prev;
-};
-typedef struct _order_node order_node;
+    struct order_node *next, *prev;
+} order_node;
 
-struct _dllist_order {
+typedef struct dllist_order {
     order_node *head;
     order_node *tail;
-};
-typedef struct _dllist_order dllist_order;
+} dllist_order;
 
 void do_init(dllist_order *list);
 

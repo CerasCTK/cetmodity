@@ -6,12 +6,11 @@
 #define RECEIVER_MAX_NAME_LEN 20
 #define RECEIVER_MAX_PHONE_LEN 10
 
-struct _receiver {
+typedef struct receiver {
     char name[RECEIVER_MAX_NAME_LEN + 1];
     char phone_number[RECEIVER_MAX_PHONE_LEN + 1];
     coordinate location;
-};
-typedef struct _receiver receiver;
+} receiver;
 
 receiver create_receiver(
     const char *name, const char *phone_number, const coordinate location

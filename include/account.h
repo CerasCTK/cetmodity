@@ -4,11 +4,10 @@
 #define USERNAME_MAX_LEN 10
 #define PASSWORD_MAX_LEN 20
 
-struct _account {
+typedef struct account {
     char username[10];
     char password[20];
-};
-typedef struct _account account;
+} account;
 
 account create_account(char *username, char *password);
 

@@ -4,8 +4,7 @@
 #include "account.h"
 #include "dllist_deliver.h"
 
-enum _logout_state { EXIT_STATE, LOGOUT_STATE };
-typedef enum _logout_state logout_state;
+typedef enum logout_state { EXIT_STATE, LOGOUT_STATE } logout_state;
 
 char *login(const dllist_deliver delivers);
 

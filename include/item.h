@@ -5,12 +5,11 @@
 
 #define PRODUCT_MAX_NAME_LEN 15
 
-struct _item {
+typedef struct item {
     char product_name[PRODUCT_MAX_NAME_LEN + 1];
     unsigned int quantity;
     unsigned long unit_price;
-};
-typedef struct _item item;
+} item;
 
 bool is_same_item(const item i1, const item i2);
 

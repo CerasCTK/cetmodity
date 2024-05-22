@@ -9,14 +9,13 @@
 #define DELIVER_MAX_NAME_LEN 20
 #define DELIVER_MAX_PHONE_LEN 10
 
-struct _deliver {
+typedef struct deliver {
     char id[UUID_STR_LEN];
     char name[DELIVER_MAX_NAME_LEN + 1];
     char phone_number[DELIVER_MAX_PHONE_LEN + 1];
     account account;
     dllist_order orders;
-};
-typedef struct _deliver deliver;
+} deliver;
 
 bool is_same_deliver(deliver d1, deliver d2);
 
