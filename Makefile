@@ -10,12 +10,12 @@ SRCS := $(shell find $(SRC_DIR) -name "*.c")
 OBJS := $(SRCS:%=$(OBJ_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-# INC_DIRS := $(shell find $(INC_DIR) -type d)
-# INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 INC_FLAGS := $(addprefix -I,$(INC_DIR))
 LDFLAGS := -luuid -lm
 
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
+
+all: $(BIN_DIR)/$(TARGET_EXEC)
 
 $(BIN_DIR)/$(TARGET_EXEC): $(OBJS)
 	mkdir -p $(dir $(BIN_DIR))
