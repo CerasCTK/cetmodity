@@ -37,6 +37,33 @@ int di_size(dllist_item list) {
     return counter;
 }
 
+char** di_get_list_in_string(dllist_item list) {
+    int list_size = di_size(list);
+
+    char **array = (char**)malloc(list_size * sizeof(char*));
+
+    for(int i = 0; i < list_size; i++) {
+        item_node *n_item = di_get_by_index(list, i);
+
+        if (n_item == NULL) continue;
+
+        item item = n_item->item;
+        array[i] = (char *)malloc(get_item_info_len(item) * sizeof(char));
+        char *item_info = get_item_info_string(item);
+        strcpy(array[i], item_info);
+        free(item_info);
+    }
+
+    return array;
+}
+
+void di_free_string_list(char **string_list, int size) {
+    for (int i = 0; i < size; i++) {
+        free(string_list[i]);
+    }
+    free(string_list);
+}
+
 void di_insert_begin(dllist_item *list, item item) {
     item_node *new_node = (item_node *)malloc(sizeof(item_node));
     new_node->item = item;

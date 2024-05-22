@@ -24,6 +24,10 @@ bool di_is_in_list(dllist_item list, item item);
 
 int di_size(dllist_item list);
 
+char** di_get_list_in_string(dllist_item list);
+
+void di_free_string_list(char **string_list, int size);
+
 void di_insert_begin(dllist_item *list, item item);
 
 void di_insert_end(dllist_item *list, item item);
