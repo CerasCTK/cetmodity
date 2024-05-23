@@ -4,6 +4,11 @@
 #define USERNAME_MAX_LEN 10
 #define PASSWORD_MAX_LEN 20
 
+/**
+ * @typedef account
+ * @brief Account structure including username and password
+ *
+ */
 typedef struct account {
     char username[10];
     char password[20];
