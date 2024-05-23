@@ -8,6 +8,7 @@
 #include "cetmodity_menu.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
+#include "table.h"
 
 dllist_deliver delivers;
 dllist_order orders;
@@ -55,7 +56,7 @@ void admin_manage_delivers() {
     int opt;
     bool loop = true;
     while (loop) {
-        a_show_manage_delivers_menu();
+        a_show_manage_delivers_menu(delivers);
         printf("Input your option: ");
         scanf("%d", &opt);
         switch (opt) {
@@ -76,7 +77,7 @@ void admin_manage_orders() {
     int opt;
     bool loop = true;
     while (loop) {
-        a_show_manage_orders_menu();
+        a_show_manage_orders_menu(orders);
         printf("Input your option: ");
         scanf("%d", &opt);
         switch (opt) {

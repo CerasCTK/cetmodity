@@ -1,4 +1,5 @@
 #include "cetmodity_menu.h"
+#include "table.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +19,7 @@ void a_show_menu() {
     PRINTNL("\t0. Log out");
 }
 
-void a_show_manage_delivers_menu() {
+void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     CLRSCR;
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
@@ -28,8 +29,9 @@ void a_show_manage_delivers_menu() {
     PRINTNL("\t0. Go back");
 }
 
-void a_show_manage_orders_menu() {
+void a_show_manage_orders_menu(const dllist_order orders) {
     CLRSCR;
+    show_order_table(orders);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Edit the exist order");
