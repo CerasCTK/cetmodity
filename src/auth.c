@@ -45,7 +45,7 @@ char *get_account(
     return found->deliver.id;
 }
 
-auth_state logout() {
+logout_state logout() {
     int opt;
     system("clear");
     printf("Do you want to exit or only logout?\n");
@@ -57,7 +57,7 @@ auth_state logout() {
     getchar();
 
     if (opt == 1)
-        return logout_state;
+        return cetmodity_logout;
 
-    return exit_state;
+    return cetmodity_exit;
 }

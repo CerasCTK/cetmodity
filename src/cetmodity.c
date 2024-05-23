@@ -5,10 +5,10 @@
 #include <unistd.h>
 #include <uuid/uuid.h>
 
+#include "auth.h"
 #include "cetmodity_menu.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
-#include "table.h"
 
 dllist_deliver delivers;
 dllist_order orders;
@@ -20,7 +20,7 @@ void cetmodity_init() {
 
 void cetmodity_run() {
     const char *found = login(delivers);
-    auth_state state = exit_state;
+    logout_state state = cetmodity_exit;
 
 RELOGIN:
     if (strcmp(found, "-ADMIN-") == 0)
@@ -28,14 +28,14 @@ RELOGIN:
     else
         deliver_menu();
 
-    if (state == logout_state)
+    if (state == cetmodity_logout)
         goto RELOGIN;
 
     dd_free(&delivers);
     do_free(&orders);
 }
 
-auth_state admin_menu() {
+logout_state admin_menu() {
     int opt;
     while (true) {
         a_show_menu();
