@@ -10,8 +10,8 @@
  *
  */
 typedef struct account {
-    char username[10];
-    char password[20];
+    char username[USERNAME_MAX_LEN + 1];
+    char password[PASSWORD_MAX_LEN + 1];
 } account;
 
 /**
