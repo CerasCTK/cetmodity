@@ -8,6 +8,8 @@
 #include "sender.h"
 #include "string_converter.h"
 
+#define INDEX_COL_WIDTH 3
+
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
@@ -20,7 +22,6 @@ void show_order_table(const dllist_order list_order) {
 
     const int QUANTITY_ITEMS = 5;
     const int NUM_OF_SEPERATE = 6;
-    const int INDEX_COL_WIDTH = 3;
     const int border_width = INDEX_COL_WIDTH + UUID_STR_LEN
                              + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN
                              + PRODUCT_MAX_NAME_LEN + NUM_OF_SEPERATE
@@ -77,4 +78,35 @@ void show_order_table(const dllist_order list_order) {
     }
 
     PRINT_BORDER_X(border_width);
+}
+
+void show_deliver_table(const dllist_deliver list_deliver) {
+    // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
+    const int NUM_OF_SEPARATE_CHAR = 7;
+    const int NUM_OF_ORDER_LEN = 5;
+    const int border_x = INDEX_COL_WIDTH + UUID_STR_LEN + DELIVER_MAX_NAME_LEN + DELIVER_MAX_PHONE_LEN + USERNAME_MAX_LEN + NUM_OF_ORDER_LEN + NUM_OF_SEPARATE_CHAR;
+
+    PRINT_BORDER_X(border_x);
+    printf("|%*s|", INDEX_COL_WIDTH, "IND");
+    printf("%*s|", UUID_STR_LEN, "ID");
+    printf("%*s|", DELIVER_MAX_NAME_LEN, "DELIVER");
+    printf("%*s|", DELIVER_MAX_PHONE_LEN, "PHONE");
+    printf("%*s|", USERNAME_MAX_LEN, "ACCOUNT");
+    printf("%*s|\n", NUM_OF_ORDER_LEN, "ORDER");
+
+    for (int i = 0; i < dd_size(list_deliver); i++) {
+        PRINT_BORDER_X(border_x);
+
+        deliver deliver = dd_get_by_index(list_deliver, i)->deliver;
+        int count_orders = do_size(deliver.orders);
+
+        printf("|%*d|", INDEX_COL_WIDTH, i + 1);
+        printf("%*s|", UUID_STR_LEN, deliver.id);
+        printf("%*s|", DELIVER_MAX_NAME_LEN, deliver.name);
+        printf("%*s|", DELIVER_MAX_PHONE_LEN, deliver.phone_number);
+        printf("%*s|", USERNAME_MAX_LEN, deliver.account.username);
+        printf("%*d|\n", NUM_OF_ORDER_LEN, count_orders);
+    }
+
+    PRINT_BORDER_X(border_x);
 }
