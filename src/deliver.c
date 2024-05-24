@@ -1,5 +1,6 @@
 #include "deliver.h"
 
+#include <stdio.h>
 #include <string.h>
 
 #include "dllist_order.h"
@@ -19,4 +20,8 @@ deliver create_deliver(const char *name, const char *phone_number, const account
 
     do_init(&new_deliver.orders);
     return new_deliver;
+}
+
+void deliver_add_order(deliver *deliver, order new_order) {
+    do_insert_end(&deliver->orders, new_order);
 }
