@@ -129,6 +129,38 @@ void show_order_table_for_deliver(deliver deliver) {
 
     PRINT_BORDER_X(border_width);
 }
+
+void show_order_detail(order order) {
+    int border_width = 35;
+
+    PRINT_BORDER_X(border_width);
+
+    printf("Sender's name: %s\n", order.sender.name);
+    printf("Located: %f, %f\n", order.sender.location.latitude, order.sender.location.longitude);
+    printf("Phone number: %s\n", order.sender.phone_number);
+
+    PRINT_BORDER_X(border_width);
+
+    printf("Receiver's name: %s\n", order.receiver.name);
+    printf("Located: %f, %f\n", order.receiver.location.latitude, order.receiver.location.longitude);
+    printf("Phone number: %s\n", order.receiver.phone_number);
+
+    PRINT_BORDER_X(border_width);
+
+    printf("List items: \n");
+
+    for (int i = 0; i < di_size(order.items); i++) {
+        item_node *item_node= di_get_by_index(order.items, i);
+
+        printf("%d. %s - %u\n", i + 1, item_node->item.product_name, item_node->item.quantity);
+    }
+
+    PRINT_BORDER_X(border_width);
+    printf("Count: %lu\n", di_calculate_total_price(order.items));
+
+    PRINT_BORDER_X(border_width);
+}
+
 void show_deliver_table(const dllist_deliver list_deliver) {
     // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
     const int NUM_OF_SEPARATE_CHAR = 7;
