@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <uuid/uuid.h>
+#include <string.h>
 
 #include "item.h"
 #include "receiver.h"
@@ -13,7 +14,7 @@
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
-void show_order_table(const dllist_order list_order) {
+void show_order_table_for_manager(const dllist_order list_order) {
     // | INDEX | ID | SENDER | RECEIVER | LIST ITEM |
     if (do_is_empty(list_order)) {
         printf("No order found\n");
@@ -80,6 +81,54 @@ void show_order_table(const dllist_order list_order) {
     PRINT_BORDER_X(border_width);
 }
 
+void show_order_table_for_deliver(deliver deliver) {
+    printf("ID: %s\n", deliver.id);
+    printf("Name: %s\n", deliver.name);
+    printf("Phone number: %s\n", deliver.phone_number);
+
+    // | INDEX | ID | SENDER | RECEIVER | LOCATED | COUNT_PRICE | STATUS |
+    const int COUNT_ITEMS_PRICE_WIDTH = 9;
+    const int LOCATED_COL_WIDTH = 10 * 2 + 2;
+    const int ORDER_STATUS_COL_WIDTH = 12;
+    const int NUM_OF_SEPERATE = 8;
+    int border_width = INDEX_COL_WIDTH + UUID_STR_LEN + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_COL_WIDTH + NUM_OF_SEPERATE;
+
+    PRINT_BORDER_X(border_width);
+    printf("|%*s|", INDEX_COL_WIDTH, "IND");
+    printf("%*s|", UUID_STR_LEN, "ID");
+    printf("%*s|", SENDER_MAX_NAME_LEN, "SENDER");
+    printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
+    printf("%*s|", LOCATED_COL_WIDTH, "LOCATED");
+    printf("%*s|", COUNT_ITEMS_PRICE_WIDTH, "COUNT");
+    printf("%*s|\n", ORDER_STATUS_COL_WIDTH, "STATUS");
+
+    for (int i = 0; i < do_size(deliver.orders); i++) {
+        PRINT_BORDER_X(border_width);
+
+        order_node *node = do_get_by_index(deliver.orders, i);
+
+        char status[ORDER_STATUS_COL_WIDTH];
+
+        if (node->order.status == 0) {
+            strcpy(status, "In storage");
+        } else if (node->order.status == 1) {
+            strcpy(status, "In transit");
+        } else {
+            strcpy(status, "Delived");
+        }
+
+        printf("|%*d|", INDEX_COL_WIDTH, i + 1);
+        printf("%*s|", UUID_STR_LEN, node->order.id);
+        printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
+        printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
+        printf("%*f, ", LOCATED_COL_WIDTH / 2 - 1, node->order.receiver.location.latitude );
+        printf("%*f|", LOCATED_COL_WIDTH / 2 - 1, node->order.receiver.location.longitude);
+        printf("%*lu|", COUNT_ITEMS_PRICE_WIDTH, node->order.items_price + node->order.shipping_fee);
+        printf("%*s|\n", ORDER_STATUS_COL_WIDTH, status);
+    }
+
+    PRINT_BORDER_X(border_width);
+}
 void show_deliver_table(const dllist_deliver list_deliver) {
     // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
     const int NUM_OF_SEPARATE_CHAR = 7;
