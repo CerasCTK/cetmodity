@@ -31,7 +31,7 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
 
 void a_show_manage_orders_menu(const dllist_order orders) {
     CLRSCR;
-    show_order_table(orders);
+    show_order_table_for_manager(orders);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Edit the exist order");

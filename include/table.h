@@ -8,7 +8,7 @@
     "------------------------------------------------------------------------" \
     "------------------------------------------------------------------------"
 
-void show_order_table(dllist_order list_order);
+void show_order_table_for_manager(dllist_order list_order);
 
 void show_deliver_table(dllist_deliver list_deliver);
 
