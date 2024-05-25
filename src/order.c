@@ -10,7 +10,9 @@ order create_empty_order(const sender sender, const receiver receiver) {
     order new_order = { .sender = sender,
                         .receiver = receiver,
                         .items_price = 0,
-                        .shipping_fee = 0 };
+                        .shipping_fee = 0,
+                        .status = in_storage
+    };
 
     uuid(new_order.id);
 
