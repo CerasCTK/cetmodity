@@ -23,10 +23,13 @@ void cetmodity_run() {
 
 RELOGIN:
     found = login(delivers);
-    if (strcmp(found, "-ADMIN-") == 0)
+    if (strcmp(found, "-ADMIN-") == 0) {
+        printf("Login successfully as admin\n");
         state = admin_menu();
-    else
+    } else {
+        printf("Login successfully as deliver\n");
         deliver_menu();
+    }
 
     if (state == cetmodity_logout)
         goto RELOGIN;
@@ -95,7 +98,6 @@ void admin_manage_orders() {
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
-                sleep(1);
                 break;
         }
     }
