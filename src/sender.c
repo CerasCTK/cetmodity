@@ -1,5 +1,7 @@
 #include "sender.h"
 
+#include "io_util.h"
+
 #include <stdio.h>
 #include <string.h>
 
@@ -14,14 +16,17 @@ sender create_sender(
 }
 
 sender create_sender_input() {
-    sender new_sender;
+    char name[SENDER_MAX_NAME_LEN];
+    char phone_number[SENDER_MAX_PHONE_LEN];
+
     printf("Input the sender's name: ");
-    scanf("%s", new_sender.name);
+    input_string(name, SENDER_MAX_NAME_LEN);
     printf("Input the sender's phone number: ");
-    scanf("%s", new_sender.phone_number);
+    input_string(phone_number, SENDER_MAX_PHONE_LEN);
+
+    coordinate location;
     printf("Input the sender's location: ");
-    scanf(
-        "%lf %lf", &new_sender.location.latitude, &new_sender.location.longitude
-    );
-    return new_sender;
+    scanf("%lf %lf", &location.latitude, &location.longitude);
+
+    return create_sender(name, phone_number, location);
 }
