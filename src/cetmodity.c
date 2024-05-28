@@ -41,6 +41,7 @@ logout_state admin_menu() {
         a_show_menu();
         printf("Input your option: ");
         scanf("%d", &opt);
+        getchar();
         switch (opt) {
             case 1: admin_manage_delivers(); break;
             case 2: admin_manage_orders(); break;
@@ -59,6 +60,7 @@ void admin_manage_delivers() {
         a_show_manage_delivers_menu(delivers);
         printf("Input your option: ");
         scanf("%d", &opt);
+        getchar();
         switch (opt) {
             case 1: break;
             case 2: break;
@@ -80,6 +82,7 @@ void admin_manage_orders() {
         a_show_manage_orders_menu(orders);
         printf("Input your option: ");
         scanf("%d", &opt);
+        getchar();
         switch (opt) {
             case 1: break;
             case 2: break;
