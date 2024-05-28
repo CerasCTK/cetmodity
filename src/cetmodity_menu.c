@@ -35,6 +35,7 @@ void a_show_menu() {
 void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     SLEEP;
     CLRSCR;
+    show_deliver_table(delivers);
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
     PRINTNL("\t2. Edit deliver infomation");
