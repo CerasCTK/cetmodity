@@ -4,6 +4,8 @@
 #include "dllist_deliver.h"
 #include "dllist_order.h"
 
+void logout_menu();
+
 void a_show_menu();
 
 void a_show_manage_delivers_menu(dllist_deliver list);
