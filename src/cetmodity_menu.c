@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define CLRSCR (system("clear"))
 #define PRINTNL(msg)                                                           \
@@ -12,7 +13,18 @@
         printf("\n");                                                          \
     }
 
+#define SLEEP (sleep(1))
+
+void logout_menu() {
+    SLEEP;
+    CLRSCR;
+    PRINTNL("Do you want to exit or logout?");
+    PRINTNL("\t1. Logout");
+    PRINTNL("\t2. Exit");
+}
+
 void a_show_menu() {
+    SLEEP;
     CLRSCR;
     PRINTNL("Admin main menu:");
     PRINTNL("\t1. Manage delivers");
@@ -21,6 +33,7 @@ void a_show_menu() {
 }
 
 void a_show_manage_delivers_menu(const dllist_deliver delivers) {
+    SLEEP;
     CLRSCR;
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
@@ -31,6 +44,7 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
 }
 
 void a_show_manage_orders_menu(const dllist_order orders) {
+    SLEEP;
     CLRSCR;
     show_order_table_for_manager(orders);
     PRINTNL("Admin manage orders menu:");
