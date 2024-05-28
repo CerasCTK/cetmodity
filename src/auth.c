@@ -16,9 +16,9 @@ char *login(const dllist_deliver delivers) {
 REINPUT:
     system("clear");
     printf("Username: ");
-    input_string(username, USERNAME_MAX_LEN + 1);
+    input_string(username, USERNAME_MAX_LEN);
     printf("Password: ");
-    input_without_showing_char(password, PASSWORD_MAX_LEN + 1);
+    input_without_showing_char(password, PASSWORD_MAX_LEN);
 
     char *id = get_account(delivers, username, password);
 

@@ -20,9 +20,9 @@ receiver create_receiver_input() {
     char phone_number[RECEIVER_MAX_PHONE_LEN + 1];
 
     printf("Input the receiver's name: ");
-    input_string(name, RECEIVER_MAX_NAME_LEN + 1);
+    input_string(name, RECEIVER_MAX_NAME_LEN);
     printf("Input the receiver's phone number: ");
-    input_string(phone_number, RECEIVER_MAX_PHONE_LEN + 1);
+    input_string(phone_number, RECEIVER_MAX_PHONE_LEN);
 
     coordinate location;
     printf("Input the receiver location: ");

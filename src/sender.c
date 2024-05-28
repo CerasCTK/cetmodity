@@ -20,9 +20,9 @@ sender create_sender_input() {
     char phone_number[SENDER_MAX_PHONE_LEN + 1];
 
     printf("Input the sender's name: ");
-    input_string(name, SENDER_MAX_NAME_LEN + 1);
+    input_string(name, SENDER_MAX_NAME_LEN);
     printf("Input the sender's phone number: ");
-    input_string(phone_number, SENDER_MAX_PHONE_LEN + 1);
+    input_string(phone_number, SENDER_MAX_PHONE_LEN);
 
     coordinate location;
     printf("Input the sender's location: ");

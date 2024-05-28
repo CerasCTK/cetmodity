@@ -19,9 +19,9 @@ account create_account_input() {
     char password[PASSWORD_MAX_LEN + 1];
 
     printf("Input username for account: ");
-    input_string(username, USERNAME_MAX_LEN + 1);
+    input_string(username, USERNAME_MAX_LEN);
     printf("Input password for account: ");
-    input_string(password, PASSWORD_MAX_LEN + 1);
+    input_string(password, PASSWORD_MAX_LEN);
 
     return create_account(username, password);
 }
