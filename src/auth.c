@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #include "account.h"
+#include "cetmodity_menu.h"
 #include "io_util.h"
 
 char *login(const dllist_deliver delivers) {
@@ -47,10 +48,7 @@ char *get_account(
 
 logout_state logout() {
     int opt;
-    system("clear");
-    printf("Do you want to exit or only logout?\n");
-    printf("\t1. Logout\n");
-    printf("\t2. Exit\n");
+    logout_menu();
     printf("Input your option: ");
     scanf("%d", &opt);
 
