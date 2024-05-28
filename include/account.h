@@ -23,4 +23,6 @@ typedef struct account {
  */
 account create_account(const char *username, const char *password);
 
+account create_account_input();
+
 #endif // !CETMODITY_ACCOUNT_H
