@@ -12,8 +12,8 @@
         printf(msg);                                                           \
         printf("\n");                                                          \
     }
-
-#define SLEEP (sleep(1))
+#define SECOND 1000
+#define SLEEP (usleep(500 * SECOND))
 
 void logout_menu() {
     SLEEP;
