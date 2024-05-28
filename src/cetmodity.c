@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <uuid/uuid.h>
 
 #include "auth.h"
 #include "cetmodity_menu.h"
