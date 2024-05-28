@@ -18,10 +18,11 @@ void cetmodity_init() {
 }
 
 void cetmodity_run() {
-    const char *found = login(delivers);
+    char *found;
     logout_state state = cetmodity_exit;
 
 RELOGIN:
+    found = login(delivers);
     if (strcmp(found, "-ADMIN-") == 0)
         state = admin_menu();
     else
