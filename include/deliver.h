@@ -21,6 +21,8 @@ bool is_same_deliver(deliver d1, deliver d2);
 
 deliver create_deliver(const char *name, const char *phone_number, account account);
 
+deliver create_deliver_input();
+
 void deliver_add_order(deliver *deliver, order new_order);
 
 #endif // !CETMODITY_DELIVER_H
