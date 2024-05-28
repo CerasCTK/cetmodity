@@ -62,7 +62,11 @@ void admin_manage_delivers() {
         scanf("%d", &opt);
         getchar();
         switch (opt) {
-            case 1: break;
+            case 1:
+                const deliver new_deliver = create_deliver_input();
+                dd_insert_end(&delivers, new_deliver);
+                printf("Create new deliver successfully\n");
+                break;
             case 2: break;
             case 3: break;
             case 4: break;
