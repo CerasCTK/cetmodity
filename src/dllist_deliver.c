@@ -153,6 +153,22 @@ dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
     return NULL;
 }
 
+deliver_node *
+dd_search_node_by_phone_number(dllist_deliver list, const char *deliver_phone_number) {
+    if (dd_is_empty(list))
+        return NULL;
+
+    deliver_node *node = list.head;
+
+    while (node != NULL) {
+        if (strcmp(deliver_phone_number, node->deliver.phone_number) == 0)
+            return node;
+        node = node->next;
+    }
+
+    return NULL;
+}
+
 deliver_node *dd_find_user(
     const dllist_deliver list, const char *username, const char *password
 ) {
