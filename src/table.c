@@ -4,6 +4,7 @@
 #include <string.h>
 #include <uuid/uuid.h>
 
+#include "dllist_deliver.h"
 #include "item.h"
 #include "receiver.h"
 #include "sender.h"
@@ -31,9 +32,9 @@ void show_order_table_for_manager(const dllist_order list_order) {
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
     printf("%*s|", UUID_STR_LEN, "ID");
-    printf("%*s|", SENDER_MAX_NAME_LEN, "SENDER");
-    printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
-    printf("%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "LIST ITEM");
+    printf("%*s|", SENDER_MAX_NAME_LEN, "Sender");
+    printf("%*s|", RECEIVER_MAX_NAME_LEN, "Receiver");
+    printf("%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "List items");
 
     for (int i = 0; i < do_size(list_order); i++) {
         PRINT_BORDER_X(border_width);
@@ -183,6 +184,11 @@ void show_order_detail(order order) {
 }
 
 void show_deliver_table(const dllist_deliver list_deliver) {
+    if (dd_is_empty(list_deliver)) {
+        printf("No deliver found\n");
+        return;
+    }
+
     // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
     const int NUM_OF_SEPARATE_CHAR = 7;
     const int NUM_OF_ORDER_LEN = 5;
@@ -193,10 +199,10 @@ void show_deliver_table(const dllist_deliver list_deliver) {
     PRINT_BORDER_X(border_x);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
     printf("%*s|", UUID_STR_LEN, "ID");
-    printf("%*s|", DELIVER_MAX_NAME_LEN, "DELIVER");
-    printf("%*s|", DELIVER_MAX_PHONE_LEN, "PHONE");
-    printf("%*s|", USERNAME_MAX_LEN, "ACCOUNT");
-    printf("%*s|\n", NUM_OF_ORDER_LEN, "ORDER");
+    printf("%*s|", DELIVER_MAX_NAME_LEN, "Deliver");
+    printf("%*s|", DELIVER_MAX_PHONE_LEN, "Phone");
+    printf("%*s|", USERNAME_MAX_LEN, "Username");
+    printf("%*s|\n", NUM_OF_ORDER_LEN, "Order");
 
     for (int i = 0; i < dd_size(list_deliver); i++) {
         PRINT_BORDER_X(border_x);
