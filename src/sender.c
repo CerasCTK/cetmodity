@@ -16,13 +16,13 @@ sender create_sender(
 }
 
 sender create_sender_input() {
-    char name[SENDER_MAX_NAME_LEN];
-    char phone_number[SENDER_MAX_PHONE_LEN];
+    char name[SENDER_MAX_NAME_LEN + 1];
+    char phone_number[SENDER_MAX_PHONE_LEN + 1];
 
     printf("Input the sender's name: ");
-    input_string(name, SENDER_MAX_NAME_LEN);
+    input_string(name, SENDER_MAX_NAME_LEN + 1);
     printf("Input the sender's phone number: ");
-    input_string(phone_number, SENDER_MAX_PHONE_LEN);
+    input_string(phone_number, SENDER_MAX_PHONE_LEN + 1);
 
     coordinate location;
     printf("Input the sender's location: ");

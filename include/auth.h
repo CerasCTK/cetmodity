@@ -28,8 +28,8 @@ char *login(dllist_deliver delivers);
  * @return "-NONE-" if login failed, otherwise the deliver id or "-ADMIN-
  */
 char *get_account(
-    dllist_deliver delivers, char username[USERNAME_MAX_LEN],
-    char password[PASSWORD_MAX_LEN]
+    dllist_deliver delivers, char username[USERNAME_MAX_LEN + 1],
+    char password[PASSWORD_MAX_LEN + 1]
 );
 
 /**

@@ -15,13 +15,13 @@ account create_account(const char *username, const char *password) {
 }
 
 account create_account_input() {
-    char username[USERNAME_MAX_LEN];
-    char password[PASSWORD_MAX_LEN];
+    char username[USERNAME_MAX_LEN + 1];
+    char password[PASSWORD_MAX_LEN + 1];
 
     printf("Input username for account: ");
-    input_string(username, USERNAME_MAX_LEN);
+    input_string(username, USERNAME_MAX_LEN + 1);
     printf("Input password for account: ");
-    input_string(password, PASSWORD_MAX_LEN);
+    input_string(password, PASSWORD_MAX_LEN + 1);
 
     return create_account(username, password);
 }

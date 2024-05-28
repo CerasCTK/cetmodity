@@ -27,13 +27,13 @@ deliver create_deliver(
 }
 
 deliver create_deliver_input() {
-    char name[DELIVER_MAX_NAME_LEN];
-    char phone_number[DELIVER_MAX_PHONE_LEN];
+    char name[DELIVER_MAX_NAME_LEN + 1];
+    char phone_number[DELIVER_MAX_PHONE_LEN + 1];
 
     printf("Input the deliver's name: ");
-    input_string(name, DELIVER_MAX_NAME_LEN);
+    input_string(name, DELIVER_MAX_NAME_LEN + 1);
     printf("Input the deliver's phone name: ");
-    input_string(phone_number, DELIVER_MAX_PHONE_LEN);
+    input_string(phone_number, DELIVER_MAX_PHONE_LEN + 1);
 
     return create_deliver(name, phone_number, create_account_input());
 }

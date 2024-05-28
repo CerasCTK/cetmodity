@@ -10,15 +10,15 @@
 #include "io_util.h"
 
 char *login(const dllist_deliver delivers) {
-    char username[USERNAME_MAX_LEN];
-    char password[PASSWORD_MAX_LEN];
+    char username[USERNAME_MAX_LEN + 1];
+    char password[PASSWORD_MAX_LEN + 1];
 
 REINPUT:
     system("clear");
     printf("Username: ");
-    input_string(username, USERNAME_MAX_LEN);
+    input_string(username, USERNAME_MAX_LEN + 1);
     printf("Password: ");
-    input_without_showing_char(password, PASSWORD_MAX_LEN);
+    input_without_showing_char(password, PASSWORD_MAX_LEN + 1);
 
     char *id = get_account(delivers, username, password);
 
@@ -32,8 +32,8 @@ REINPUT:
 }
 
 char *get_account(
-    const dllist_deliver delivers, char username[USERNAME_MAX_LEN],
-    char password[PASSWORD_MAX_LEN]
+    const dllist_deliver delivers, char username[USERNAME_MAX_LEN + 1],
+    char password[PASSWORD_MAX_LEN + 1]
 ) {
     if (strcmp(username, "admin") == 0 && strcmp(password, "123") == 0)
         return "-ADMIN-";
