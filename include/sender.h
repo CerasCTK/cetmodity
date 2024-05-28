@@ -12,9 +12,8 @@ typedef struct sender {
     coordinate location;
 } sender;
 
-sender create_sender(
-    const char *name, const char *phone_number, coordinate location
-);
+sender
+create_sender(const char *name, const char *phone_number, coordinate location);
 
 sender create_sender_input();
 

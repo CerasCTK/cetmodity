@@ -1,9 +1,11 @@
 #include "sender.h"
+
 #include <stdio.h>
 #include <string.h>
 
-sender
-create_sender(const char *name, const char *phone_number, const coordinate location) {
+sender create_sender(
+    const char *name, const char *phone_number, const coordinate location
+) {
     sender new_sender = { .location = location };
     strcpy(new_sender.name, name);
     strcpy(new_sender.phone_number, phone_number);

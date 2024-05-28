@@ -137,7 +137,8 @@ deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
     return NULL;
 }
 
-deliver_node *dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
+deliver_node *
+dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
     if (dd_is_empty(list))
         return NULL;
 
@@ -152,8 +153,9 @@ deliver_node *dd_search_node_by_name(const dllist_deliver list, const char *deli
     return NULL;
 }
 
-deliver_node *
-dd_find_user(const dllist_deliver list, const char *username, const char *password) {
+deliver_node *dd_find_user(
+    const dllist_deliver list, const char *username, const char *password
+) {
     if (dd_is_empty(list))
         return NULL;
 

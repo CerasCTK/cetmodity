@@ -1,8 +1,8 @@
 #ifndef CETMODITY_TABLE_H
 #define CETMODITY_TABLE_H
 
-#include "dllist_order.h"
 #include "dllist_deliver.h"
+#include "dllist_order.h"
 
 #define TABLE_BORDER_X                                                         \
     "------------------------------------------------------------------------" \

@@ -1,18 +1,20 @@
 #include "order.h"
+
 #include "dllist_item.h"
 #include "uuid_util.h"
 
 #include <string.h>
 
-bool is_same_order(const order o1, const order o2) { return strcmp(o1.id, o2.id) == 0; }
+bool is_same_order(const order o1, const order o2) {
+    return strcmp(o1.id, o2.id) == 0;
+}
 
 order create_empty_order(const sender sender, const receiver receiver) {
     order new_order = { .sender = sender,
                         .receiver = receiver,
                         .items_price = 0,
                         .shipping_fee = 0,
-                        .status = in_storage
-    };
+                        .status = in_storage };
 
     uuid(new_order.id);
 

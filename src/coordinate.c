@@ -1,4 +1,5 @@
 #include "coordinate.h"
+
 #include <math.h>
 
 float degrees_to_radians(const double degrees) { return degrees * M_PI / 180; }
@@ -11,8 +12,8 @@ double calculate_distance(const coordinate c1, const coordinate c2) {
     const double second_lat_rad = degrees_to_radians(c2.latitude);
 
     const double a = pow(sin(distance_lat / 2), 2)
-               + pow(sin(distance_lon / 2), 2) * cos(first_lat_rad)
-                     * cos(second_lat_rad);
+                     + pow(sin(distance_lon / 2), 2) * cos(first_lat_rad)
+                           * cos(second_lat_rad);
     const double c = 2 * asin(sqrt(a));
 
     return c * EARTH_RADIUS;

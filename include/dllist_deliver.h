@@ -34,9 +34,11 @@ void dd_insert_before(
 
 deliver_node *dd_get_by_index(dllist_deliver list, int index);
 
-deliver_node *dd_search_node_by_name(dllist_deliver list, const char *deliver_name);
+deliver_node *
+dd_search_node_by_name(dllist_deliver list, const char *deliver_name);
 
-deliver_node *dd_find_user(dllist_deliver list, const char *username, const char *password);
+deliver_node *
+dd_find_user(dllist_deliver list, const char *username, const char *password);
 
 void dd_delete(dllist_deliver *list, deliver_node *node);
 

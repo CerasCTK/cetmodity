@@ -10,7 +10,8 @@ bool is_same_item(const item i1, const item i2) {
 }
 
 item create_item(
-    const char *product_name, const unsigned int quantity, const unsigned long unit_price
+    const char *product_name, const unsigned int quantity,
+    const unsigned long unit_price
 ) {
     item new_item = { .quantity = quantity, .unit_price = unit_price };
     strcpy(new_item.product_name, product_name);

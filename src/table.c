@@ -1,8 +1,8 @@
 #include "table.h"
 
 #include <stdio.h>
-#include <uuid/uuid.h>
 #include <string.h>
+#include <uuid/uuid.h>
 
 #include "item.h"
 #include "receiver.h"
@@ -91,7 +91,10 @@ void show_order_table_for_deliver(deliver deliver) {
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int ORDER_STATUS_COL_WIDTH = 12;
     const int NUM_OF_SEPERATE = 8;
-    int border_width = INDEX_COL_WIDTH + UUID_STR_LEN + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_COL_WIDTH + NUM_OF_SEPERATE;
+    int border_width = INDEX_COL_WIDTH + UUID_STR_LEN + SENDER_MAX_NAME_LEN
+                       + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH
+                       + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_COL_WIDTH
+                       + NUM_OF_SEPERATE;
 
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
@@ -121,9 +124,18 @@ void show_order_table_for_deliver(deliver deliver) {
         printf("%*s|", UUID_STR_LEN, node->order.id);
         printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
-        printf("%*f, ", LOCATED_COL_WIDTH / 2 - 1, node->order.receiver.location.latitude );
-        printf("%*f|", LOCATED_COL_WIDTH / 2 - 1, node->order.receiver.location.longitude);
-        printf("%*lu|", COUNT_ITEMS_PRICE_WIDTH, node->order.items_price + node->order.shipping_fee);
+        printf(
+            "%*f, ", LOCATED_COL_WIDTH / 2 - 1,
+            node->order.receiver.location.latitude
+        );
+        printf(
+            "%*f|", LOCATED_COL_WIDTH / 2 - 1,
+            node->order.receiver.location.longitude
+        );
+        printf(
+            "%*lu|", COUNT_ITEMS_PRICE_WIDTH,
+            node->order.items_price + node->order.shipping_fee
+        );
         printf("%*s|\n", ORDER_STATUS_COL_WIDTH, status);
     }
 
@@ -136,13 +148,19 @@ void show_order_detail(order order) {
     PRINT_BORDER_X(border_width);
 
     printf("Sender's name: %s\n", order.sender.name);
-    printf("Located: %f, %f\n", order.sender.location.latitude, order.sender.location.longitude);
+    printf(
+        "Located: %f, %f\n", order.sender.location.latitude,
+        order.sender.location.longitude
+    );
     printf("Phone number: %s\n", order.sender.phone_number);
 
     PRINT_BORDER_X(border_width);
 
     printf("Receiver's name: %s\n", order.receiver.name);
-    printf("Located: %f, %f\n", order.receiver.location.latitude, order.receiver.location.longitude);
+    printf(
+        "Located: %f, %f\n", order.receiver.location.latitude,
+        order.receiver.location.longitude
+    );
     printf("Phone number: %s\n", order.receiver.phone_number);
 
     PRINT_BORDER_X(border_width);
@@ -150,9 +168,12 @@ void show_order_detail(order order) {
     printf("List items: \n");
 
     for (int i = 0; i < di_size(order.items); i++) {
-        item_node *item_node= di_get_by_index(order.items, i);
+        item_node *item_node = di_get_by_index(order.items, i);
 
-        printf("%d. %s - %u\n", i + 1, item_node->item.product_name, item_node->item.quantity);
+        printf(
+            "%d. %s - %u\n", i + 1, item_node->item.product_name,
+            item_node->item.quantity
+        );
     }
 
     PRINT_BORDER_X(border_width);
@@ -165,7 +186,9 @@ void show_deliver_table(const dllist_deliver list_deliver) {
     // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
     const int NUM_OF_SEPARATE_CHAR = 7;
     const int NUM_OF_ORDER_LEN = 5;
-    const int border_x = INDEX_COL_WIDTH + UUID_STR_LEN + DELIVER_MAX_NAME_LEN + DELIVER_MAX_PHONE_LEN + USERNAME_MAX_LEN + NUM_OF_ORDER_LEN + NUM_OF_SEPARATE_CHAR;
+    const int border_x = INDEX_COL_WIDTH + UUID_STR_LEN + DELIVER_MAX_NAME_LEN
+                         + DELIVER_MAX_PHONE_LEN + USERNAME_MAX_LEN
+                         + NUM_OF_ORDER_LEN + NUM_OF_SEPARATE_CHAR;
 
     PRINT_BORDER_X(border_x);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");

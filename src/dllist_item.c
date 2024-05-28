@@ -9,7 +9,9 @@ void di_init(dllist_item *list) {
     list->tail = NULL;
 }
 
-bool di_is_empty(const dllist_item list) { return list.head == NULL && list.tail == NULL; }
+bool di_is_empty(const dllist_item list) {
+    return list.head == NULL && list.tail == NULL;
+}
 
 bool di_is_in_list(dllist_item list, const item item) {
     if (di_is_empty(list))
@@ -129,7 +131,8 @@ item_node *di_get_by_index(const dllist_item list, const int index) {
     return NULL;
 }
 
-item_node *di_search_node_by_name(const dllist_item list, const char * const item_name) {
+item_node *
+di_search_node_by_name(const dllist_item list, const char *const item_name) {
     if (di_is_empty(list))
         return NULL;
 

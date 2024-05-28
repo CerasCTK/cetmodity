@@ -4,14 +4,16 @@
 #include <string.h>
 
 #include "dllist_order.h"
-#include "uuid_util.h"
 #include "io_util.h"
+#include "uuid_util.h"
 
 bool is_same_deliver(const deliver d1, const deliver d2) {
     return strcmp(d1.id, d2.id) == 0;
 }
 
-deliver create_deliver(const char *name, const char *phone_number, const account account) {
+deliver create_deliver(
+    const char *name, const char *phone_number, const account account
+) {
     deliver new_deliver;
 
     uuid(new_deliver.id);

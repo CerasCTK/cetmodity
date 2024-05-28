@@ -1,8 +1,9 @@
 #include "receiver.h"
 
+#include "io_util.h"
+
 #include <stdio.h>
 #include <string.h>
-#include "io_util.h"
 
 receiver create_receiver(
     const char *name, const char *phone_number, const coordinate location

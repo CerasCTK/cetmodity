@@ -1,4 +1,5 @@
 #include "dllist_order.h"
+
 #include "dllist_item.h"
 #include "order.h"
 
@@ -8,7 +9,9 @@
 
 void do_init(dllist_order *list) { list->head = list->tail = NULL; }
 
-bool do_is_empty(const dllist_order list) { return list.head == NULL && list.tail == NULL; }
+bool do_is_empty(const dllist_order list) {
+    return list.head == NULL && list.tail == NULL;
+}
 
 bool do_is_in_list(const dllist_order list, const order order) {
     if (do_is_empty(list))
@@ -64,7 +67,9 @@ void do_insert_end(dllist_order *list, order new_order) {
     list->tail = new_node;
 }
 
-void do_insert_after(dllist_order *list, order_node *node, const order new_order) {
+void do_insert_after(
+    dllist_order *list, order_node *node, const order new_order
+) {
     if (do_is_empty(*list))
         return;
 
@@ -84,7 +89,9 @@ void do_insert_after(dllist_order *list, order_node *node, const order new_order
     node->next = new_node;
 }
 
-void do_insert_before(dllist_order *list, order_node *node, const order new_order) {
+void do_insert_before(
+    dllist_order *list, order_node *node, const order new_order
+) {
     if (do_is_empty(*list))
         return;
 
@@ -134,7 +141,8 @@ order_node *do_search_by_id(const dllist_order list, const char *order_id) {
     return NULL;
 }
 
-order_node *do_search_by_sender_name(dllist_order list, const char *sender_name) {
+order_node *
+do_search_by_sender_name(dllist_order list, const char *sender_name) {
     if (do_is_empty(list))
         return NULL;
 
@@ -145,7 +153,8 @@ order_node *do_search_by_sender_name(dllist_order list, const char *sender_name)
     return NULL;
 }
 
-order_node *do_search_by_receiver_name(dllist_order list, const char *receiver_name) {
+order_node *
+do_search_by_receiver_name(dllist_order list, const char *receiver_name) {
     if (do_is_empty(list))
         return NULL;
 

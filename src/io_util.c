@@ -40,7 +40,8 @@ void input_string(char *dest, const unsigned short dest_size) {
 }
 
 void print_center(
-    const unsigned short msg_len, const unsigned short lines, char messages[lines][msg_len]
+    const unsigned short msg_len, const unsigned short lines,
+    char messages[lines][msg_len]
 ) {
     // Get columns and lines in output
     struct winsize w;

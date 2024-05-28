@@ -14,8 +14,7 @@ typedef struct item {
 bool is_same_item(item i1, item i2);
 
 item create_item(
-    const char* product_name, unsigned int quantity,
-    unsigned long unit_price
+    const char *product_name, unsigned int quantity, unsigned long unit_price
 );
 
 int get_item_info_len(item item);
