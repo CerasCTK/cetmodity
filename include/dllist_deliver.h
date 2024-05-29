@@ -38,7 +38,7 @@ deliver_node *
 dd_search_node_by_name(dllist_deliver list, const char *deliver_name);
 
 deliver_node *
-dd_search_node_by_phone_number(dllist_deliver list, const char *deliver_phone_number);
+dd_search_node_by_id(dllist_deliver list, const char *deliver_id);
 
 deliver_node *
 dd_find_user(dllist_deliver list, const char *username, const char *password);

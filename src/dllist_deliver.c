@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "io_util.h"
+
 void dd_init(dllist_deliver *list) {
     list->head = NULL;
     list->tail = NULL;
@@ -154,14 +156,14 @@ dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
 }
 
 deliver_node *
-dd_search_node_by_phone_number(dllist_deliver list, const char *deliver_phone_number) {
+dd_search_node_by_id(dllist_deliver list, const char *deliver_id) {
     if (dd_is_empty(list))
         return NULL;
 
     deliver_node *node = list.head;
 
     while (node != NULL) {
-        if (strcmp(deliver_phone_number, node->deliver.phone_number) == 0)
+        if (strcmp(deliver_id, node->deliver.id) == 0)
             return node;
         node = node->next;
     }
