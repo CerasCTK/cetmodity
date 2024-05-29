@@ -40,7 +40,6 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     PRINTNL("\t1. Add new deliver");
     PRINTNL("\t2. Edit deliver infomation");
     PRINTNL("\t3. Delete deliver");
-    PRINTNL("\t4. Show list of delivers");
     PRINTNL("\t0. Go back");
 }
 
@@ -52,6 +51,5 @@ void a_show_manage_orders_menu(const dllist_order orders) {
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Edit the exist order");
     PRINTNL("\t3. Delete order");
-    PRINTNL("\t4. Show list of orders");
     PRINTNL("\t0. Go back");
 }
