@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "auth.h"
 #include "cetmodity_admin.h"
@@ -69,11 +68,9 @@ void admin_manage_delivers() {
             case 1: add_new_deliver(&delivers); break;
             case 2: edit_deliver_information(&delivers);break;
             case 3: break;
-            case 4: break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
-                sleep(1);
                 break;
         }
     }
@@ -91,7 +88,6 @@ void admin_manage_orders() {
             case 1: break;
             case 2: break;
             case 3: break;
-            case 4: break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
