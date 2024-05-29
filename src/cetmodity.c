@@ -67,7 +67,7 @@ void admin_manage_delivers() {
         getchar();
         switch (opt) {
             case 1: add_new_deliver(&delivers); break;
-            case 2: break;
+            case 2: edit_deliver_information(&delivers);break;
             case 3: break;
             case 4: break;
             case 0: loop = false; break;
