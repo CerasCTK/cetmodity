@@ -38,6 +38,11 @@ deliver create_deliver_input() {
     return create_deliver(name, phone_number, create_account_input());
 }
 
+void show_deliver_information(deliver deliver) {
+    printf("Deliver's name: %s\n", deliver.name);
+    printf("Deliver's phone number: %s\n", deliver.phone_number);
+}
+
 void deliver_add_order(deliver *deliver, const order new_order) {
     do_insert_end(&deliver->orders, new_order);
 }
