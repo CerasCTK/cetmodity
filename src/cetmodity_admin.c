@@ -14,23 +14,22 @@ void add_new_deliver(dllist_deliver *list) {
 }
 
 void edit_deliver_information(dllist_deliver *list) {
+    if (dd_is_empty(*list)) {
+        printf("No deliver to change!\n");
+        return;
+    }
+
     char name[DELIVER_MAX_NAME_LEN + 1];
     char phone_number[DELIVER_MAX_PHONE_LEN + 1];
-    char id[UUID_STR_LEN + 1];
 
-    printf("Input deliver's ID to edit: ");
-    input_string(id, UUID_STR_LEN);
-
-    deliver_node *node = dd_search_node_by_id(*list, id);
+    deliver_node *node = dd_search_node_by_id_input(*list);
 
     if (node == NULL) {
         printf("No deliver found!\n");
         return;
     }
-    else {
-        printf("Deliver's name: %s", node->deliver.name);
-        printf("Deliver's phone name: %s", node->deliver.phone_number);
-    }
+
+    show_deliver_information(node->deliver);
 
     printf("\nChange deliver information");
     printf("\nInput deliver's name: ");
@@ -40,4 +39,35 @@ void edit_deliver_information(dllist_deliver *list) {
 
     strcpy(node->deliver.name, name);
     strcpy(node->deliver.phone_number, phone_number);
+}
+
+void delete_deliver(dllist_deliver *list) {
+    if (dd_is_empty(*list)) {
+        printf("No deliver to delete!\n");
+        return;
+    }
+
+    deliver_node *node = dd_search_node_by_id_input(*list);
+
+    if (node == NULL) {
+        printf("No deliver found!\n");
+        return;
+    }
+
+    show_deliver_information(node->deliver);
+
+    int opt;
+    printf("Do you want to delete this deliver?\n");
+    printf("\t1. Yes\n");
+    printf("\t2. No\n");
+    printf("Input your option: ");
+    scanf("%d", &opt);
+    getchar();
+
+    if (opt == 1) {
+        dd_delete(list, node);
+        printf("Delete successfully\n");
+    } else {
+        printf("Cancelled delete\n");
+    }
 }
