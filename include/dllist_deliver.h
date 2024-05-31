@@ -41,6 +41,9 @@ deliver_node *
 dd_search_node_by_id(dllist_deliver list, const char *deliver_id);
 
 deliver_node *
+dd_search_node_by_id_input(dllist_deliver list);
+
+deliver_node *
 dd_find_user(dllist_deliver list, const char *username, const char *password);
 
 void dd_delete(dllist_deliver *list, deliver_node *node);

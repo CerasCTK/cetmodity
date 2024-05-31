@@ -171,6 +171,18 @@ dd_search_node_by_id(dllist_deliver list, const char *deliver_id) {
     return NULL;
 }
 
+deliver_node *
+dd_search_node_by_id_input(dllist_deliver list) {
+    char id[UUID_STR_LEN + 1];
+
+    printf("Input deliver's ID to edit: ");
+    input_string(id, UUID_STR_LEN);
+
+    deliver_node *node = dd_search_node_by_id(list, id);
+
+    return node;
+}
+
 deliver_node *dd_find_user(
     const dllist_deliver list, const char *username, const char *password
 ) {
