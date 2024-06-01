@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 
+// Deliver manage
 void add_new_deliver(dllist_deliver *list) {
     const deliver new_deliver = create_deliver_input();
     dd_insert_end(list, new_deliver);
@@ -70,4 +71,31 @@ void delete_deliver(dllist_deliver *list) {
     } else {
         printf("Cancelled delete\n");
     }
+}
+
+// Order manage
+void add_new_order(dllist_order *list) {
+    sender sender = create_sender_input();
+    receiver receiver = create_receiver_input();
+
+    order order = create_empty_order(sender, receiver);
+
+    bool loop = true;
+    while (loop) {
+        printf("Input item for the order:\n");
+        order_add_item_input(&order);
+
+        printf("Do you want to input new item?\n");
+        printf("\t1. Yes\n");
+        printf("\t2. No\n");
+        printf("Input your choice: ");
+
+        int choice = 0;
+        scanf("%d", &choice);
+        getchar();
+
+        if (choice == 2) loop = false;
+    }
+
+    do_insert_end(list, order);
 }
