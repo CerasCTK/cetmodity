@@ -34,6 +34,8 @@ order_node *do_get_by_index(dllist_order list, int index);
 
 order_node *do_search_by_id(dllist_order list, const char *order_id);
 
+order_node *do_search_by_id_input(dllist_order *list);
+
 order_node *
 do_search_by_sender_name(dllist_order list, const char *sender_name);
 

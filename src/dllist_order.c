@@ -141,6 +141,15 @@ order_node *do_search_by_id(const dllist_order list, const char *order_id) {
     return NULL;
 }
 
+order_node *do_search_by_id_input(dllist_order *list) {
+    char order_id[UUID_STR_LEN + 1];
+
+    printf("Input order'ID to edit: ");
+    input_string(order_id, UUID_STR_LEN);
+
+    return do_search_by_id(*list, order_id);
+}
+
 order_node *
 do_search_by_sender_name(dllist_order list, const char *sender_name) {
     if (do_is_empty(list))
