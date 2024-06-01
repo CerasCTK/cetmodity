@@ -1,9 +1,19 @@
 #include "uuid_util.h"
 
-char *uuid(char dest[UUID_STR_LEN]) {
-    uuid_t buffer;
-    uuid_generate(buffer);
-    uuid_unparse_upper(buffer, dest);
+#include <stdlib.h>
+
+char *uuid(char dest[ID_LEN]) {
+    char allowed_chars[]
+        = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    for (int i = 0; i < ID_LEN - 1; i++) {
+        if (i == 5)
+            dest[i] = '-';
+        else
+            dest[i] = allowed_chars[rand() % (sizeof(allowed_chars) - 1)];
+    }
+
+    dest[ID_LEN - 1] = '\0';
 
     return dest;
 }
