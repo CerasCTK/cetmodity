@@ -171,8 +171,7 @@ dd_search_node_by_id(dllist_deliver list, const char *deliver_id) {
     return NULL;
 }
 
-deliver_node *
-dd_search_node_by_id_input(dllist_deliver list) {
+deliver_node *dd_search_node_by_id_input(dllist_deliver list) {
     char id[UUID_STR_LEN + 1];
 
     printf("Input deliver's ID to edit: ");

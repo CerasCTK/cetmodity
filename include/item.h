@@ -2,9 +2,6 @@
 #define CETMODITY_ITEM_H
 
 #include "bool.h"
-#include "io_util.h"
-
-#include <stdio.h>
 
 #define PRODUCT_MAX_NAME_LEN 15
 

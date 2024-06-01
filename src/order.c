@@ -3,8 +3,10 @@
 #include <dllist_order.h>
 
 #include "dllist_item.h"
+#include "io_util.h"
 #include "uuid_util.h"
 
+#include <stdio.h>
 #include <string.h>
 
 bool is_same_order(const order o1, const order o2) {

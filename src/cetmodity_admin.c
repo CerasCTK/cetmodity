@@ -95,7 +95,8 @@ void add_new_order(dllist_order *list) {
         scanf("%d", &choice);
         getchar();
 
-        if (choice == 2) loop = false;
+        if (choice == 2)
+            loop = false;
     }
 
     do_insert_end(list, order);
