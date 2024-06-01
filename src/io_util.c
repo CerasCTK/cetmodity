@@ -32,7 +32,7 @@ void input_without_showing_char(char *dest, const unsigned short dest_size) {
 void input_string(char *dest, const unsigned short dest_size) {
     int counter = 0;
     char c;
-    while ((c = getchar()) != '\n' && c != EOF && counter < dest_size) {
+    while ((c = getchar()) != '\n' && c != EOF && counter < dest_size - 1) {
         dest[counter++] = c;
     }
 
@@ -40,8 +40,7 @@ void input_string(char *dest, const unsigned short dest_size) {
 }
 
 void print_center(
-    const unsigned short msg_len, const unsigned short lines,
-    char messages[lines][msg_len]
+    const unsigned short msg_len, const unsigned short lines, char messages[lines][msg_len]
 ) {
     // Get columns and lines in output
     struct winsize w;

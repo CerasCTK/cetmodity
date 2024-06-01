@@ -7,7 +7,7 @@ void input_without_showing_char(char *dest, unsigned short dest_size);
  * @brief Function to input a string from the user
  *
  * @param dest destination to store the input string
- * @param dest_size size of the destination buffer (not include null character)
+ * @param dest_size size of the destination buffer (include null character)
  */
 void input_string(char *dest, unsigned short dest_size);
 
