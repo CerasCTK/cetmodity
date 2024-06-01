@@ -1,12 +1,12 @@
 #ifndef CETMODITY_ORDER_H
 #define CETMODITY_ORDER_H
 
-#include <uuid/uuid.h>
-
 #include "bool.h"
 #include "dllist_item.h"
 #include "receiver.h"
 #include "sender.h"
+
+#include <uuid/uuid.h>
 
 #define SHIP_TAX 0.05
 

@@ -1,10 +1,10 @@
 #include "dllist_deliver.h"
 
+#include "io_util.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "io_util.h"
 
 void dd_init(dllist_deliver *list) {
     list->head = NULL;

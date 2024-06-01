@@ -1,13 +1,13 @@
 #include "cetmodity.h"
 
-#include <stdio.h>
-#include <string.h>
-
 #include "auth.h"
 #include "cetmodity_admin.h"
 #include "cetmodity_menu.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
+
+#include <stdio.h>
+#include <string.h>
 
 dllist_deliver delivers;
 dllist_order orders;

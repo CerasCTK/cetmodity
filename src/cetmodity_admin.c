@@ -135,7 +135,8 @@ void edit_order_information(dllist_order *list) {
         order_node->order.receiver.location.longitude = longitude;
 
     } else if (opt == 2) {
-        item_node *item_node = di_search_node_by_name_input(order_node->order.items);
+        item_node *item_node
+            = di_search_node_by_name_input(order_node->order.items);
 
         if (item_node == NULL) {
             printf("No item found!\n");
@@ -170,7 +171,6 @@ void edit_order_information(dllist_order *list) {
     } else {
         printf("Canceled!\n");
     }
-
 }
 
 void delete_order(dllist_order *list) {

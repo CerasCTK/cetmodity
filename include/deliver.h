@@ -1,10 +1,10 @@
 #ifndef CETMODITY_DELIVER_H
 #define CETMODITY_DELIVER_H
 
-#include <uuid/uuid.h>
-
 #include "account.h"
 #include "dllist_order.h"
+
+#include <uuid/uuid.h>
 
 #define DELIVER_MAX_NAME_LEN 20
 #define DELIVER_MAX_PHONE_LEN 10

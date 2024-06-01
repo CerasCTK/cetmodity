@@ -1,14 +1,14 @@
 #include "table.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <uuid/uuid.h>
-
 #include "dllist_deliver.h"
 #include "item.h"
 #include "receiver.h"
 #include "sender.h"
 #include "string_converter.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <uuid/uuid.h>
 
 #define INDEX_COL_WIDTH 3
 
