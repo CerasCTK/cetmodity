@@ -27,6 +27,7 @@ receiver create_receiver_input() {
     coordinate location;
     printf("Input the receiver location: ");
     scanf("%lf %lf", &location.latitude, &location.longitude);
+    getchar();
 
     return create_receiver(name, phone_number, location);
 }
