@@ -11,7 +11,7 @@ OBJS := $(SRCS:%=$(OBJ_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
 INC_FLAGS := $(addprefix -I,$(INC_DIR))
-LDFLAGS := -luuid -lm
+LDFLAGS := -lm
 
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
 
