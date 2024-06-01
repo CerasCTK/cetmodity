@@ -85,7 +85,7 @@ void admin_manage_orders() {
         scanf("%d", &opt);
         getchar();
         switch (opt) {
-            case 1: break;
+            case 1: add_new_order(&orders);break;
             case 2: break;
             case 3: break;
             case 0: loop = false; break;
