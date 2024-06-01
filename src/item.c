@@ -19,6 +19,22 @@ item create_item(
     return new_item;
 }
 
+item create_item_input() {
+    char product_name[PRODUCT_MAX_NAME_LEN + 1];
+    unsigned int quantity;
+    unsigned long unit_price;
+
+    printf("Input product's name: ");
+    input_string(product_name, PRODUCT_MAX_NAME_LEN);
+    printf("Input quantity of product: ");
+    scanf("%u", &quantity);
+    printf("Input price of product: ");
+    scanf("%lu", &unit_price);
+    getchar();
+
+    return create_item(product_name, quantity, unit_price);
+}
+
 int get_item_info_len(const item item) {
     // Format of item info: `<product_name> - <quantity>\0`
     int product_name_len = strlen(item.product_name);

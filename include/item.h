@@ -2,6 +2,9 @@
 #define CETMODITY_ITEM_H
 
 #include "bool.h"
+#include "io_util.h"
+
+#include <stdio.h>
 
 #define PRODUCT_MAX_NAME_LEN 15
 
@@ -16,6 +19,8 @@ bool is_same_item(item i1, item i2);
 item create_item(
     const char *product_name, unsigned int quantity, unsigned long unit_price
 );
+
+item create_item_input();
 
 int get_item_info_len(item item);
 
