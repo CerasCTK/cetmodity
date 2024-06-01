@@ -18,7 +18,8 @@
 void show_order_table_for_manager(const dllist_order list_order) {
     // | INDEX | ID | SENDER | RECEIVER | LIST ITEM |
     if (do_is_empty(list_order)) {
-        printf("No order found\n");
+        printf("No order found!\n");
+        printf("---------------------------------\n");
         return;
     }
 
@@ -126,11 +127,11 @@ void show_order_table_for_deliver(deliver deliver) {
         printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
         printf(
-            "%*f, ", LOCATED_COL_WIDTH / 2 - 1,
+            "%*lf, ", LOCATED_COL_WIDTH / 2 - 1,
             node->order.receiver.location.latitude
         );
         printf(
-            "%*f|", LOCATED_COL_WIDTH / 2 - 1,
+            "%*lf|", LOCATED_COL_WIDTH / 2 - 1,
             node->order.receiver.location.longitude
         );
         printf(
@@ -150,7 +151,7 @@ void show_order_detail(order order) {
 
     printf("Sender's name: %s\n", order.sender.name);
     printf(
-        "Located: %f, %f\n", order.sender.location.latitude,
+        "Located: %lf, %lf\n", order.sender.location.latitude,
         order.sender.location.longitude
     );
     printf("Phone number: %s\n", order.sender.phone_number);
@@ -159,7 +160,7 @@ void show_order_detail(order order) {
 
     printf("Receiver's name: %s\n", order.receiver.name);
     printf(
-        "Located: %f, %f\n", order.receiver.location.latitude,
+        "Located: %lf, %lf\n", order.receiver.location.latitude,
         order.receiver.location.longitude
     );
     printf("Phone number: %s\n", order.receiver.phone_number);
@@ -185,7 +186,8 @@ void show_order_detail(order order) {
 
 void show_deliver_table(const dllist_deliver list_deliver) {
     if (dd_is_empty(list_deliver)) {
-        printf("No deliver found\n");
+        printf("No deliver found!\n");
+        printf("------------------------------------\n");
         return;
     }
 
