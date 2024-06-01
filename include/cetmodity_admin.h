@@ -11,4 +11,6 @@ void delete_deliver(dllist_deliver *list);
 
 void add_new_order(dllist_order *list);
 
+void delete_order(dllist_order *list);
+
 #endif // !CETMODITY_ADMIN_H

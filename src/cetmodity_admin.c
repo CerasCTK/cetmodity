@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <table.h>
 
 // Deliver manage
 void add_new_deliver(dllist_deliver *list) {
@@ -98,4 +99,35 @@ void add_new_order(dllist_order *list) {
     }
 
     do_insert_end(list, order);
+}
+
+void delete_order(dllist_order *list) {
+    if (do_is_empty(*list)) {
+        printf("No order to delete!\n");
+        return;
+    }
+
+    order_node *node = do_search_by_id_input(list);
+
+    if (node == NULL) {
+        printf("No order found!\n");
+        return;
+    }
+
+    show_order_detail(node->order);
+
+    int opt;
+    printf("Do you want to delete this order?\n");
+    printf("\t1. Yes\n");
+    printf("\t2. No\n");
+    printf("Input your option: ");
+    scanf("%d", &opt);
+    getchar();
+
+    if (opt == 1) {
+        do_delete(list, node);
+        printf("Delete successfully\n");
+    } else {
+        printf("Cancelled delete\n");
+    }
 }
