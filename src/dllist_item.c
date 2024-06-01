@@ -149,7 +149,7 @@ di_search_node_by_name(const dllist_item list, const char *const item_name) {
 }
 
 item_node *di_search_node_by_name_input(dllist_item list) {
-    char name[PRODUCT_MAX_NAME_LEN + 1];
+    char name[PRODUCT_MAX_NAME_LEN];
 
     printf("Input product'name to change: ");
     input_string(name, PRODUCT_MAX_NAME_LEN);

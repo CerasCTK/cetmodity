@@ -3,10 +3,10 @@
 
 #include "bool.h"
 
-#define PRODUCT_MAX_NAME_LEN 15
+#define PRODUCT_MAX_NAME_LEN 16
 
 typedef struct item {
-    char product_name[PRODUCT_MAX_NAME_LEN + 1];
+    char product_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
     unsigned long unit_price;
 } item;

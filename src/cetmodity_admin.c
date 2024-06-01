@@ -21,8 +21,8 @@ void edit_deliver_information(dllist_deliver *list) {
         return;
     }
 
-    char name[DELIVER_MAX_NAME_LEN + 1];
-    char phone_number[DELIVER_MAX_PHONE_LEN + 1];
+    char name[DELIVER_MAX_NAME_LEN];
+    char phone_number[DELIVER_MAX_PHONE_LEN];
 
     deliver_node *node = dd_search_node_by_id_input(*list);
 

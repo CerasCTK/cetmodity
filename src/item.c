@@ -22,7 +22,7 @@ item create_item(
 }
 
 item create_item_input() {
-    char product_name[PRODUCT_MAX_NAME_LEN + 1];
+    char product_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
     unsigned long unit_price;
 

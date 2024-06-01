@@ -3,12 +3,12 @@
 
 #include "coordinate.h"
 
-#define SENDER_MAX_NAME_LEN 20
-#define SENDER_MAX_PHONE_LEN 10
+#define SENDER_MAX_NAME_LEN 21
+#define SENDER_MAX_PHONE_LEN 11
 
 typedef struct sender {
-    char name[SENDER_MAX_NAME_LEN + 1];
-    char phone_number[SENDER_MAX_PHONE_LEN + 1];
+    char name[SENDER_MAX_NAME_LEN];
+    char phone_number[SENDER_MAX_PHONE_LEN];
     coordinate location;
 } sender;
 

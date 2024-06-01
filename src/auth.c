@@ -10,8 +10,8 @@
 #include <unistd.h>
 
 char *login(const dllist_deliver delivers) {
-    char username[USERNAME_MAX_LEN + 1];
-    char password[PASSWORD_MAX_LEN + 1];
+    char username[USERNAME_MAX_LEN];
+    char password[PASSWORD_MAX_LEN];
 
 REINPUT:
     system("clear");

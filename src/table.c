@@ -5,10 +5,10 @@
 #include "receiver.h"
 #include "sender.h"
 #include "string_converter.h"
+#include "uuid_util.h"
 
 #include <stdio.h>
 #include <string.h>
-#include <uuid/uuid.h>
 
 #define INDEX_COL_WIDTH 3
 
@@ -25,14 +25,13 @@ void show_order_table_for_manager(const dllist_order list_order) {
 
     const int QUANTITY_ITEMS = 5;
     const int NUM_OF_SEPERATE = 6;
-    const int border_width = INDEX_COL_WIDTH + UUID_STR_LEN
-                             + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN
-                             + PRODUCT_MAX_NAME_LEN + NUM_OF_SEPERATE
-                             + QUANTITY_ITEMS;
+    const int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
+                             + RECEIVER_MAX_NAME_LEN + PRODUCT_MAX_NAME_LEN
+                             + NUM_OF_SEPERATE + QUANTITY_ITEMS;
 
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
-    printf("%*s|", UUID_STR_LEN, "ID");
+    printf("%*s|", ID_LEN, "ID");
     printf("%*s|", SENDER_MAX_NAME_LEN, "Sender");
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "Receiver");
     printf("%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "List items");
@@ -49,7 +48,7 @@ void show_order_table_for_manager(const dllist_order list_order) {
 
         // Print first row
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", UUID_STR_LEN, order.id);
+        printf("%*s|", ID_LEN, order.id);
         printf("%*s|", SENDER_MAX_NAME_LEN, order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, order.receiver.name);
 
@@ -68,7 +67,7 @@ void show_order_table_for_manager(const dllist_order list_order) {
         );
         for (int j = 1; j < item_list_size; j++) {
             printf("|%*s|", INDEX_COL_WIDTH, "");
-            printf("%*s|", UUID_STR_LEN, "");
+            printf("%*s|", ID_LEN, "");
             printf("%*s|", SENDER_MAX_NAME_LEN, "");
             printf("%*s|", RECEIVER_MAX_NAME_LEN, "");
             printf(
@@ -93,14 +92,14 @@ void show_order_table_for_deliver(deliver deliver) {
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int ORDER_STATUS_COL_WIDTH = 12;
     const int NUM_OF_SEPERATE = 8;
-    int border_width = INDEX_COL_WIDTH + UUID_STR_LEN + SENDER_MAX_NAME_LEN
+    int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
                        + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH
                        + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_COL_WIDTH
                        + NUM_OF_SEPERATE;
 
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
-    printf("%*s|", UUID_STR_LEN, "ID");
+    printf("%*s|", ID_LEN, "ID");
     printf("%*s|", SENDER_MAX_NAME_LEN, "SENDER");
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
     printf("%*s|", LOCATED_COL_WIDTH, "LOCATED");
@@ -123,7 +122,7 @@ void show_order_table_for_deliver(deliver deliver) {
         }
 
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", UUID_STR_LEN, node->order.id);
+        printf("%*s|", ID_LEN, node->order.id);
         printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
         printf(
@@ -194,13 +193,13 @@ void show_deliver_table(const dllist_deliver list_deliver) {
     // | INDEX | ID | NAME | PHONE NUMBER | ACCOUNT | NUM OF ORDER |
     const int NUM_OF_SEPARATE_CHAR = 7;
     const int NUM_OF_ORDER_LEN = 5;
-    const int border_x = INDEX_COL_WIDTH + UUID_STR_LEN + DELIVER_MAX_NAME_LEN
+    const int border_x = INDEX_COL_WIDTH + ID_LEN + DELIVER_MAX_NAME_LEN
                          + DELIVER_MAX_PHONE_LEN + USERNAME_MAX_LEN
                          + NUM_OF_ORDER_LEN + NUM_OF_SEPARATE_CHAR;
 
     PRINT_BORDER_X(border_x);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
-    printf("%*s|", UUID_STR_LEN, "ID");
+    printf("%*s|", ID_LEN, "ID");
     printf("%*s|", DELIVER_MAX_NAME_LEN, "Deliver");
     printf("%*s|", DELIVER_MAX_PHONE_LEN, "Phone");
     printf("%*s|", USERNAME_MAX_LEN, "Username");
@@ -213,7 +212,7 @@ void show_deliver_table(const dllist_deliver list_deliver) {
         int count_orders = do_size(deliver.orders);
 
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", UUID_STR_LEN, deliver.id);
+        printf("%*s|", ID_LEN, deliver.id);
         printf("%*s|", DELIVER_MAX_NAME_LEN, deliver.name);
         printf("%*s|", DELIVER_MAX_PHONE_LEN, deliver.phone_number);
         printf("%*s|", USERNAME_MAX_LEN, deliver.account.username);

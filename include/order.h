@@ -5,15 +5,14 @@
 #include "dllist_item.h"
 #include "receiver.h"
 #include "sender.h"
-
-#include <uuid/uuid.h>
+#include "uuid_util.h"
 
 #define SHIP_TAX 0.05
 
 typedef enum order_status { in_storage, in_transit, delivered } order_status;
 
 typedef struct order {
-    char id[UUID_STR_LEN];
+    char id[ID_LEN];
     sender sender;
     receiver receiver;
     dllist_item items;

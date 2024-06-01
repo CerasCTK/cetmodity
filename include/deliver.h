@@ -3,16 +3,15 @@
 
 #include "account.h"
 #include "dllist_order.h"
+#include "uuid_util.h"
 
-#include <uuid/uuid.h>
-
-#define DELIVER_MAX_NAME_LEN 20
-#define DELIVER_MAX_PHONE_LEN 10
+#define DELIVER_MAX_NAME_LEN 21
+#define DELIVER_MAX_PHONE_LEN 11
 
 typedef struct deliver {
-    char id[UUID_STR_LEN];
-    char name[DELIVER_MAX_NAME_LEN + 1];
-    char phone_number[DELIVER_MAX_PHONE_LEN + 1];
+    char id[ID_LEN];
+    char name[DELIVER_MAX_NAME_LEN];
+    char phone_number[DELIVER_MAX_PHONE_LEN];
     account account;
     dllist_order orders;
 } deliver;

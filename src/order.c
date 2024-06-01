@@ -33,7 +33,7 @@ void order_add_item(order *order, const item new_item) {
 }
 
 void order_add_item_input(order *order) {
-    char item_name[PRODUCT_MAX_NAME_LEN + 1];
+    char item_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
     unsigned long unit_price;
 

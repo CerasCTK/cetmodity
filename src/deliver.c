@@ -27,8 +27,8 @@ deliver create_deliver(
 }
 
 deliver create_deliver_input() {
-    char name[DELIVER_MAX_NAME_LEN + 1];
-    char phone_number[DELIVER_MAX_PHONE_LEN + 1];
+    char name[DELIVER_MAX_NAME_LEN];
+    char phone_number[DELIVER_MAX_PHONE_LEN];
 
     printf("Input the deliver's name: ");
     input_string(name, DELIVER_MAX_NAME_LEN);

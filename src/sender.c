@@ -16,8 +16,8 @@ sender create_sender(
 }
 
 sender create_sender_input() {
-    char name[SENDER_MAX_NAME_LEN + 1];
-    char phone_number[SENDER_MAX_PHONE_LEN + 1];
+    char name[SENDER_MAX_NAME_LEN];
+    char phone_number[SENDER_MAX_PHONE_LEN];
 
     printf("Input the sender's name: ");
     input_string(name, SENDER_MAX_NAME_LEN);

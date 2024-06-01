@@ -3,6 +3,7 @@
 #include "dllist_item.h"
 #include "io_util.h"
 #include "order.h"
+#include "uuid_util.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -143,10 +144,10 @@ order_node *do_search_by_id(const dllist_order list, const char *order_id) {
 }
 
 order_node *do_search_by_id_input(dllist_order list) {
-    char order_id[UUID_STR_LEN + 1];
+    char order_id[ID_LEN];
 
     printf("Input order'ID to edit: ");
-    input_string(order_id, UUID_STR_LEN);
+    input_string(order_id, ID_LEN);
 
     return do_search_by_id(list, order_id);
 }

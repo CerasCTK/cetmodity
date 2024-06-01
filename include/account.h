@@ -1,8 +1,8 @@
 #ifndef CETMODITY_ACCOUNT_H
 #define CETMODITY_ACCOUNT_H
 
-#define USERNAME_MAX_LEN 10
-#define PASSWORD_MAX_LEN 20
+#define USERNAME_MAX_LEN 11
+#define PASSWORD_MAX_LEN 21
 
 /**
  * @typedef account
@@ -10,8 +10,8 @@
  *
  */
 typedef struct account {
-    char username[USERNAME_MAX_LEN + 1];
-    char password[PASSWORD_MAX_LEN + 1];
+    char username[USERNAME_MAX_LEN];
+    char password[PASSWORD_MAX_LEN];
 } account;
 
 /**
