@@ -86,7 +86,7 @@ void admin_manage_orders() {
         getchar();
         switch (opt) {
             case 1: add_new_order(&orders); break;
-            case 2: break;
+            case 2: edit_order_information(&orders); break;
             case 3: delete_order(&orders); break;
             case 0: loop = false; break;
             default:
