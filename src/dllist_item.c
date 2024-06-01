@@ -1,5 +1,6 @@
 #include "dllist_item.h"
 
+#include <io_util.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -145,6 +146,15 @@ di_search_node_by_name(const dllist_item list, const char *const item_name) {
     }
 
     return NULL;
+}
+
+item_node *di_search_node_by_name_input(dllist_item list) {
+    char name[PRODUCT_MAX_NAME_LEN + 1];
+
+    printf("Input product'name to change: ");
+    input_string(name, PRODUCT_MAX_NAME_LEN);
+
+    return di_search_node_by_name(list, name);
 }
 
 void di_delete(dllist_item *list, item_node *node) {
