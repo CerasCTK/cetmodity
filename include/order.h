@@ -28,4 +28,6 @@ order create_empty_order(sender sender, receiver receiver);
 
 void order_add_item(order *order, item new_item);
 
+void order_add_item_input(order *order);
+
 #endif // !CETMODITY_ORDER_H
