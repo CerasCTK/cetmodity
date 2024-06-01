@@ -27,6 +27,7 @@ sender create_sender_input() {
     coordinate location;
     printf("Input the sender's location: ");
     scanf("%lf %lf", &location.latitude, &location.longitude);
+    getchar();
 
     return create_sender(name, phone_number, location);
 }
