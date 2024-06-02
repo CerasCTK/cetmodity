@@ -18,4 +18,6 @@ receiver create_receiver(
 
 receiver create_receiver_input();
 
+void receiver_update_coor_input(receiver *receiver);
+
 #endif // !CETMODITY_RECEIVER_H
