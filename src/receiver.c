@@ -33,7 +33,6 @@ receiver create_receiver_input() {
 }
 
 void receiver_update_coor(receiver *receiver) {
-    double latitude, longitude;
     printf("Input new receiver's coordinate: ");
     scanf(
         "%lf %lf", &receiver->location.latitude, &receiver->location.longitude
