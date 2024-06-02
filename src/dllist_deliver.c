@@ -207,11 +207,11 @@ deliver_node *dd_find_user(
     return NULL;
 }
 
-void dd_delete(dllist_deliver *list, deliver_node *node) {
+bool dd_delete(dllist_deliver *list, deliver_node *node) {
     if (dd_is_empty(*list))
-        return;
+        return false;
     if (!(dd_is_in_list(*list, node->deliver)))
-        return;
+        return false;
 
     if (list->head == node && list->tail == node) {
         list->head = NULL;
@@ -226,7 +226,9 @@ void dd_delete(dllist_deliver *list, deliver_node *node) {
         node->prev->next = node->next;
         node->next->prev = node->prev;
     }
+
     free(node);
+    return true;
 }
 
 void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
