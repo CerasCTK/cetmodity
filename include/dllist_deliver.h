@@ -24,7 +24,7 @@ int dd_size(dllist_deliver list);
 
 void dd_insert_begin(dllist_deliver *list, deliver deliver);
 
-void dd_insert_end(dllist_deliver *list, deliver deliver);
+bool dd_insert_end(dllist_deliver *list, deliver deliver);
 
 void dd_insert_after(dllist_deliver *list, deliver_node *node, deliver deliver);
 

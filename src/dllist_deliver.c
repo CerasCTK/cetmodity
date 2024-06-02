@@ -56,8 +56,14 @@ void dd_insert_begin(dllist_deliver *list, const deliver deliver) {
     list->head = node;
 }
 
-void dd_insert_end(dllist_deliver *list, const deliver deliver) {
+bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
     deliver_node *node = malloc(sizeof(deliver_node));
+
+    if (node == NULL) {
+        printf("Memory not allocated\n");
+        return false;
+    }
+
     node->deliver = deliver;
     node->next = NULL;
 
@@ -69,6 +75,8 @@ void dd_insert_end(dllist_deliver *list, const deliver deliver) {
         list->tail->next = node;
     }
     list->tail = node;
+
+    return true;
 }
 
 void dd_insert_after(
