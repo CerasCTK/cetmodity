@@ -115,57 +115,11 @@ void edit_order_information(dllist_order *list) {
         return;
     }
 
-    order current_order = order_node->order;
+    show_order_detail(order_node->order);
 
-    show_order_detail(current_order);
+    receiver_update_coor_input(&(order_node->order.receiver));
 
-    int opt;
-    printf("Do you want to change receiver's coordinate or list item?\n");
-    printf("\t1. Receiver's coordinate\n");
-    printf("\t2. List item\n");
-    printf("Input your option: ");
-    scanf("%d", &opt);
-    getchar();
-
-    if (opt == 1) {
-        receiver_update_coor_input(&current_order.receiver);
-    } else if (opt == 2) {
-        item_node *item_node
-            = di_search_node_by_name_input(order_node->order.items);
-
-        if (item_node == NULL) {
-            printf("No item found!\n");
-            return;
-        }
-
-        int opt_item;
-
-        printf("Do you want change quantity or delete item?\n");
-        printf("\t1. Change quantity item\n");
-        printf("\t2. Delete item\n");
-        printf("Input your option: ");
-        scanf("%d", &opt_item);
-        getchar();
-
-        if (opt_item == 1) {
-            unsigned int quantity;
-            printf("Input quantity item to change: ");
-            scanf("%u", &quantity);
-            getchar();
-
-            item_node->item.quantity = quantity;
-
-            printf("Successfully!\n");
-        } else if (opt_item == 2) {
-            di_delete(&order_node->order.items, item_node);
-            printf("Delete successfully!\n");
-        } else {
-            printf("Canceled!\n");
-        }
-
-    } else {
-        printf("Canceled!\n");
-    }
+    printf("Update successfully");
 }
 
 void delete_order(dllist_order *list) {
