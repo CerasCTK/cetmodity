@@ -24,7 +24,7 @@ int do_size(dllist_order list);
 
 void do_insert_begin(dllist_order *list, order order);
 
-void do_insert_end(dllist_order *list, order order);
+bool do_insert_end(dllist_order *list, order order);
 
 void do_insert_after(dllist_order *list, order_node *node, order order);
 

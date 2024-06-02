@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <bool.h>
 
 void do_init(dllist_order *list) { list->head = list->tail = NULL; }
 
@@ -53,7 +54,7 @@ void do_insert_begin(dllist_order *list, const order new_order) {
     list->head = new_node;
 }
 
-void do_insert_end(dllist_order *list, order new_order) {
+bool do_insert_end(dllist_order *list, order new_order) {
     order_node *new_node = malloc(sizeof(order_node));
     new_node->order = new_order;
     new_node->next = NULL;
@@ -67,6 +68,8 @@ void do_insert_end(dllist_order *list, order new_order) {
     }
 
     list->tail = new_node;
+
+    return true;
 }
 
 void do_insert_after(
