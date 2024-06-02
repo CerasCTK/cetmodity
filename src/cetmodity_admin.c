@@ -12,8 +12,12 @@
 // Deliver manage
 void add_new_deliver(dllist_deliver *list) {
     const deliver new_deliver = create_deliver_input();
-    dd_insert_end(list, new_deliver);
-    printf("Create new deliver successfully\n");
+    bool is_success = dd_insert_end(list, new_deliver);
+
+    if (is_success)
+        printf("Create new deliver successfully\n");
+    else
+        printf("Something wrong when create new deliver\n");
 }
 
 void edit_deliver_information(dllist_deliver *list) {
