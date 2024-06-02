@@ -23,6 +23,8 @@ create_deliver(const char *name, const char *phone_number, account account);
 
 deliver create_deliver_input();
 
+void deliver_information_change_input(deliver *deliver);
+
 void show_deliver_information(deliver deliver);
 
 void deliver_add_order(deliver *deliver, order new_order);
