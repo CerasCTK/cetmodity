@@ -150,7 +150,7 @@ void show_order_detail(order order) {
 
     printf("Sender's name: %s\n", order.sender.name);
     printf(
-        "Located: %lf, %lf\n", order.sender.location.latitude,
+        "Sender's location: %.2lf, %.2lf\n", order.sender.location.latitude,
         order.sender.location.longitude
     );
     printf("Phone number: %s\n", order.sender.phone_number);
@@ -159,7 +159,7 @@ void show_order_detail(order order) {
 
     printf("Receiver's name: %s\n", order.receiver.name);
     printf(
-        "Located: %lf, %lf\n", order.receiver.location.latitude,
+        "Receiver's location: %.2lf, %.2lf\n", order.receiver.location.latitude,
         order.receiver.location.longitude
     );
     printf("Phone number: %s\n", order.receiver.phone_number);
@@ -178,7 +178,7 @@ void show_order_detail(order order) {
     }
 
     PRINT_BORDER_X(border_width);
-    printf("Count: %lu\n", di_calculate_total_price(order.items));
+    printf("Total order price: %lu\n", order.items_price + order.shipping_fee);
 
     PRINT_BORDER_X(border_width);
 }
