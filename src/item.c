@@ -26,11 +26,11 @@ item create_item_input() {
     unsigned int quantity;
     unsigned long unit_price;
 
-    printf("Input product's name: ");
+    printf("\t- Input product's name: ");
     input_string(product_name, PRODUCT_MAX_NAME_LEN);
-    printf("Input quantity of product: ");
+    printf("\t- Input quantity of product: ");
     scanf("%u", &quantity);
-    printf("Input price of product: ");
+    printf("\t- Input price of product: ");
     scanf("%lu", &unit_price);
     getchar();
 
