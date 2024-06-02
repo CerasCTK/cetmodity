@@ -3,6 +3,7 @@
 #include "deliver.h"
 #include "dllist_deliver.h"
 #include "io_util.h"
+#include "receiver.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -81,8 +82,7 @@ void add_new_order(dllist_order *list) {
 
     order order = create_empty_order(sender, receiver);
 
-    bool loop = true;
-    while (loop) {
+    while (true) {
         printf("Input item for the order:\n");
         order_add_item_input(&order);
 
@@ -96,7 +96,7 @@ void add_new_order(dllist_order *list) {
         getchar();
 
         if (choice == 2)
-            loop = false;
+            break;
     }
 
     do_insert_end(list, order);
@@ -115,25 +115,20 @@ void edit_order_information(dllist_order *list) {
         return;
     }
 
-    show_order_detail(order_node->order);
+    order current_order = order_node->order;
+
+    show_order_detail(current_order);
 
     int opt;
-    printf("Do you want to change coordinate or list item?\n");
-    printf("\t1. Coordinate\n");
+    printf("Do you want to change receiver's coordinate or list item?\n");
+    printf("\t1. Receiver's coordinate\n");
     printf("\t2. List item\n");
     printf("Input your option: ");
     scanf("%d", &opt);
     getchar();
 
     if (opt == 1) {
-        double latitude, longitude;
-        printf("Input receiver's coordinate to change: ");
-        scanf("%lf %lf", &latitude, &longitude);
-        getchar();
-
-        order_node->order.receiver.location.latitude = latitude;
-        order_node->order.receiver.location.longitude = longitude;
-
+        receiver_update_coor_input(&current_order.receiver);
     } else if (opt == 2) {
         item_node *item_node
             = di_search_node_by_name_input(order_node->order.items);
