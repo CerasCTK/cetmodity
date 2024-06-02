@@ -7,12 +7,16 @@
 #include "dllist_order.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 dllist_deliver delivers;
 dllist_order orders;
 
 void cetmodity_init() {
+    srand(time(NULL));
+
     dd_init(&delivers);
     do_init(&orders);
 }
