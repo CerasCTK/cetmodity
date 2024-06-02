@@ -26,9 +26,6 @@ void edit_deliver_information(dllist_deliver *list) {
         return;
     }
 
-    char name[DELIVER_MAX_NAME_LEN];
-    char phone_number[DELIVER_MAX_PHONE_LEN];
-
     deliver_node *node = dd_search_node_by_id_input(*list);
 
     if (node == NULL) {
@@ -38,14 +35,7 @@ void edit_deliver_information(dllist_deliver *list) {
 
     show_deliver_information(node->deliver);
 
-    printf("\nChange deliver information");
-    printf("\nInput deliver's name: ");
-    input_string(name, DELIVER_MAX_PHONE_LEN);
-    printf("Input deliver's phone number: ");
-    input_string(phone_number, DELIVER_MAX_PHONE_LEN);
-
-    strcpy(node->deliver.name, name);
-    strcpy(node->deliver.phone_number, phone_number);
+    deliver_information_change_input(&node->deliver);
 }
 
 void delete_deliver(dllist_deliver *list) {
@@ -57,7 +47,7 @@ void delete_deliver(dllist_deliver *list) {
     deliver_node *node = dd_search_node_by_id_input(*list);
 
     if (node == NULL) {
-        printf("No deliver found!\n");
+        printf("No deliver found with that ID!\n");
         return;
     }
 
@@ -72,11 +62,13 @@ void delete_deliver(dllist_deliver *list) {
     getchar();
 
     if (opt == 1) {
-        dd_delete(list, node);
-        printf("Delete successfully\n");
-    } else {
+        bool is_success = dd_delete(list, node);
+        if (is_success)
+            printf("Delete successfully\n");
+        else
+            printf("Something error on delete\n");
+    } else
         printf("Cancelled delete\n");
-    }
 }
 
 // Order manage
@@ -103,7 +95,13 @@ void add_new_order(dllist_order *list) {
             break;
     }
 
-    do_insert_end(list, order);
+    bool is_success = do_insert_end(list, order);
+
+    if (is_success) {
+        printf("Create new order successfully!\n");
+    } else {
+        printf("Something wrong when create new order!\n");
+    }
 }
 
 void edit_order_information(dllist_order *list) {
