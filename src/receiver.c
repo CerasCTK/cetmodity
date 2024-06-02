@@ -32,7 +32,7 @@ receiver create_receiver_input() {
     return create_receiver(name, phone_number, location);
 }
 
-void receiver_update_coor(receiver *receiver) {
+void receiver_update_coor_input(receiver *receiver) {
     printf("Input new receiver's coordinate: ");
     scanf(
         "%lf %lf", &receiver->location.latitude, &receiver->location.longitude
