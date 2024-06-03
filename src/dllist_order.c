@@ -5,10 +5,10 @@
 #include "order.h"
 #include "uuid_util.h"
 
+#include <bool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <bool.h>
 
 void do_init(dllist_order *list) { list->head = list->tail = NULL; }
 
