@@ -70,8 +70,9 @@ void admin_manage_delivers() {
         getchar();
         switch (opt) {
             case 1: add_new_deliver(&delivers); break;
-            case 2: edit_deliver_information(&delivers); break;
-            case 3: delete_deliver(&delivers); break;
+            case 2: display_deliver_information(delivers); break;
+            case 3: edit_deliver_information(&delivers); break;
+            case 4: delete_deliver(&delivers); break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
@@ -90,8 +91,9 @@ void admin_manage_orders() {
         getchar();
         switch (opt) {
             case 1: add_new_order(&orders); break;
-            case 2: edit_order_information(&orders); break;
-            case 3: delete_order(&orders); break;
+            case 2: display_order_information(orders); break;
+            case 3: edit_order_information(&orders); break;
+            case 4: delete_order(&orders); break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
