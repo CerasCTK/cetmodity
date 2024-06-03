@@ -27,7 +27,7 @@ void show_order_table_for_manager(const dllist_order list_order) {
     const int NUM_OF_SEPERATE = 8;
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
-                             + RECEIVER_MAX_NAME_LEN  + RECEIVER_MAX_PHONE_LEN
+                             + RECEIVER_MAX_NAME_LEN + RECEIVER_MAX_PHONE_LEN
                              + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
                              + NUM_OF_SEPERATE + QUANTITY_ITEMS;
 
