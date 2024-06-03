@@ -25,8 +25,11 @@ $(OBJ_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean
+.PHONY: clean format
 clean:
 	rm -rf $(BIN_DIR)/* $(OBJ_DIR)/*
+
+format:
+	clang-format -i -style=file:$HOME/.config/nvim/helper/format/.clang-format */*.c */*.h
 
 -include $(DEPS)
