@@ -16,7 +16,7 @@
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
 void show_order_table_for_manager(const dllist_order list_order) {
-    // | INDEX | ID | SENDER | RECEIVER | LIST ITEM |
+    // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM |
     if (do_is_empty(list_order)) {
         printf("No order found!\n");
         printf("---------------------------------\n");
@@ -24,9 +24,11 @@ void show_order_table_for_manager(const dllist_order list_order) {
     }
 
     const int QUANTITY_ITEMS = 5;
-    const int NUM_OF_SEPERATE = 6;
+    const int NUM_OF_SEPERATE = 8;
+    const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
-                             + RECEIVER_MAX_NAME_LEN + PRODUCT_MAX_NAME_LEN
+                             + RECEIVER_MAX_NAME_LEN  + RECEIVER_MAX_PHONE_LEN
+                             + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
                              + NUM_OF_SEPERATE + QUANTITY_ITEMS;
 
     PRINT_BORDER_X(border_width);
@@ -34,6 +36,8 @@ void show_order_table_for_manager(const dllist_order list_order) {
     printf("%*s|", ID_LEN, "ID");
     printf("%*s|", SENDER_MAX_NAME_LEN, "Sender");
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "Receiver");
+    printf("%*s|", RECEIVER_MAX_PHONE_LEN, "Phone");
+    printf("%*s|", LOCATED_COL_WIDTH, "Located");
     printf("%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "List items");
 
     for (int i = 0; i < do_size(list_order); i++) {
@@ -51,6 +55,15 @@ void show_order_table_for_manager(const dllist_order list_order) {
         printf("%*s|", ID_LEN, order.id);
         printf("%*s|", SENDER_MAX_NAME_LEN, order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, order.receiver.name);
+        printf("%*s|", RECEIVER_MAX_PHONE_LEN, order.receiver.phone_number);
+        printf(
+            "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
+            order.receiver.location.latitude
+        );
+        printf(
+            "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
+            order.receiver.location.longitude
+        );
 
         const dllist_item item_list = order.items;
 
@@ -70,6 +83,8 @@ void show_order_table_for_manager(const dllist_order list_order) {
             printf("%*s|", ID_LEN, "");
             printf("%*s|", SENDER_MAX_NAME_LEN, "");
             printf("%*s|", RECEIVER_MAX_NAME_LEN, "");
+            printf("%*s|", RECEIVER_MAX_PHONE_LEN, "");
+            printf("%*s|", LOCATED_COL_WIDTH, "");
             printf(
                 "%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS,
                 item_info_array[j]
@@ -126,11 +141,11 @@ void show_order_table_for_deliver(deliver deliver) {
         printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
         printf(
-            "%*lf, ", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
             node->order.receiver.location.latitude
         );
         printf(
-            "%*lf|", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
             node->order.receiver.location.longitude
         );
         printf(
