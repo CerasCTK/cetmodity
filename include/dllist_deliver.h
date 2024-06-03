@@ -22,15 +22,7 @@ bool dd_is_in_list(dllist_deliver list, deliver deliver);
 
 int dd_size(dllist_deliver list);
 
-void dd_insert_begin(dllist_deliver *list, deliver deliver);
-
 bool dd_insert_end(dllist_deliver *list, deliver deliver);
-
-void dd_insert_after(dllist_deliver *list, deliver_node *node, deliver deliver);
-
-void dd_insert_before(
-    dllist_deliver *list, deliver_node *node, deliver deliver
-);
 
 deliver_node *dd_get_by_index(dllist_deliver list, int index);
 
