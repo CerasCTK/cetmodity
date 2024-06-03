@@ -20,6 +20,8 @@ void add_new_deliver(dllist_deliver *list) {
         printf("Something wrong when create new deliver\n");
 }
 
+void display_deliver_information(dllist_deliver deliver) {}
+
 void edit_deliver_information(dllist_deliver *list) {
     if (dd_is_empty(*list)) {
         printf("No deliver to change!\n");
@@ -102,6 +104,10 @@ void add_new_order(dllist_order *list) {
     } else {
         printf("Something wrong when create new order!\n");
     }
+}
+
+void display_order_information(dllist_order list) {
+
 }
 
 void edit_order_information(dllist_order *list) {

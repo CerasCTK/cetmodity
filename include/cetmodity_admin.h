@@ -3,13 +3,19 @@
 
 #include "dllist_deliver.h"
 
+// Deliver
 void add_new_deliver(dllist_deliver *list);
+
+void display_deliver_information(dllist_deliver list);
 
 void edit_deliver_information(dllist_deliver *list);
 
 void delete_deliver(dllist_deliver *list);
 
+// Order
 void add_new_order(dllist_order *list);
+
+void display_order_information(dllist_order list);
 
 void edit_order_information(dllist_order *list);
 
