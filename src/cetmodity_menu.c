@@ -38,8 +38,9 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     show_deliver_table(delivers);
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
-    PRINTNL("\t2. Edit deliver infomation");
-    PRINTNL("\t3. Delete deliver");
+    PRINTNL("\t2. Show deliver information");
+    PRINTNL("\t3. Edit deliver infomation");
+    PRINTNL("\t4. Delete deliver");
     PRINTNL("\t0. Go back");
 }
 
@@ -49,7 +50,8 @@ void a_show_manage_orders_menu(const dllist_order orders) {
     show_order_table_for_manager(orders);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
-    PRINTNL("\t2. Edit order information");
-    PRINTNL("\t3. Delete order");
+    PRINTNL("\t2. Show order information");
+    PRINTNL("\t3. Edit order information");
+    PRINTNL("\t4. Delete order");
     PRINTNL("\t0. Go back");
 }
