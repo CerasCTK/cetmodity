@@ -172,22 +172,6 @@ bool dd_delete(dllist_deliver *list, deliver_node *node) {
     return true;
 }
 
-void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
-
-void dd_delete_end(dllist_deliver *list) { dd_delete(list, list->tail); }
-
-void dd_delete_before(dllist_deliver *list, const deliver_node *node) {
-    if (node == list->head)
-        return;
-    dd_delete(list, node->prev);
-}
-
-void dd_delete_after(dllist_deliver *list, const deliver_node *node) {
-    if (node == list->tail)
-        return;
-    dd_delete(list, node->next);
-}
-
 void dd_free(dllist_deliver *list) {
     if (dd_is_empty(*list))
         return;
