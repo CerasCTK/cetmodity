@@ -19,7 +19,24 @@ void add_new_deliver(dllist_deliver *list) {
         printf("Something wrong when create new deliver\n");
 }
 
-void display_deliver_information(dllist_deliver deliver) {}
+void display_deliver_information(dllist_deliver deliver) {
+    if (dd_is_empty(deliver)) {
+        printf("No deliver found!");
+        return;
+    }
+
+    deliver_node *node = dd_search_node_by_id_input(deliver);
+
+    if (node == NULL) {
+        printf("No deliver found with that ID!\n");
+        return;
+    }
+
+    show_deliver_information(node->deliver);
+
+    printf("Enter to go back\n");
+    getchar();
+}
 
 void edit_deliver_information(dllist_deliver *list) {
     if (dd_is_empty(*list)) {
