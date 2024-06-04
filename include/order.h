@@ -8,6 +8,7 @@
 #include "uuid_util.h"
 
 #define SHIP_TAX 0.05
+#define ORDER_STATUS_LENGTH 12
 
 typedef enum order_status { in_storage, in_transit, delivered } order_status;
 
@@ -28,5 +29,7 @@ order create_empty_order(sender sender, receiver receiver);
 void order_add_item(order *order, item new_item);
 
 void order_add_item_input(order *order);
+
+void show_order_information(order order);
 
 #endif // !CETMODITY_ORDER_H
