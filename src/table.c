@@ -105,11 +105,10 @@ void show_order_table_for_deliver(deliver deliver) {
     // | INDEX | ID | SENDER | RECEIVER | LOCATED | COUNT_PRICE | STATUS |
     const int COUNT_ITEMS_PRICE_WIDTH = 9;
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
-    const int ORDER_STATUS_COL_WIDTH = 12;
     const int NUM_OF_SEPERATE = 8;
     int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
                        + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH
-                       + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_COL_WIDTH
+                       + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_LENGTH
                        + NUM_OF_SEPERATE;
 
     PRINT_BORDER_X(border_width);
@@ -119,14 +118,14 @@ void show_order_table_for_deliver(deliver deliver) {
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
     printf("%*s|", LOCATED_COL_WIDTH, "LOCATED");
     printf("%*s|", COUNT_ITEMS_PRICE_WIDTH, "COUNT");
-    printf("%*s|\n", ORDER_STATUS_COL_WIDTH, "STATUS");
+    printf("%*s|\n", ORDER_STATUS_LENGTH, "STATUS");
 
     for (int i = 0; i < do_size(deliver.orders); i++) {
         PRINT_BORDER_X(border_width);
 
         order_node *node = do_get_by_index(deliver.orders, i);
 
-        char status[ORDER_STATUS_COL_WIDTH];
+        char status[ORDER_STATUS_LENGTH];
 
         if (node->order.status == 0) {
             strcpy(status, "In storage");
@@ -152,7 +151,7 @@ void show_order_table_for_deliver(deliver deliver) {
             "%*lu|", COUNT_ITEMS_PRICE_WIDTH,
             node->order.items_price + node->order.shipping_fee
         );
-        printf("%*s|\n", ORDER_STATUS_COL_WIDTH, status);
+        printf("%*s|\n", ORDER_STATUS_LENGTH, status);
     }
 
     PRINT_BORDER_X(border_width);
