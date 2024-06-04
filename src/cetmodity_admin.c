@@ -19,13 +19,13 @@ void add_new_deliver(dllist_deliver *list) {
         printf("Something wrong when create new deliver\n");
 }
 
-void display_deliver_information(dllist_deliver deliver) {
-    if (dd_is_empty(deliver)) {
+void display_deliver_information(dllist_deliver list) {
+    if (dd_is_empty(list)) {
         printf("No deliver found!");
         return;
     }
 
-    deliver_node *node = dd_search_node_by_id_input(deliver);
+    deliver_node *node = dd_search_node_by_id_input(list);
 
     if (node == NULL) {
         printf("No deliver found with that ID!\n");
@@ -122,7 +122,24 @@ void add_new_order(dllist_order *list) {
     }
 }
 
-void display_order_information(dllist_order list) {}
+void display_order_information(dllist_order list) {
+    if (do_is_empty(list)) {
+        printf("No deliver found!");
+        return;
+    }
+
+    order_node *node = do_search_by_id_input(list);
+
+    if (node == NULL) {
+        printf("No order found with that ID!\n");
+        return;
+    }
+
+    show_order_information(node->order);
+
+    printf("Enter to go back\n");
+    getchar();
+}
 
 void edit_order_information(dllist_order *list) {
     if (do_is_empty(*list)) {
