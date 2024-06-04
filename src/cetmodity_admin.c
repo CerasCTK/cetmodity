@@ -2,7 +2,6 @@
 
 #include "deliver.h"
 #include "dllist_deliver.h"
-#include "io_util.h"
 #include "receiver.h"
 
 #include <stdio.h>
@@ -31,7 +30,7 @@ void edit_deliver_information(dllist_deliver *list) {
     deliver_node *node = dd_search_node_by_id_input(*list);
 
     if (node == NULL) {
-        printf("No deliver found!\n");
+        printf("No deliver found with that ID!\n");
         return;
     }
 
@@ -106,9 +105,7 @@ void add_new_order(dllist_order *list) {
     }
 }
 
-void display_order_information(dllist_order list) {
-
-}
+void display_order_information(dllist_order list) {}
 
 void edit_order_information(dllist_order *list) {
     if (do_is_empty(*list)) {

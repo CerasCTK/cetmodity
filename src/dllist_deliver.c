@@ -41,21 +41,6 @@ int dd_size(dllist_deliver list) {
     return count;
 }
 
-void dd_insert_begin(dllist_deliver *list, const deliver deliver) {
-    deliver_node *node = malloc(sizeof(deliver_node));
-    node->deliver = deliver;
-    node->prev = NULL;
-
-    if (dd_is_empty(*list)) {
-        list->tail = node;
-        node->next = NULL;
-    } else {
-        node->next = list->head;
-        list->head->prev = node;
-    }
-    list->head = node;
-}
-
 bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
     deliver_node *node = malloc(sizeof(deliver_node));
 
@@ -77,50 +62,6 @@ bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
     list->tail = node;
 
     return true;
-}
-
-void dd_insert_after(
-    dllist_deliver *list, deliver_node *node, const deliver deliver
-) {
-    if (dd_is_empty(*list))
-        return;
-    if ((dd_is_in_list(*list, deliver))
-        || !(dd_is_in_list(*list, node->deliver)))
-        return;
-
-    deliver_node *new_node = malloc(sizeof(deliver_node));
-    new_node->deliver = deliver;
-
-    if (list->tail == node) {
-        dd_insert_end(list, deliver);
-    } else {
-        new_node->next = node->next;
-        node->next->prev = new_node;
-        node->next = new_node;
-        new_node->prev = node;
-    }
-}
-
-void dd_insert_before(
-    dllist_deliver *list, deliver_node *node, const deliver deliver
-) {
-    if (dd_is_empty(*list))
-        return;
-    if ((dd_is_in_list(*list, deliver))
-        || !(dd_is_in_list(*list, node->deliver)))
-        return;
-
-    deliver_node *new_node = malloc(sizeof(deliver_node));
-    new_node->deliver = deliver;
-
-    if (list->head == node) {
-        dd_insert_begin(list, deliver);
-    } else {
-        new_node->prev = node->prev;
-        node->prev->next = new_node;
-        new_node->next = node;
-        node->prev = new_node;
-    }
 }
 
 deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
@@ -229,22 +170,6 @@ bool dd_delete(dllist_deliver *list, deliver_node *node) {
 
     free(node);
     return true;
-}
-
-void dd_delete_begin(dllist_deliver *list) { dd_delete(list, list->head); }
-
-void dd_delete_end(dllist_deliver *list) { dd_delete(list, list->tail); }
-
-void dd_delete_before(dllist_deliver *list, const deliver_node *node) {
-    if (node == list->head)
-        return;
-    dd_delete(list, node->prev);
-}
-
-void dd_delete_after(dllist_deliver *list, const deliver_node *node) {
-    if (node == list->tail)
-        return;
-    dd_delete(list, node->next);
 }
 
 void dd_free(dllist_deliver *list) {
