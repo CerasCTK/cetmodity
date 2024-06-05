@@ -41,6 +41,13 @@ int di_size(dllist_item list) {
 }
 
 void di_insert_end(dllist_item *list, const item item) {
+    // Check if the product is in list, we will replace the old one
+    item_node *node = di_search_node_by_product_name(*list, item.product_name);
+    if (node != NULL) {
+        node->item = item;
+        return;
+    }
+
     item_node *new_node = malloc(sizeof(item_node));
     new_node->item = item;
     new_node->next = NULL;
