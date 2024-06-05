@@ -19,7 +19,8 @@ void show_order_table_for_manager(const dllist_order list_order) {
     // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM |
     if (do_is_empty(list_order)) {
         printf("Order list is empty, no order found!\n");
-        printf("---------------------------------\n");
+        printf("---------------------------------------------------------------"
+               "------\n");
         return;
     }
 
@@ -158,41 +159,43 @@ void show_order_table_for_deliver(deliver deliver) {
 }
 
 void show_order_detail(order order) {
-    int border_width = 35;
+    int border_width = 50;
 
     PRINT_BORDER_X(border_width);
 
-    printf("Sender's name: %s\n", order.sender.name);
+    printf("\tSender's name: %s\n", order.sender.name);
     printf(
-        "Sender's location: %.2lf, %.2lf\n", order.sender.location.latitude,
+        "\tSender's location: %.2lf, %.2lf\n", order.sender.location.latitude,
         order.sender.location.longitude
     );
-    printf("Phone number: %s\n", order.sender.phone_number);
+    printf("\tPhone number: %s\n", order.sender.phone_number);
 
     PRINT_BORDER_X(border_width);
 
-    printf("Receiver's name: %s\n", order.receiver.name);
+    printf("\tReceiver's name: %s\n", order.receiver.name);
     printf(
-        "Receiver's location: %.2lf, %.2lf\n", order.receiver.location.latitude,
-        order.receiver.location.longitude
+        "\tReceiver's location: %.2lf, %.2lf\n",
+        order.receiver.location.latitude, order.receiver.location.longitude
     );
-    printf("Phone number: %s\n", order.receiver.phone_number);
+    printf("\tPhone number: %s\n", order.receiver.phone_number);
 
     PRINT_BORDER_X(border_width);
 
-    printf("List items: \n");
+    printf("\tList items: \n");
 
     for (int i = 0; i < di_size(order.items); i++) {
         item_node *item_node = di_get_by_index(order.items, i);
 
         printf(
-            "%d. %s - %u\n", i + 1, item_node->item.product_name,
+            "\t%d. %s - %u\n", i + 1, item_node->item.product_name,
             item_node->item.quantity
         );
     }
 
     PRINT_BORDER_X(border_width);
-    printf("Total order price: %lu\n", order.items_price + order.shipping_fee);
+    printf(
+        "\tTotal order price: %lu\n", order.items_price + order.shipping_fee
+    );
 
     PRINT_BORDER_X(border_width);
 }
@@ -200,7 +203,7 @@ void show_order_detail(order order) {
 void show_deliver_table(const dllist_deliver list_deliver) {
     if (dd_is_empty(list_deliver)) {
         printf("Deliver list is empty, no deliver found!\n");
-        printf("------------------------------------\n");
+        printf("-----------------------------------------------\n");
         return;
     }
 

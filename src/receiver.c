@@ -19,6 +19,8 @@ receiver create_receiver_input() {
     char name[RECEIVER_MAX_NAME_LEN];
     char phone_number[RECEIVER_MAX_PHONE_LEN];
 
+    printf("-------------------------------------------------------------------"
+           "--\n");
     printf("Input information for new receiver:\n");
     printf("\t- Input receiver's name: ");
     input_string(name, RECEIVER_MAX_NAME_LEN);
@@ -26,7 +28,7 @@ receiver create_receiver_input() {
     input_string(phone_number, RECEIVER_MAX_PHONE_LEN);
 
     coordinate location;
-    printf("\t- Input receiver's location(lat, lon): ");
+    printf("\t- Input receiver's location(lat, long): ");
     scanf("%lf %lf", &location.latitude, &location.longitude);
     getchar();
 
