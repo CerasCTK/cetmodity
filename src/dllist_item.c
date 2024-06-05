@@ -40,21 +40,6 @@ int di_size(dllist_item list) {
     return counter;
 }
 
-void di_insert_begin(dllist_item *list, const item item) {
-    item_node *new_node = malloc(sizeof(item_node));
-    new_node->item = item;
-    new_node->prev = NULL;
-
-    if (di_is_empty(*list)) {
-        new_node->next = NULL;
-        list->tail = new_node;
-    } else {
-        new_node->next = list->head;
-        list->head->prev = new_node;
-    }
-    list->head = new_node;
-}
-
 void di_insert_end(dllist_item *list, const item item) {
     item_node *new_node = malloc(sizeof(item_node));
     new_node->item = item;
@@ -68,44 +53,6 @@ void di_insert_end(dllist_item *list, const item item) {
         list->tail->next = new_node;
     }
     list->tail = new_node;
-}
-
-void di_insert_after(dllist_item *list, item_node *node, const item item) {
-    if (di_is_empty(*list))
-        return;
-    if (di_is_in_list(*list, item) || !di_is_in_list(*list, node->item))
-        return;
-
-    item_node *new_node = malloc(sizeof(item_node));
-    new_node->item = item;
-
-    if (node == list->tail) {
-        di_insert_end(list, item);
-    } else {
-        node->next->prev = new_node;
-        new_node->next = node->next;
-        node->next = new_node;
-        new_node->prev = node;
-    }
-}
-
-void di_insert_before(dllist_item *list, item_node *node, const item item) {
-    if (di_is_empty(*list))
-        return;
-    if (di_is_in_list(*list, item) || !di_is_in_list(*list, node->item))
-        return;
-
-    item_node *new_node = malloc(sizeof(item_node));
-    new_node->item = item;
-
-    if (node == list->head) {
-        di_insert_begin(list, item);
-    } else {
-        node->prev->next = new_node;
-        new_node->prev = node->prev;
-        node->prev = new_node;
-        new_node->next = node;
-    }
 }
 
 item_node *di_get_by_index(const dllist_item list, const int index) {
@@ -178,18 +125,6 @@ void di_delete(dllist_item *list, item_node *node) {
         node->next->prev = node->prev;
     }
     free(node);
-}
-
-void di_delete_begin(dllist_item *list) { di_delete(list, list->head); }
-
-void di_delete_end(dllist_item *list) { di_delete(list, list->tail); }
-
-void di_delete_before(dllist_item *list, const item_node *node) {
-    di_delete(list, node->prev);
-}
-
-void di_delete_after(dllist_item *list, const item_node *node) {
-    di_delete(list, node->next);
 }
 
 unsigned long di_calculate_total_price(const dllist_item list) {

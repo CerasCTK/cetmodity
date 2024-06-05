@@ -22,13 +22,7 @@ bool di_is_in_list(dllist_item list, item item);
 
 int di_size(dllist_item list);
 
-void di_insert_begin(dllist_item *list, item item);
-
 void di_insert_end(dllist_item *list, item item);
-
-void di_insert_after(dllist_item *list, item_node *node, item item);
-
-void di_insert_before(dllist_item *list, item_node *node, item item);
 
 item_node *di_get_by_index(dllist_item list, int index);
 
@@ -38,14 +32,6 @@ di_search_node_by_product_name(dllist_item list, const char *item_name);
 item_node *di_search_node_by_product_name_input(dllist_item list);
 
 void di_delete(dllist_item *list, item_node *node);
-
-void di_delete_begin(dllist_item *list);
-
-void di_delete_end(dllist_item *list);
-
-void di_delete_before(dllist_item *list, const item_node *node);
-
-void di_delete_after(dllist_item *list, const item_node *node);
 
 unsigned long di_calculate_total_price(dllist_item list);
 
