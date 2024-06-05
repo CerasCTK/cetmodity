@@ -18,7 +18,7 @@
 void show_order_table_for_manager(const dllist_order list_order) {
     // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM |
     if (do_is_empty(list_order)) {
-        printf("No order found!\n");
+        printf("Order list is empty, no order found!\n");
         printf("---------------------------------\n");
         return;
     }
@@ -199,7 +199,7 @@ void show_order_detail(order order) {
 
 void show_deliver_table(const dllist_deliver list_deliver) {
     if (dd_is_empty(list_deliver)) {
-        printf("No deliver found!\n");
+        printf("Deliver list is empty, no deliver found!\n");
         printf("------------------------------------\n");
         return;
     }

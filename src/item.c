@@ -28,9 +28,9 @@ item create_item_input() {
 
     printf("\t- Input product's name: ");
     input_string(product_name, PRODUCT_MAX_NAME_LEN);
-    printf("\t- Input quantity of product: ");
+    printf("\t- Input quantity of the product: ");
     scanf("%u", &quantity);
-    printf("\t- Input price of product: ");
+    printf("\t- Input price of the product: ");
     scanf("%lu", &unit_price);
     getchar();
 

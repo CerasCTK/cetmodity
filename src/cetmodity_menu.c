@@ -55,3 +55,16 @@ void a_show_manage_orders_menu(const dllist_order orders) {
     PRINTNL("\t4. Delete order");
     PRINTNL("\t0. Go back");
 }
+
+bool confirm_menu(char *msg) {
+    int opt;
+    printf("%s\n", msg);
+    printf("\t1. Yes\n");
+    printf("\t2. No\n");
+    printf("Input your option: ");
+    scanf("%d", &opt);
+
+    getchar();
+
+    return opt == 1 ? true : false;
+}

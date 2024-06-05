@@ -30,17 +30,17 @@ deliver create_deliver_input() {
     char name[DELIVER_MAX_NAME_LEN];
     char phone_number[DELIVER_MAX_PHONE_LEN];
 
-    printf("Input information new deliver: \n");
-    printf("\t- Input the deliver's name: ");
+    printf("Input information for new deliver: \n");
+    printf("\t- Input deliver's name: ");
     input_string(name, DELIVER_MAX_NAME_LEN);
-    printf("\t- Input the deliver's phone name: ");
+    printf("\t- Input deliver's phone number: ");
     input_string(phone_number, DELIVER_MAX_PHONE_LEN);
 
     return create_deliver(name, phone_number, create_account_input());
 }
 
 void deliver_information_change_input(deliver *deliver) {
-    printf("Change deliver information\n");
+    printf("Change the deliver's information\n");
     printf("\t- Input deliver's name: ");
     input_string(deliver->name, DELIVER_MAX_PHONE_LEN);
     printf("\t- Input deliver's phone number: ");

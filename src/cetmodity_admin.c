@@ -1,5 +1,6 @@
 #include "cetmodity_admin.h"
 
+#include "cetmodity_menu.h"
 #include "deliver.h"
 #include "dllist_deliver.h"
 #include "receiver.h"
@@ -21,7 +22,7 @@ void add_new_deliver(dllist_deliver *list) {
 
 void display_deliver_information(dllist_deliver list) {
     if (dd_is_empty(list)) {
-        printf("No deliver found!");
+        printf("Deliver list is empty, nothing to show!\n");
         return;
     }
 
@@ -34,13 +35,13 @@ void display_deliver_information(dllist_deliver list) {
 
     show_deliver_information(node->deliver);
 
-    printf("Enter to go back\n");
+    printf("Press enter - back to menu\n");
     getchar();
 }
 
 void edit_deliver_information(dllist_deliver *list) {
     if (dd_is_empty(*list)) {
-        printf("No deliver to change!\n");
+        printf("Deliver list is empty, nothing to edit!\n");
         return;
     }
 
@@ -58,7 +59,7 @@ void edit_deliver_information(dllist_deliver *list) {
 
 void delete_deliver(dllist_deliver *list) {
     if (dd_is_empty(*list)) {
-        printf("No deliver to delete!\n");
+        printf("Deliver list is empty, nothing to delete!\n");
         return;
     }
 
@@ -71,15 +72,9 @@ void delete_deliver(dllist_deliver *list) {
 
     show_deliver_information(node->deliver);
 
-    int opt;
-    printf("Do you want to delete this deliver?\n");
-    printf("\t1. Yes\n");
-    printf("\t2. No\n");
-    printf("Input your option: ");
-    scanf("%d", &opt);
-    getchar();
+    int confirm_delete = confirm_menu("Do you want to delete this deliver?");
 
-    if (opt == 1) {
+    if (confirm_delete) {
         bool is_success = dd_delete(list, node);
         if (is_success)
             printf("Delete successfully\n");
@@ -100,16 +95,9 @@ void add_new_order(dllist_order *list) {
         printf("Input item for the order:\n");
         order_add_item_input(&order);
 
-        printf("Do you want to input new item?\n");
-        printf("\t1. Yes\n");
-        printf("\t2. No\n");
-        printf("Input your choice: ");
+        bool continue_input = confirm_menu("Do you want to input new item?");
 
-        int choice = 0;
-        scanf("%d", &choice);
-        getchar();
-
-        if (choice == 2)
+        if (!continue_input)
             break;
     }
 
@@ -176,15 +164,9 @@ void delete_order(dllist_order *list) {
 
     show_order_detail(node->order);
 
-    int opt;
-    printf("Do you want to delete this order?\n");
-    printf("\t1. Yes\n");
-    printf("\t2. No\n");
-    printf("Input your option: ");
-    scanf("%d", &opt);
-    getchar();
+    bool confirm_delete = confirm_menu("Do you want to delete this order?");
 
-    if (opt == 1) {
+    if (confirm_delete) {
         do_delete(list, node);
         printf("Delete successfully\n");
     } else {

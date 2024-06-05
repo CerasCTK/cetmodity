@@ -123,7 +123,7 @@ dd_search_node_by_id(dllist_deliver list, const char *deliver_id) {
 deliver_node *dd_search_node_by_id_input(dllist_deliver list) {
     char id[ID_LEN];
 
-    printf("Input deliver's ID: ");
+    printf("Input deliver's ID to search: ");
     input_string(id, ID_LEN);
 
     deliver_node *node = dd_search_node_by_id(list, id);

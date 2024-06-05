@@ -149,7 +149,7 @@ order_node *do_search_by_id(const dllist_order list, const char *order_id) {
 order_node *do_search_by_id_input(dllist_order list) {
     char order_id[ID_LEN];
 
-    printf("Input order'ID: ");
+    printf("Input order's ID to search: ");
     input_string(order_id, ID_LEN);
 
     return do_search_by_id(list, order_id);
