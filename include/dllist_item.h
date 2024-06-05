@@ -32,9 +32,10 @@ void di_insert_before(dllist_item *list, item_node *node, item item);
 
 item_node *di_get_by_index(dllist_item list, int index);
 
-item_node *di_search_node_by_name(dllist_item list, const char *item_name);
+item_node *
+di_search_node_by_product_name(dllist_item list, const char *item_name);
 
-item_node *di_search_node_by_name_input(dllist_item list);
+item_node *di_search_node_by_product_name_input(dllist_item list);
 
 void di_delete(dllist_item *list, item_node *node);
 

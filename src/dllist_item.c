@@ -132,8 +132,9 @@ item_node *di_get_by_index(const dllist_item list, const int index) {
     return NULL;
 }
 
-item_node *
-di_search_node_by_name(const dllist_item list, const char *const item_name) {
+item_node *di_search_node_by_product_name(
+    const dllist_item list, const char *const item_name
+) {
     if (di_is_empty(list))
         return NULL;
 
@@ -148,13 +149,13 @@ di_search_node_by_name(const dllist_item list, const char *const item_name) {
     return NULL;
 }
 
-item_node *di_search_node_by_name_input(dllist_item list) {
+item_node *di_search_node_by_product_name_input(dllist_item list) {
     char name[PRODUCT_MAX_NAME_LEN];
 
     printf("Input product's name to search: ");
     input_string(name, PRODUCT_MAX_NAME_LEN);
 
-    return di_search_node_by_name(list, name);
+    return di_search_node_by_product_name(list, name);
 }
 
 void di_delete(dllist_item *list, item_node *node) {
