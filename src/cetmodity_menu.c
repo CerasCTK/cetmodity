@@ -56,11 +56,20 @@ void a_show_manage_orders_menu(const dllist_order orders) {
     PRINTNL("\t0. Go back");
 }
 
+void d_show_menu(deliver deliver) {
+    SLEEP;
+    CLRSCR;
+    show_order_table_for_deliver(deliver);
+    PRINTNL("Deliver manage orders menu:");
+    PRINTNL("\t1. Finish the order");
+    PRINTNL("\t0. Logout");
+}
+
 bool confirm_menu(char *msg) {
     int opt;
     printf("%s\n", msg);
-    printf("\t1. Yes\n");
-    printf("\t2. No\n");
+    PRINTNL("\t1. Yes");
+    PRINTNL("\t2. No");
     printf("Input your option: ");
     scanf("%d", &opt);
 
