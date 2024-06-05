@@ -20,8 +20,6 @@ void cetmodity_run();
  */
 logout_state admin_menu();
 
-void deliver_menu();
-
 /**
  * @brief Menu for admin to manage delivers
  */
@@ -31,5 +29,7 @@ void admin_manage_delivers();
  * @brief Menu for admin to manage orders
  */
 void admin_manage_orders();
+
+logout_state deliver_menu(deliver *deliver);
 
 #endif // !CETMODITY_CETMODITY_H

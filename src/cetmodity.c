@@ -2,6 +2,7 @@
 
 #include "auth.h"
 #include "cetmodity_admin.h"
+#include "cetmodity_deliver.h"
 #include "cetmodity_menu.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
@@ -10,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 dllist_deliver delivers;
 dllist_order orders;
@@ -31,8 +33,9 @@ RELOGIN:
         printf("Login successfully as admin\n");
         state = admin_menu();
     } else {
-        printf("Login successfully as deliver\n");
-        deliver_menu();
+        deliver_node *deliver = dd_search_node_by_id(delivers, found);
+        printf("Login successfully as deliver!\n");
+        state = deliver_menu(&deliver->deliver);
     }
 
     if (state == cetmodity_logout)
@@ -102,4 +105,20 @@ void admin_manage_orders() {
     }
 }
 
-void deliver_menu() { printf("Deliver menu"); }
+logout_state deliver_menu(deliver *deliver) {
+    int opt;
+    while (true) {
+        d_show_menu(*deliver);
+        printf("Input your option: ");
+        scanf("%d", &opt);
+        getchar();
+
+        switch (opt) {
+            case 1: break;
+            case 0: return logout();
+            default:
+                printf("Invalid choice, use only the options above\n");
+                break;
+        }
+    }
+}
