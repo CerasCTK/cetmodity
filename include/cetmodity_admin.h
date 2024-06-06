@@ -1,5 +1,5 @@
-#ifndef CETMODITY_ADMIN_H
-#define CETMODITY_ADMIN_H
+#ifndef CETMODITY_CETMODITY_ADMIN_H
+#define CETMODITY_CETMODITY_ADMIN_H
 
 #include "dllist_deliver.h"
 
@@ -67,4 +67,4 @@ void edit_order_information(dllist_order *list);
  */
 void delete_order(dllist_order *list);
 
-#endif // !CETMODITY_ADMIN_H
+#endif // !CETMODITY_CETMODITY_ADMIN_H
