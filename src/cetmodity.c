@@ -88,7 +88,7 @@ void admin_manage_orders() {
     int opt;
     bool loop = true;
     while (loop) {
-        a_show_manage_orders_menu(orders);
+        a_show_manage_orders_menu(orders, delivers);
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
@@ -97,6 +97,7 @@ void admin_manage_orders() {
             case 2: display_order_information(orders); break;
             case 3: edit_order_information(&orders); break;
             case 4: delete_order(&orders); break;
+            case 5: distribute_orders_to_deliver(&orders, &delivers); break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
@@ -114,7 +115,7 @@ logout_state deliver_menu(deliver *deliver) {
         getchar();
 
         switch (opt) {
-            case 1: break;
+            case 1: complete_order(&orders, &delivers); break;
             case 0: return logout();
             default:
                 printf("Invalid choice, use only the options above\n");
