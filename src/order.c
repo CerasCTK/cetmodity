@@ -13,6 +13,7 @@ bool is_same_order(const order o1, const order o2) {
 
 order create_empty_order(const sender sender, const receiver receiver) {
     order new_order = { .sender = sender,
+                        .deliver_id = "",
                         .receiver = receiver,
                         .items_price = 0,
                         .shipping_fee = 0,

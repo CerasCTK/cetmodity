@@ -8,12 +8,13 @@
 #include "uuid_util.h"
 
 #define SHIP_TAX 0.05
-#define ORDER_STATUS_LENGTH 11
+#define ORDER_STATUS_LENGTH 31
 
 typedef enum order_status { in_storage, in_transit, delivered } order_status;
 
 typedef struct order {
     char id[ID_LEN];
+    char deliver_id[ID_LEN];
     sender sender;
     receiver receiver;
     dllist_item items;
