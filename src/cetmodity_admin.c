@@ -169,7 +169,7 @@ void delete_order(dllist_order *list) {
     order_node *node = do_search_by_id_input(*list);
 
     if (node == NULL) {
-        printf("No order found!\n");
+        printf("No order found with that ID!\n");
         return;
     }
 
@@ -179,8 +179,37 @@ void delete_order(dllist_order *list) {
 
     if (confirm_delete) {
         do_delete(list, node);
-        printf("Delete successfully\n");
+        printf("Delete successfully!\n");
     } else {
-        printf("Cancelled delete\n");
+        printf("Cancelled delete!\n");
     }
+}
+
+void distribute_orders_to_deliver(dllist_order *list_order, dllist_deliver *list_deliver) {
+    if (do_is_empty(*list_order)) {
+        printf("Order list is empty, nothing to ship!\n");
+        return;
+    }
+
+    order_node *order_node = do_search_by_id_input(*list_order);
+    if (order_node == NULL) {
+        printf("No order found with that ID!\n");
+        return;
+    }
+    if (order_node->order.status == 1 || order_node->order.status == 2) {
+        printf("Order has been delivered!\n");
+        return;
+    }
+
+    deliver_node *deliver_node = dd_search_node_by_id_input(*list_deliver);
+    if (deliver_node == NULL) {
+        printf("No deliver found with that ID!\n");
+        return;
+    }
+
+    order_node->order.status = in_transit;
+    strcpy(order_node->order.deliver_id, deliver_node->deliver.id);
+    do_insert_end(&deliver_node->deliver.orders, order_node->order);
+
+    printf("Distribute order successfully!\n");
 }
