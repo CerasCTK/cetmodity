@@ -44,15 +44,16 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     PRINTNL("\t0. Go back");
 }
 
-void a_show_manage_orders_menu(const dllist_order orders) {
+void a_show_manage_orders_menu(const dllist_order orders, dllist_deliver delivers) {
     SLEEP;
     CLRSCR;
-    show_order_table_for_manager(orders);
+    show_order_table_for_manager(orders, delivers);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Show order information");
     PRINTNL("\t3. Edit order information");
     PRINTNL("\t4. Delete order");
+    PRINTNL("\t5. Distribute orders to deliver");
     PRINTNL("\t0. Go back");
 }
 

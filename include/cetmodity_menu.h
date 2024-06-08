@@ -10,7 +10,7 @@ void a_show_menu();
 
 void a_show_manage_delivers_menu(dllist_deliver list);
 
-void a_show_manage_orders_menu(dllist_order list);
+void a_show_manage_orders_menu(dllist_order order_list, dllist_deliver deliver_list);
 
 void d_show_menu();
 
