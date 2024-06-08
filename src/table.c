@@ -15,8 +15,8 @@
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
-void show_order_table_for_manager(const dllist_order list_order) {
-    // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM |
+void show_order_table_for_manager(const dllist_order list_order, dllist_deliver list_deliver) {
+    // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM | STATUS |
     if (do_is_empty(list_order)) {
         printf("Order list is empty, no order found!\n");
         printf("---------------------------------------------------------------"
@@ -25,12 +25,12 @@ void show_order_table_for_manager(const dllist_order list_order) {
     }
 
     const int QUANTITY_ITEMS = 5;
-    const int NUM_OF_SEPERATE = 8;
+    const int NUM_OF_SEPERATE = 9;
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
                              + RECEIVER_MAX_NAME_LEN + RECEIVER_MAX_PHONE_LEN
                              + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
-                             + NUM_OF_SEPERATE + QUANTITY_ITEMS;
+                             + NUM_OF_SEPERATE + QUANTITY_ITEMS + ORDER_STATUS_LENGTH;
 
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
@@ -39,7 +39,8 @@ void show_order_table_for_manager(const dllist_order list_order) {
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "Receiver");
     printf("%*s|", RECEIVER_MAX_PHONE_LEN, "Phone");
     printf("%*s|", LOCATED_COL_WIDTH, "Located");
-    printf("%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "List items");
+    printf("%*s|", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, "List items");
+    printf("%*s|\n", ORDER_STATUS_LENGTH, "Status");
 
     for (int i = 0; i < do_size(list_order); i++) {
         PRINT_BORDER_X(border_width);
@@ -75,9 +76,25 @@ void show_order_table_for_manager(const dllist_order list_order) {
         }
 
         char **item_info_array = list_item_to_strings(item_list);
+        char status[ORDER_STATUS_LENGTH];
+
+        if (order.status == 0) {
+            strcpy(status, "In storage");
+        } else if (order.status == 1) {
+            char deliver[DELIVER_MAX_NAME_LEN];
+
+            strcpy(deliver, dd_search_node_by_id(list_deliver, order.deliver_id)->deliver.name);
+            strcpy(status, "In transit - ");
+            strcat(status, deliver);
+        } else {
+            strcpy(status, "Delived");
+        }
 
         printf(
-            "%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, item_info_array[0]
+            "%*s|", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, item_info_array[0]
+        );
+        printf(
+            "%*s|\n", ORDER_STATUS_LENGTH, status
         );
         for (int j = 1; j < item_list_size; j++) {
             printf("|%*s|", INDEX_COL_WIDTH, "");
@@ -87,9 +104,10 @@ void show_order_table_for_manager(const dllist_order list_order) {
             printf("%*s|", RECEIVER_MAX_PHONE_LEN, "");
             printf("%*s|", LOCATED_COL_WIDTH, "");
             printf(
-                "%*s|\n", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS,
+                "%*s|", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS,
                 item_info_array[j]
             );
+            printf("%*s|\n", ORDER_STATUS_LENGTH, "");
         }
 
         free_list_item_strings(item_info_array, item_list_size);
@@ -193,6 +211,8 @@ void show_order_detail(order order) {
     }
 
     PRINT_BORDER_X(border_width);
+    printf("\tOrder price: %lu\n", order.items_price);
+    printf("\tShipping fee: %u\n", order.shipping_fee);
     printf(
         "\tTotal order price: %lu\n", order.items_price + order.shipping_fee
     );
