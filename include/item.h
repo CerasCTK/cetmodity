@@ -61,6 +61,6 @@ const int get_item_info_len(const item *const item);
  * @param item Item to get the information.
  * @return Information of the item.
  */
-const char *get_item_info_string(const item *const item);
+char *get_item_info_string(const item *const item);
 
 #endif // !CETMODITY_ITEM_H

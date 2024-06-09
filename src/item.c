@@ -55,7 +55,7 @@ const int get_item_info_len(const item *const item) {
     return product_name_len + n_digits_quantity + n_spaces_char + n_end_char;
 }
 
-const char *get_item_info_string(const item *const item) {
+char *get_item_info_string(const item *const item) {
     const int info_len = get_item_info_len(item);
     char *array = malloc(info_len * sizeof(char));
     sprintf(array, "%s - %u", item->product_name, item->quantity);
