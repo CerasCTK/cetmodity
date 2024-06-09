@@ -7,21 +7,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool is_same_item(const item i1, const item i2) {
-    return strcmp(i1.product_name, i2.product_name) == 0;
+bool is_same_item(item *i1, item *i2) {
+    return strcmp(i1->product_name, i2->product_name) == 0;
 }
 
-item create_item(
+item *create_item(
     const char *product_name, const unsigned int quantity,
     const unsigned long unit_price
 ) {
-    item new_item = { .quantity = quantity, .unit_price = unit_price };
-    strcpy(new_item.product_name, product_name);
+    item *new_item = malloc(sizeof(item));
+
+    if (new_item == NULL) {
+        printf("Memory not allocated\n");
+        return NULL;
+    }
+
+    strcpy(new_item->product_name, product_name);
+    new_item->quantity = quantity;
+    new_item->unit_price = unit_price;
 
     return new_item;
 }
 
-item create_item_input() {
+item* create_item_input() {
     char product_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
     unsigned long unit_price;
