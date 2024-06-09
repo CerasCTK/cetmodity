@@ -64,3 +64,35 @@ void print_center(
     for (int i = 0; i < y; i++)
         printf("\n");
 }
+
+void print_message_bottom_left(const char *message) {
+    // Save the cursor position
+    printf("\033[s");
+
+    // Get lines in terminal display window
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    const int cols = w.ws_col;
+
+    // Move the cursor to the bottom left
+    printf("\033[%d;%dH", cols, 0);
+
+    // Clear the line
+    printf("\033[K");
+
+    // Print the message
+    printf("%s", message);
+
+    // Restore the cursor position
+    printf("\033[u");
+
+    // Flush the output to ensure it appears immediately
+    fflush(stdout);
+}
+
+void wait_for_enter() {
+    char c;
+    while (read(STDIN_FILENO, &c, 1) == 1 && c != '\n')
+        // Ignore all input except Enter
+        ;
+}

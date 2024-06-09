@@ -15,4 +15,8 @@ void print_center(
     unsigned short msg_len, unsigned short lines, char messages[lines][msg_len]
 );
 
+void print_message_bottom_left(const char *message);
+
+void wait_for_enter();
+
 #endif // !CETMODITY_IO_UTIL_H
