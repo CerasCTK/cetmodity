@@ -7,7 +7,7 @@
 
 /**
  * @class item
- * @brief Item struct.
+ * @brief Struct of item.
  *
  */
 typedef struct item {
