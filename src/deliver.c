@@ -56,9 +56,9 @@ void change_deliver_information_input(deliver *const deliver) {
 }
 
 void show_deliver_information(const deliver *const deliver) {
-    printf("\t- Deliver's ID: %s\n", deliver->id);
     printf("\t- Deliver's name: %s\n", deliver->name);
     printf("\t- Deliver's phone number: %s\n", deliver->phone_number);
+    printf("\t- Deliver's account: %s\n", deliver->account.username);
 }
 
 void deliver_add_order(const deliver *const deliver, order *const new_order) {
