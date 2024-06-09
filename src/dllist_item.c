@@ -44,7 +44,7 @@ const int di_size(const dllist_item *list) {
     return counter;
 }
 
-void di_insert_end(dllist_item *const list, item *const item) {
+void di_insert(dllist_item *const list, item *const item) {
     // Check if the product is in list, we will replace the old one
     item_node *const node
         = di_search_node_by_product_name(list, item->product_name);
