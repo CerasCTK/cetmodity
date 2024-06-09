@@ -9,10 +9,14 @@
 #include <string.h>
 #include <table.h>
 
+#define SEPERATE_LINE                                                          \
+    (printf("-----------------------------------------------\n"))
+
 // Deliver manage
 void add_new_deliver(dllist_deliver *const list) {
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     deliver *new_deliver = create_deliver_input();
+
     bool is_success = dd_insert(list, new_deliver);
 
     if (is_success)
@@ -27,7 +31,7 @@ void display_deliver_information(const dllist_deliver *const list) {
         return;
     }
 
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     deliver_node *node = dd_search_node_by_id_input(list);
 
     if (node == NULL) {
@@ -47,7 +51,7 @@ void edit_deliver_information(const dllist_deliver *const list) {
         return;
     }
 
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     deliver_node *node = dd_search_node_by_id_input(list);
 
     if (node == NULL) {
@@ -57,7 +61,7 @@ void edit_deliver_information(const dllist_deliver *const list) {
 
     show_deliver_information(node->deliver);
 
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     change_deliver_information_input(node->deliver);
 }
 
@@ -67,7 +71,7 @@ void delete_deliver(dllist_deliver *const list) {
         return;
     }
 
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     deliver_node *node = dd_search_node_by_id_input(list);
 
     if (node == NULL) {
@@ -77,7 +81,7 @@ void delete_deliver(dllist_deliver *const list) {
 
     show_deliver_information(node->deliver);
 
-    printf("-----------------------------------------------\n");
+    SEPERATE_LINE;
     int confirm_delete = confirm_menu("Do you want to delete this deliver?");
 
     if (confirm_delete) {
@@ -98,8 +102,7 @@ void add_new_order(dllist_order *const list) {
     order *order = create_empty_order(sender, receiver);
 
     while (true) {
-        printf("---------------------------------------------------------------"
-               "------\n");
+        SEPERATE_LINE;
         printf("Input item for the order:\n");
         order_add_item_input(order);
 
@@ -124,7 +127,7 @@ void display_order_information(const dllist_order *const list) {
         return;
     }
 
-    printf("--------------------------------------------------\n");
+    SEPERATE_LINE;
     order_node *node = do_search_by_id_input(list);
 
     if (node == NULL) {
@@ -144,7 +147,7 @@ void edit_order_information(const dllist_order *const list) {
         return;
     }
 
-    printf("--------------------------------------------------\n");
+    SEPERATE_LINE;
     order_node *order_node = do_search_by_id_input(list);
 
     if (order_node == NULL) {
@@ -165,7 +168,7 @@ void delete_order(dllist_order *const list) {
         return;
     }
 
-    printf("--------------------------------------------------\n");
+    SEPERATE_LINE;
     order_node *node = do_search_by_id_input(list);
 
     if (node == NULL) {
