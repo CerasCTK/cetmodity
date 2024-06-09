@@ -3,6 +3,7 @@
 #include "cetmodity_menu.h"
 #include "deliver.h"
 #include "dllist_deliver.h"
+#include "io_util.h"
 #include "receiver.h"
 
 #include <stdio.h>
@@ -41,8 +42,8 @@ void display_deliver_information(const dllist_deliver *const list) {
 
     show_deliver_information(node->deliver);
 
-    printf("Press enter - back to menu\n");
-    getchar();
+    print_message_bottom_left("--Press Enter to go back--");
+    wait_for_enter();
 }
 
 void edit_deliver_information(const dllist_deliver *const list) {
@@ -137,8 +138,8 @@ void display_order_information(const dllist_order *const list) {
 
     show_order_information(node->order);
 
-    printf("Enter to go back\n");
-    getchar();
+    print_message_bottom_left("--Press Enter to go back--");
+    wait_for_enter();
 }
 
 void edit_order_information(const dllist_order *const list) {
