@@ -5,6 +5,11 @@
 
 #define PRODUCT_MAX_NAME_LEN 16
 
+/**
+ * @class item
+ * @brief Item struct.
+ *
+ */
 typedef struct item {
     char product_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
