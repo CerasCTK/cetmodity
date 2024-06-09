@@ -9,7 +9,7 @@
 #include <string.h>
 #include <unistd.h>
 
-char *login(const dllist_deliver delivers) {
+const char *login(const dllist_deliver *const delivers) {
     char username[USERNAME_MAX_LEN];
     char password[PASSWORD_MAX_LEN];
 
@@ -20,7 +20,7 @@ REINPUT:
     printf("Password: ");
     input_without_showing_char(password, PASSWORD_MAX_LEN);
 
-    char *id = get_account(delivers, username, password);
+    const char *id = get_account(delivers, username, password);
 
     if (strcmp(id, "-NONE-") == 0) {
         printf("Wrong user or password. Try again..\n");
@@ -31,8 +31,8 @@ REINPUT:
     return id;
 }
 
-char *get_account(
-    const dllist_deliver delivers, char username[USERNAME_MAX_LEN + 1],
+const char *get_account(
+    const dllist_deliver *const delivers, char username[USERNAME_MAX_LEN + 1],
     char password[PASSWORD_MAX_LEN + 1]
 ) {
     if (strcmp(username, "admin") == 0 && strcmp(password, "123") == 0)
@@ -43,10 +43,10 @@ char *get_account(
     if (found == NULL)
         return "-NONE-";
 
-    return found->deliver.id;
+    return found->deliver->id;
 }
 
-logout_state logout() {
+const logout_state logout() {
     int opt;
     logout_menu();
     printf("Input your option: ");
