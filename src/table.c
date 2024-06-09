@@ -15,7 +15,9 @@
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
-void show_order_table_for_manager(const dllist_order list_order, dllist_deliver list_deliver) {
+void show_order_table_for_manager(
+    const dllist_order list_order, dllist_deliver list_deliver
+) {
     // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM | STATUS |
     if (do_is_empty(list_order)) {
         printf("Order list is empty, no order found!\n");
@@ -27,10 +29,10 @@ void show_order_table_for_manager(const dllist_order list_order, dllist_deliver 
     const int QUANTITY_ITEMS = 5;
     const int NUM_OF_SEPERATE = 9;
     const int LOCATED_COL_WIDTH = 10 * 2 + 2;
-    const int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
-                             + RECEIVER_MAX_NAME_LEN + RECEIVER_MAX_PHONE_LEN
-                             + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
-                             + NUM_OF_SEPERATE + QUANTITY_ITEMS + ORDER_STATUS_LENGTH;
+    const int border_width
+        = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN
+          + RECEIVER_MAX_PHONE_LEN + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
+          + NUM_OF_SEPERATE + QUANTITY_ITEMS + ORDER_STATUS_LENGTH;
 
     PRINT_BORDER_X(border_width);
     printf("|%*s|", INDEX_COL_WIDTH, "IND");
@@ -83,7 +85,10 @@ void show_order_table_for_manager(const dllist_order list_order, dllist_deliver 
         } else if (order.status == 1) {
             char deliver[DELIVER_MAX_NAME_LEN];
 
-            strcpy(deliver, dd_search_node_by_id(list_deliver, order.deliver_id)->deliver.name);
+            strcpy(
+                deliver, dd_search_node_by_id(list_deliver, order.deliver_id)
+                             ->deliver.name
+            );
             strcpy(status, "In transit - ");
             strcat(status, deliver);
         } else {
@@ -93,9 +98,7 @@ void show_order_table_for_manager(const dllist_order list_order, dllist_deliver 
         printf(
             "%*s|", PRODUCT_MAX_NAME_LEN + QUANTITY_ITEMS, item_info_array[0]
         );
-        printf(
-            "%*s|\n", ORDER_STATUS_LENGTH, status
-        );
+        printf("%*s|\n", ORDER_STATUS_LENGTH, status);
         for (int j = 1; j < item_list_size; j++) {
             printf("|%*s|", INDEX_COL_WIDTH, "");
             printf("%*s|", ID_LEN, "");

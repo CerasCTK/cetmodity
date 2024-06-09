@@ -67,6 +67,8 @@ void edit_order_information(dllist_order *list);
  */
 void delete_order(dllist_order *list);
 
-void distribute_orders_to_deliver(dllist_order *list_order, dllist_deliver *list_deliver);
+void distribute_orders_to_deliver(
+    dllist_order *list_order, dllist_deliver *list_deliver
+);
 
 #endif // !CETMODITY_CETMODITY_ADMIN_H

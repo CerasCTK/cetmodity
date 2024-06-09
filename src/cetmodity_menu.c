@@ -44,7 +44,9 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     PRINTNL("\t0. Go back");
 }
 
-void a_show_manage_orders_menu(const dllist_order orders, dllist_deliver delivers) {
+void a_show_manage_orders_menu(
+    const dllist_order orders, dllist_deliver delivers
+) {
     SLEEP;
     CLRSCR;
     show_order_table_for_manager(orders, delivers);

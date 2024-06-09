@@ -185,7 +185,9 @@ void delete_order(dllist_order *list) {
     }
 }
 
-void distribute_orders_to_deliver(dllist_order *list_order, dllist_deliver *list_deliver) {
+void distribute_orders_to_deliver(
+    dllist_order *list_order, dllist_deliver *list_deliver
+) {
     if (do_is_empty(*list_order)) {
         printf("Order list is empty, nothing to ship!\n");
         return;
