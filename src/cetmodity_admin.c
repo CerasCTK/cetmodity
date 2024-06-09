@@ -42,7 +42,7 @@ void display_deliver_information(const dllist_deliver *const list) {
 
     show_deliver_information(node->deliver);
 
-    print_message_bottom_left("--Press Enter to go back--");
+    print_message_bottom_left("-- Press Enter to go back --");
     wait_for_enter();
 }
 
@@ -138,7 +138,7 @@ void display_order_information(const dllist_order *const list) {
 
     show_order_information(node->order);
 
-    print_message_bottom_left("--Press Enter to go back--");
+    print_message_bottom_left("-- Press Enter to go back --");
     wait_for_enter();
 }
 
