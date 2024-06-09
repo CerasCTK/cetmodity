@@ -250,14 +250,14 @@ void show_deliver_table(const dllist_deliver *const list_deliver) {
         PRINT_BORDER_X(border_x);
 
         deliver *deliver = dd_get_by_index(list_deliver, i)->deliver;
-        int count_orders = do_size(deliver->orders);
+        int num_of_orders = do_size(deliver->orders);
 
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
         printf("%*s|", ID_LEN, deliver->id);
         printf("%*s|", DELIVER_MAX_NAME_LEN, deliver->name);
         printf("%*s|", DELIVER_MAX_PHONE_LEN, deliver->phone_number);
         printf("%*s|", USERNAME_MAX_LEN, deliver->account.username);
-        printf("%*d|\n", NUM_OF_ORDER_LEN, count_orders);
+        printf("%*d|\n", NUM_OF_ORDER_LEN, num_of_orders);
     }
 
     PRINT_BORDER_X(border_x);
