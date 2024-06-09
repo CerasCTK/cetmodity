@@ -5,7 +5,7 @@
 #include "item.h"
 
 typedef struct item_node {
-    item item;
+    item *item;
     struct item_node *next, *prev;
 } item_node;
 
@@ -14,27 +14,28 @@ typedef struct dllist_item {
     item_node *tail;
 } dllist_item;
 
-void di_init(dllist_item *list);
+void di_init(dllist_item *const list);
 
-bool di_is_empty(dllist_item list);
+const bool di_is_empty(const dllist_item *const list);
 
-bool di_is_in_list(dllist_item list, item item);
+const bool di_is_in_list(const dllist_item *const list, const item *const item);
 
-int di_size(dllist_item list);
+const int di_size(const dllist_item *const list);
 
-void di_insert_end(dllist_item *list, item item);
+void di_insert_end(dllist_item *const list, item *const item);
 
-item_node *di_get_by_index(dllist_item list, int index);
+item_node *const di_get_by_index(const dllist_item *const list, int index);
 
-item_node *
-di_search_node_by_product_name(dllist_item list, const char *item_name);
+item_node *const di_search_node_by_product_name(
+    const dllist_item *const list, const char *item_name
+);
 
-item_node *di_search_node_by_product_name_input(dllist_item list);
+item_node *di_search_node_by_product_name_input(const dllist_item *const list);
 
-void di_delete(dllist_item *list, item_node *node);
+void di_delete(dllist_item *const list, item_node *const node);
 
-unsigned long di_calculate_total_price(dllist_item list);
+const unsigned long di_calculate_total_price(const dllist_item *const list);
 
-void di_free(dllist_item *list);
+void di_free(dllist_item *const list);
 
 #endif // !CETMODITY_LLIST_ITEM_H
