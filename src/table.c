@@ -16,7 +16,8 @@
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
 
 void show_order_table_for_manager(
-    const dllist_order list_order, dllist_deliver list_deliver
+    const dllist_order *const list_order,
+    const dllist_deliver *const list_deliver
 ) {
     // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM | STATUS |
     if (do_is_empty(list_order)) {
@@ -52,24 +53,24 @@ void show_order_table_for_manager(
         if (n_order == NULL)
             continue;
 
-        order order = n_order->order;
+        order *order = n_order->order;
 
         // Print first row
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", ID_LEN, order.id);
-        printf("%*s|", SENDER_MAX_NAME_LEN, order.sender.name);
-        printf("%*s|", RECEIVER_MAX_NAME_LEN, order.receiver.name);
-        printf("%*s|", RECEIVER_MAX_PHONE_LEN, order.receiver.phone_number);
+        printf("%*s|", ID_LEN, order->id);
+        printf("%*s|", SENDER_MAX_NAME_LEN, order->sender.name);
+        printf("%*s|", RECEIVER_MAX_NAME_LEN, order->receiver.name);
+        printf("%*s|", RECEIVER_MAX_PHONE_LEN, order->receiver.phone_number);
         printf(
             "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
-            order.receiver.location.latitude
+            order->receiver.location.latitude
         );
         printf(
             "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
-            order.receiver.location.longitude
+            order->receiver.location.longitude
         );
 
-        const dllist_item item_list = order.items;
+        const dllist_item *item_list = order->item_list;
 
         const int item_list_size = di_size(item_list);
         if (item_list_size == 0) {
@@ -80,14 +81,14 @@ void show_order_table_for_manager(
         char **item_info_array = list_item_to_strings(item_list);
         char status[ORDER_STATUS_LENGTH];
 
-        if (order.status == 0) {
+        if (order->status == 0) {
             strcpy(status, "In storage");
-        } else if (order.status == 1) {
+        } else if (order->status == 1) {
             char deliver[DELIVER_MAX_NAME_LEN];
 
             strcpy(
-                deliver, dd_search_node_by_id(list_deliver, order.deliver_id)
-                             ->deliver.name
+                deliver, dd_search_node_by_id(list_deliver, order->deliver_id)
+                             ->deliver->name
             );
             strcpy(status, "In transit - ");
             strcat(status, deliver);
@@ -119,10 +120,10 @@ void show_order_table_for_manager(
     PRINT_BORDER_X(border_width);
 }
 
-void show_order_table_for_deliver(deliver deliver) {
-    printf("ID: %s\n", deliver.id);
-    printf("Name: %s\n", deliver.name);
-    printf("Phone number: %s\n", deliver.phone_number);
+void show_order_table_for_deliver(const deliver *const deliver) {
+    printf("ID: %s\n", deliver->id);
+    printf("Name: %s\n", deliver->name);
+    printf("Phone number: %s\n", deliver->phone_number);
 
     // | INDEX | ID | SENDER | RECEIVER | LOCATED | COUNT_PRICE | STATUS |
     const int COUNT_ITEMS_PRICE_WIDTH = 9;
@@ -142,36 +143,36 @@ void show_order_table_for_deliver(deliver deliver) {
     printf("%*s|", COUNT_ITEMS_PRICE_WIDTH, "COUNT");
     printf("%*s|\n", ORDER_STATUS_LENGTH, "STATUS");
 
-    for (int i = 0; i < do_size(deliver.orders); i++) {
+    for (int i = 0; i < do_size(deliver->orders); i++) {
         PRINT_BORDER_X(border_width);
 
-        order_node *node = do_get_by_index(deliver.orders, i);
+        order_node *node = do_get_by_index(deliver->orders, i);
 
         char status[ORDER_STATUS_LENGTH];
 
-        if (node->order.status == 0) {
+        if (node->order->status == 0) {
             strcpy(status, "In storage");
-        } else if (node->order.status == 1) {
+        } else if (node->order->status == 1) {
             strcpy(status, "In transit");
         } else {
             strcpy(status, "Delived");
         }
 
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", ID_LEN, node->order.id);
-        printf("%*s|", SENDER_MAX_NAME_LEN, node->order.sender.name);
-        printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order.receiver.name);
+        printf("%*s|", ID_LEN, node->order->id);
+        printf("%*s|", SENDER_MAX_NAME_LEN, node->order->sender.name);
+        printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order->receiver.name);
         printf(
             "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
-            node->order.receiver.location.latitude
+            node->order->receiver.location.latitude
         );
         printf(
             "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
-            node->order.receiver.location.longitude
+            node->order->receiver.location.longitude
         );
         printf(
             "%*lu|", COUNT_ITEMS_PRICE_WIDTH,
-            node->order.items_price + node->order.shipping_fee
+            node->order->items_price + node->order->shipping_fee
         );
         printf("%*s|\n", ORDER_STATUS_LENGTH, status);
     }
@@ -179,51 +180,51 @@ void show_order_table_for_deliver(deliver deliver) {
     PRINT_BORDER_X(border_width);
 }
 
-void show_order_detail(order order) {
+void show_order_detail(const order *const order) {
     int border_width = 50;
 
     PRINT_BORDER_X(border_width);
 
-    printf("\tSender's name: %s\n", order.sender.name);
+    printf("\tSender's name: %s\n", order->sender.name);
     printf(
-        "\tSender's location: %.2lf, %.2lf\n", order.sender.location.latitude,
-        order.sender.location.longitude
+        "\tSender's location: %.2lf, %.2lf\n", order->sender.location.latitude,
+        order->sender.location.longitude
     );
-    printf("\tPhone number: %s\n", order.sender.phone_number);
+    printf("\tPhone number: %s\n", order->sender.phone_number);
 
     PRINT_BORDER_X(border_width);
 
-    printf("\tReceiver's name: %s\n", order.receiver.name);
+    printf("\tReceiver's name: %s\n", order->receiver.name);
     printf(
         "\tReceiver's location: %.2lf, %.2lf\n",
-        order.receiver.location.latitude, order.receiver.location.longitude
+        order->receiver.location.latitude, order->receiver.location.longitude
     );
-    printf("\tPhone number: %s\n", order.receiver.phone_number);
+    printf("\tPhone number: %s\n", order->receiver.phone_number);
 
     PRINT_BORDER_X(border_width);
 
     printf("\tList items: \n");
 
-    for (int i = 0; i < di_size(order.items); i++) {
-        item_node *item_node = di_get_by_index(order.items, i);
+    for (int i = 0; i < di_size(order->item_list); i++) {
+        item_node *item_node = di_get_by_index(order->item_list, i);
 
         printf(
-            "\t%d. %s - %u\n", i + 1, item_node->item.product_name,
-            item_node->item.quantity
+            "\t%d. %s - %u\n", i + 1, item_node->item->product_name,
+            item_node->item->quantity
         );
     }
 
     PRINT_BORDER_X(border_width);
-    printf("\tOrder price: %lu\n", order.items_price);
-    printf("\tShipping fee: %u\n", order.shipping_fee);
+    printf("\tOrder price: %lu\n", order->items_price);
+    printf("\tShipping fee: %u\n", order->shipping_fee);
     printf(
-        "\tTotal order price: %lu\n", order.items_price + order.shipping_fee
+        "\tTotal order price: %lu\n", order->items_price + order->shipping_fee
     );
 
     PRINT_BORDER_X(border_width);
 }
 
-void show_deliver_table(const dllist_deliver list_deliver) {
+void show_deliver_table(const dllist_deliver *const list_deliver) {
     if (dd_is_empty(list_deliver)) {
         printf("Deliver list is empty, no deliver found!\n");
         printf("-----------------------------------------------\n");
@@ -248,14 +249,14 @@ void show_deliver_table(const dllist_deliver list_deliver) {
     for (int i = 0; i < dd_size(list_deliver); i++) {
         PRINT_BORDER_X(border_x);
 
-        deliver deliver = dd_get_by_index(list_deliver, i)->deliver;
-        int count_orders = do_size(deliver.orders);
+        deliver *deliver = dd_get_by_index(list_deliver, i)->deliver;
+        int count_orders = do_size(deliver->orders);
 
         printf("|%*d|", INDEX_COL_WIDTH, i + 1);
-        printf("%*s|", ID_LEN, deliver.id);
-        printf("%*s|", DELIVER_MAX_NAME_LEN, deliver.name);
-        printf("%*s|", DELIVER_MAX_PHONE_LEN, deliver.phone_number);
-        printf("%*s|", USERNAME_MAX_LEN, deliver.account.username);
+        printf("%*s|", ID_LEN, deliver->id);
+        printf("%*s|", DELIVER_MAX_NAME_LEN, deliver->name);
+        printf("%*s|", DELIVER_MAX_PHONE_LEN, deliver->phone_number);
+        printf("%*s|", USERNAME_MAX_LEN, deliver->account.username);
         printf("%*d|\n", NUM_OF_ORDER_LEN, count_orders);
     }
 

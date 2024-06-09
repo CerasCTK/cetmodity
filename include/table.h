@@ -10,13 +10,14 @@
     "----------------------------------"
 
 void show_order_table_for_manager(
-    dllist_order list_order, dllist_deliver list_deliver
+    const dllist_order *const list_order,
+    const dllist_deliver *const list_deliver
 );
 
-void show_order_table_for_deliver(deliver deliver);
+void show_order_table_for_deliver(const deliver *const deliver);
 
-void show_order_detail(order order);
+void show_order_detail(const order *const order);
 
-void show_deliver_table(dllist_deliver list_deliver);
+void show_deliver_table(const dllist_deliver *const list_deliver);
 
 #endif
