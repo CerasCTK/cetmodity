@@ -147,7 +147,8 @@ const unsigned long di_calculate_total_price(const dllist_item *const list) {
         return 0;
 
     unsigned long total = 0;
-    for (item_node *runner = list->head; runner != NULL; runner = runner->next) {
+    for (item_node *runner = list->head; runner != NULL;
+         runner = runner->next) {
         total += runner->item->unit_price * runner->item->quantity;
     }
 
