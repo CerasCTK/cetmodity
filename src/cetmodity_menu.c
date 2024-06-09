@@ -23,7 +23,7 @@ void logout_menu() {
     PRINTNL("\t2. Exit");
 }
 
-void admin_menu() {
+void admin_manage_menu() {
     SLEEP;
     CLRSCR;
     PRINTNL("Admin main menu:");
@@ -59,7 +59,7 @@ void admin_manage_orders_menu(
     PRINTNL("\t0. Go back");
 }
 
-void deliver_menu(const deliver *const deliver) {
+void deliver_manage_menu(const deliver *const deliver) {
     SLEEP;
     CLRSCR;
     show_order_table_for_deliver(*deliver);

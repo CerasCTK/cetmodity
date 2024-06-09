@@ -13,14 +13,17 @@
 #include <time.h>
 #include <unistd.h>
 
-dllist_deliver delivers;
-dllist_order orders;
+dllist_deliver *delivers;
+dllist_order *orders;
 
 void cetmodity_init() {
     srand(time(NULL));
 
-    dd_init(&delivers);
-    do_init(&orders);
+    delivers = malloc(sizeof(dllist_deliver));
+    dd_init(delivers);
+
+    orders = malloc(sizeof(dllist_order));
+    do_init(orders);
 }
 
 void cetmodity_run() {
@@ -35,20 +38,20 @@ RELOGIN:
     } else {
         deliver_node *deliver = dd_search_node_by_id(delivers, found);
         printf("Login successfully as deliver!\n");
-        state = deliver_menu(&deliver->deliver);
+        state = deliver_menu(deliver->deliver);
     }
 
     if (state == cetmodity_logout)
         goto RELOGIN;
 
-    dd_free(&delivers);
-    do_free(&orders);
+    dd_free(delivers);
+    do_free(orders);
 }
 
 logout_state admin_menu() {
     int opt;
     while (true) {
-        a_show_menu();
+        admin_manage_menu();
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
@@ -67,15 +70,15 @@ void admin_manage_delivers() {
     int opt;
     bool loop = true;
     while (loop) {
-        a_show_manage_delivers_menu(delivers);
+        admin_manage_delivers_menu(delivers);
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
         switch (opt) {
-            case 1: add_new_deliver(&delivers); break;
+            case 1: add_new_deliver(delivers); break;
             case 2: display_deliver_information(delivers); break;
-            case 3: edit_deliver_information(&delivers); break;
-            case 4: delete_deliver(&delivers); break;
+            case 3: edit_deliver_information(delivers); break;
+            case 4: delete_deliver(delivers); break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
@@ -88,16 +91,16 @@ void admin_manage_orders() {
     int opt;
     bool loop = true;
     while (loop) {
-        a_show_manage_orders_menu(orders, delivers);
+        admin_manage_orders_menu(orders, delivers);
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
         switch (opt) {
-            case 1: add_new_order(&orders); break;
+            case 1: add_new_order(orders); break;
             case 2: display_order_information(orders); break;
-            case 3: edit_order_information(&orders); break;
-            case 4: delete_order(&orders); break;
-            case 5: distribute_orders_to_deliver(&orders, &delivers); break;
+            case 3: edit_order_information(orders); break;
+            case 4: delete_order(orders); break;
+            case 5: distribute_order_to_deliver(orders, delivers); break;
             case 0: loop = false; break;
             default:
                 printf("Invalid choice, use only the options above!\n");
@@ -109,13 +112,13 @@ void admin_manage_orders() {
 logout_state deliver_menu(deliver *deliver) {
     int opt;
     while (true) {
-        d_show_menu(*deliver);
+        deliver_menu(deliver);
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
 
         switch (opt) {
-            case 1: complete_order(&orders, &delivers); break;
+            case 1: complete_order(orders, delivers); break;
             case 0: return logout();
             default:
                 printf("Invalid choice, use only the options above\n");
