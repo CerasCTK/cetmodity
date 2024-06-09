@@ -109,7 +109,7 @@ void admin_manage_orders() {
     }
 }
 
-logout_state deliver_menu(deliver *deliver) {
+logout_state deliver_menu(deliver *const deliver) {
     int opt;
     while (true) {
         deliver_menu(deliver);
@@ -118,7 +118,7 @@ logout_state deliver_menu(deliver *deliver) {
         getchar();
 
         switch (opt) {
-            case 1: complete_order(orders, delivers); break;
+            case 1: complete_order(deliver); break;
             case 0: return logout();
             default:
                 printf("Invalid choice, use only the options above\n");
