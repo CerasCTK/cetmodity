@@ -28,7 +28,7 @@ deliver *const create_deliver(
     strcpy(new_deliver->account.username, account.username);
     strcpy(new_deliver->account.password, account.password);
 
-    do_init(new_deliver->orders);
+    do_init(&new_deliver->orders);
     return new_deliver;
 }
 

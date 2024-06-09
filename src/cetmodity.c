@@ -23,7 +23,7 @@ void cetmodity_init() {
     dd_init(delivers);
 
     orders = malloc(sizeof(dllist_order));
-    do_init(orders);
+    do_init(&orders);
 }
 
 void cetmodity_run() {
