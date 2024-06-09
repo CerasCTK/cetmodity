@@ -10,7 +10,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-void do_init(dllist_order *const list) { list->head = list->tail = NULL; }
+void do_init(dllist_order *list) {
+    list = malloc(sizeof(dllist_order));
+
+    list->head = NULL;
+    list->tail = NULL;
+}
 
 const bool do_is_empty(const dllist_order *const list) {
     return list->head == NULL && list->tail == NULL;

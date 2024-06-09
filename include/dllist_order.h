@@ -29,7 +29,7 @@ typedef struct dllist_order {
  *
  * @param list List to be initialized.
  */
-void do_init(dllist_order *const list);
+void do_init(dllist_order *list);
 
 /**
  * @brief Check if the list is empty.
