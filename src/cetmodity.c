@@ -20,7 +20,7 @@ void cetmodity_init() {
     srand(time(NULL));
 
     delivers = malloc(sizeof(dllist_deliver));
-    dd_init(delivers);
+    dd_init(&delivers);
 
     orders = malloc(sizeof(dllist_order));
     do_init(&orders);
