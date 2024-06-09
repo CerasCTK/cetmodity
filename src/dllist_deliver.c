@@ -11,6 +11,11 @@
 void dd_init(dllist_deliver **const list) {
     *list = malloc(sizeof(dllist_deliver));
 
+    if (*list == NULL) {
+        printf("Memory not allocated\n");
+        return;
+    }
+
     (*list)->head = NULL;
     (*list)->tail = NULL;
 }
