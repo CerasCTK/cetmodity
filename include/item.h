@@ -11,16 +11,16 @@ typedef struct item {
     unsigned long unit_price;
 } item;
 
-bool is_same_item(item *i1, item *i2);
+bool is_same_item(const item *const i1, const item *const i2);
 
-item* create_item(
+item *create_item(
     const char *product_name, unsigned int quantity, unsigned long unit_price
 );
 
-item* create_item_input();
+item *create_item_input();
 
-int get_item_info_len(item item);
+int get_item_info_len(const item *const item);
 
-char *get_item_info_string(item item);
+char *get_item_info_string(const item *const item);
 
 #endif // !CETMODITY_ITEM_H
