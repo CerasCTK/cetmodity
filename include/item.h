@@ -23,7 +23,7 @@ typedef struct item {
  * @param i2 Second item to compare.
  * @return true if the two items has the same product_name, false otherwise.
  */
-bool is_same_item(const item *const i1, const item *const i2);
+const bool is_same_item(const item *const i1, const item *const i2);
 
 /**
  * @brief Create new item.
@@ -33,7 +33,7 @@ bool is_same_item(const item *const i1, const item *const i2);
  * @param unit_price Unit price of the item.
  * @return New item with the given information.
  */
-item *create_item(
+item *const create_item(
     const char *product_name, const unsigned int quantity,
     const unsigned long unit_price
 );
@@ -43,7 +43,7 @@ item *create_item(
  *
  * @return New item with the input information.
  */
-item *create_item_input();
+item *const create_item_input();
 
 /**
  * @brief Get the length of the format below.

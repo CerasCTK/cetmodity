@@ -7,11 +7,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool is_same_item(const item *const i1, const item *const i2) {
+const bool is_same_item(const item *const i1, const item *const i2) {
     return strcmp(i1->product_name, i2->product_name) == 0;
 }
 
-item *create_item(
+item *const create_item(
     const char *product_name, const unsigned int quantity,
     const unsigned long unit_price
 ) {
@@ -29,7 +29,7 @@ item *create_item(
     return new_item;
 }
 
-item *create_item_input() {
+item *const create_item_input() {
     char product_name[PRODUCT_MAX_NAME_LEN];
     unsigned int quantity;
     unsigned long unit_price;
@@ -46,7 +46,6 @@ item *create_item_input() {
 }
 
 const int get_item_info_len(const item *const item) {
-    // Format of item info: `<product_name> - <quantity>\0`
     int product_name_len = strlen(item->product_name);
     int n_digits_quantity = floor(log10(item->quantity)) + 1;
 
