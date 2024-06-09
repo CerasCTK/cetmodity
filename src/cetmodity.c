@@ -36,9 +36,9 @@ RELOGIN:
         printf("Login successfully as admin\n");
         state = admin_menu();
     } else {
-        deliver_node *deliver = dd_search_node_by_id(delivers, found);
+        deliver_node *found_deliver = dd_search_node_by_id(delivers, found);
         printf("Login successfully as deliver!\n");
-        state = deliver_menu(deliver->deliver);
+        state = deliver_menu(found_deliver->deliver);
     }
 
     if (state == cetmodity_logout)
@@ -112,7 +112,7 @@ void admin_manage_orders() {
 logout_state deliver_menu(deliver *const deliver) {
     int opt;
     while (true) {
-        deliver_menu(deliver);
+        deliver_manage_menu(deliver);
         printf("Input your option: ");
         scanf("%d", &opt);
         getchar();
