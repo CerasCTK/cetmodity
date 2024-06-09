@@ -152,7 +152,7 @@ void edit_order_information(const dllist_order *const list) {
         return;
     }
 
-    show_order_detail(*order_node->order);
+    show_order_detail(order_node->order);
 
     receiver_update_coor_input(&(order_node->order->receiver));
 
@@ -173,7 +173,7 @@ void delete_order(dllist_order *const list) {
         return;
     }
 
-    show_order_detail(*node->order);
+    show_order_detail(node->order);
 
     const bool confirm_delete
         = confirm_menu("Do you want to delete this order?");
