@@ -8,9 +8,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-void dd_init(dllist_deliver *const list) {
-    list->head = NULL;
-    list->tail = NULL;
+void dd_init(dllist_deliver **const list) {
+    *list = malloc(sizeof(dllist_deliver));
+
+    (*list)->head = NULL;
+    (*list)->tail = NULL;
 }
 
 const bool dd_is_empty(const dllist_deliver *const list) {

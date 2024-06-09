@@ -27,9 +27,9 @@ typedef struct dllist_deliver {
 /**
  * @brief Initialize a doubly linked list of deliver.
  *
- * @param list List to be initialized.
+ * @param list Pointer to the list to be initialized.
  */
-void dd_init(dllist_deliver *const list);
+void dd_init(dllist_deliver **const list);
 
 /**
  * @brief Check if the list is empty.
