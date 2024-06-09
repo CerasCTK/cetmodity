@@ -22,7 +22,7 @@ order *const create_empty_order(const sender sender, const receiver receiver) {
     new_order->sender = sender;
     new_order->receiver = receiver;
 
-    di_init(new_order->item_list);
+    di_init(&new_order->item_list);
 
     new_order->items_price = 0;
     new_order->shipping_fee = 0;
