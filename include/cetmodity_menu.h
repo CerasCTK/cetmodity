@@ -6,16 +6,17 @@
 
 void logout_menu();
 
-void a_show_menu();
+const bool confirm_menu(char *msg);
 
-void a_show_manage_delivers_menu(dllist_deliver list);
+void admin_menu();
 
-void a_show_manage_orders_menu(
-    dllist_order order_list, dllist_deliver deliver_list
+void admin_manage_delivers_menu(const dllist_deliver *const list);
+
+void admin_manage_orders_menu(
+    const dllist_order *const order_list,
+    const dllist_deliver *const deliver_list
 );
 
-void d_show_menu();
-
-bool confirm_menu(char *msg);
+void deliver_menu(const deliver *const deliver);
 
 #endif // !CETMODITY_MENU_H

@@ -23,7 +23,7 @@ void logout_menu() {
     PRINTNL("\t2. Exit");
 }
 
-void a_show_menu() {
+void admin_menu() {
     SLEEP;
     CLRSCR;
     PRINTNL("Admin main menu:");
@@ -32,10 +32,10 @@ void a_show_menu() {
     PRINTNL("\t0. Log out");
 }
 
-void a_show_manage_delivers_menu(const dllist_deliver delivers) {
+void admin_manage_delivers_menu(const dllist_deliver *const delivers) {
     SLEEP;
     CLRSCR;
-    show_deliver_table(delivers);
+    show_deliver_table(*delivers);
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
     PRINTNL("\t2. Show deliver information");
@@ -44,12 +44,12 @@ void a_show_manage_delivers_menu(const dllist_deliver delivers) {
     PRINTNL("\t0. Go back");
 }
 
-void a_show_manage_orders_menu(
-    const dllist_order orders, dllist_deliver delivers
+void admin_manage_orders_menu(
+    const dllist_order *const orders, const dllist_deliver *const delivers
 ) {
     SLEEP;
     CLRSCR;
-    show_order_table_for_manager(orders, delivers);
+    show_order_table_for_manager(*orders, *delivers);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Show order information");
@@ -59,16 +59,16 @@ void a_show_manage_orders_menu(
     PRINTNL("\t0. Go back");
 }
 
-void d_show_menu(deliver deliver) {
+void deliver_menu(const deliver *const deliver) {
     SLEEP;
     CLRSCR;
-    show_order_table_for_deliver(deliver);
+    show_order_table_for_deliver(*deliver);
     PRINTNL("Deliver manage orders menu:");
     PRINTNL("\t1. Finish the order");
     PRINTNL("\t0. Logout");
 }
 
-bool confirm_menu(char *msg) {
+const bool confirm_menu(char *msg) {
     int opt;
     printf("%s\n", msg);
     PRINTNL("\t1. Yes");
