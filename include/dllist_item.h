@@ -6,7 +6,7 @@
 
 /**
  * @class item_node
- * @brief Struct of item node.
+ * @brief Struct of a node in the item list.
  *
  */
 typedef struct item_node {
