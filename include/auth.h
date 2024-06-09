@@ -17,7 +17,7 @@ typedef enum logout_state { cetmodity_exit, cetmodity_logout } logout_state;
  * @param delivers Deliver list
  * @return "-NONE-" if login failed, otherwise the deliver id or "-ADMIN-"
  */
-const char *login(const dllist_deliver *const delivers);
+char *login(const dllist_deliver *const delivers);
 
 /**
  * @brief Try to get deliver account by username and password
@@ -27,7 +27,7 @@ const char *login(const dllist_deliver *const delivers);
  * @param password Password of deliver
  * @return "-NONE-" if login failed, otherwise the deliver id or "-ADMIN-
  */
-const char *get_account(
+char *get_account(
     const dllist_deliver *const delivers, char username[USERNAME_MAX_LEN],
     char password[PASSWORD_MAX_LEN]
 );
