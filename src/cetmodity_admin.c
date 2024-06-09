@@ -159,7 +159,7 @@ void edit_order_information(const dllist_order *const list) {
 
     receiver_update_coor_input(&(order_node->order->receiver));
 
-    printf("Update successfully");
+    printf("Update successfully\n");
 }
 
 void delete_order(dllist_order *const list) {
@@ -202,6 +202,7 @@ void distribute_order_to_deliver(
         return;
     }
 
+    SEPERATE_LINE;
     order_node *order_node = do_search_by_id_input(list_order);
     if (order_node == NULL) {
         printf("No order found with that ID!\n");
