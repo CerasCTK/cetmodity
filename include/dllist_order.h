@@ -27,7 +27,7 @@ typedef struct dllist_order {
 /**
  * @brief Initialize a doubly linked list of orders.
  *
- * @param list List to be initialized.
+ * @param list Pointer to the list to be initialized.
  */
 void do_init(dllist_order **const list);
 
