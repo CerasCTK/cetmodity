@@ -35,7 +35,7 @@ void admin_manage_menu() {
 void admin_manage_delivers_menu(const dllist_deliver *const delivers) {
     SLEEP;
     CLRSCR;
-    show_deliver_table(*delivers);
+    show_deliver_table(delivers);
     PRINTNL("Admin manage delivers menu:");
     PRINTNL("\t1. Add new deliver");
     PRINTNL("\t2. Show deliver information");
@@ -49,7 +49,7 @@ void admin_manage_orders_menu(
 ) {
     SLEEP;
     CLRSCR;
-    show_order_table_for_manager(*orders, *delivers);
+    show_order_table_for_manager(orders, delivers);
     PRINTNL("Admin manage orders menu:");
     PRINTNL("\t1. Add new order");
     PRINTNL("\t2. Show order information");
@@ -62,7 +62,7 @@ void admin_manage_orders_menu(
 void deliver_manage_menu(const deliver *const deliver) {
     SLEEP;
     CLRSCR;
-    show_order_table_for_deliver(*deliver);
+    show_order_table_for_deliver(deliver);
     PRINTNL("Deliver manage orders menu:");
     PRINTNL("\t1. Finish the order");
     PRINTNL("\t0. Logout");
