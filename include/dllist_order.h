@@ -6,7 +6,7 @@
 
 /**
  * @typedef order_node
- * @brief Struct of a node in the order list.
+ * @brief Struct of a node in the linked list of order.
  *
  */
 typedef struct order_node {
@@ -75,20 +75,20 @@ const bool do_insert(dllist_order *const list, order *const order);
 order_node *const do_get_by_index(const dllist_order *const list, int index);
 
 /**
- * @brief Get the order by id.
+ * @brief Search the order by id.
  *
  * @param list List to get the order.
  * @param order_id ID of the order.
- * @return order_node* if found, NULL otherwise.
+ * @return order_node* if the order is found, NULL otherwise.
  */
 order_node *const
 do_search_by_id(const dllist_order *const list, const char *order_id);
 
 /**
- * @brief Get the order by id get from input.
+ * @brief Search the order by id get from input.
  *
  * @param list List to get the order.
- * @return order_node* if found, NULL otherwise.
+ * @return order_node* if the order is found, NULL otherwise.
  */
 order_node *const do_search_by_id_input(const dllist_order *const list);
 

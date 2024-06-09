@@ -6,7 +6,7 @@
 
 /**
  * @class item_node
- * @brief Struct of a node in the item list.
+ * @brief Struct of a node in the linked list of item.
  *
  */
 typedef struct item_node {
@@ -75,21 +75,21 @@ void di_insert(dllist_item *const list, item *const item);
 item_node *const di_get_by_index(const dllist_item *const list, int index);
 
 /**
- * @brief Get the item by product name.
+ * @brief Search the item by product name.
  *
  * @param list List to get the item.
  * @param item_name Product name of the item.
- * @return item_node* if found, NULL otherwise.
+ * @return item_node* if the item is found, NULL otherwise.
  */
 item_node *const di_search_node_by_product_name(
     const dllist_item *const list, const char *item_name
 );
 
 /**
- * @brief Get the item by product name get from input.
+ * @brief Search the item by product name get from input.
  *
  * @param list List to get the item.
- * @return item_node* if found, NULL otherwise.
+ * @return item_node* if the item is found, NULL otherwise.
  */
 item_node *di_search_node_by_product_name_input(const dllist_item *const list);
 
