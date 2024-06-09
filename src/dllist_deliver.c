@@ -1,47 +1,52 @@
 #include "dllist_deliver.h"
 
+#include "deliver.h"
+#include "dllist_order.h"
 #include "io_util.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void dd_init(dllist_deliver *list) {
+void dd_init(dllist_deliver *const list) {
     list->head = NULL;
     list->tail = NULL;
 }
 
-bool dd_is_empty(const dllist_deliver list) {
-    return list.head == NULL && list.tail == NULL;
+const bool dd_is_empty(const dllist_deliver *const list) {
+    return list->head == NULL && list->tail == NULL;
 }
 
-bool dd_is_in_list(dllist_deliver list, const deliver deliver) {
+const bool
+dd_is_in_list(const dllist_deliver *const list, const deliver *const deliver) {
     if (dd_is_empty(list))
         return false;
 
-    while (list.head != NULL) {
-        if (is_same_deliver(list.head->deliver, deliver))
+    deliver_node *runner = list->head;
+    while (runner != NULL) {
+        if (is_same_deliver(runner->deliver, deliver))
             return true;
-        list.head = list.head->next;
+        runner = runner->next;
     }
 
     return false;
 }
 
-int dd_size(dllist_deliver list) {
+const int dd_size(const dllist_deliver *const list) {
     if (dd_is_empty(list))
         return 0;
 
     int count = 0;
-    while (list.head != NULL) {
+    deliver_node *runner = list->head;
+    while (runner != NULL) {
         count++;
-        list.head = list.head->next;
+        runner = runner->next;
     }
 
     return count;
 }
 
-bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
+const bool dd_insert(dllist_deliver *const list, deliver *const deliver) {
     deliver_node *node = malloc(sizeof(deliver_node));
 
     if (node == NULL) {
@@ -52,7 +57,7 @@ bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
     node->deliver = deliver;
     node->next = NULL;
 
-    if (dd_is_empty(*list)) {
+    if (dd_is_empty(list)) {
         list->head = node;
         node->prev = NULL;
     } else {
@@ -64,7 +69,8 @@ bool dd_insert_end(dllist_deliver *list, const deliver deliver) {
     return true;
 }
 
-deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
+deliver_node *const
+dd_get_by_index(const dllist_deliver *const list, int index) {
     if (dd_is_empty(list))
         return NULL;
 
@@ -72,12 +78,12 @@ deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
         return NULL;
 
     if (index == 0)
-        return list.head;
+        return list->head;
     if (index == dd_size(list) - 1)
-        return list.tail;
+        return list->tail;
 
     int count = 0;
-    deliver_node *node = list.head;
+    deliver_node *node = list->head;
     while (node != NULL) {
         if (count == index)
             return node;
@@ -88,15 +94,15 @@ deliver_node *dd_get_by_index(const dllist_deliver list, const int index) {
     return NULL;
 }
 
-deliver_node *
-dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
+deliver_node *const
+dd_search_node_by_id(const dllist_deliver *const list, const char *deliver_id) {
     if (dd_is_empty(list))
         return NULL;
 
-    deliver_node *node = list.head;
+    deliver_node *node = list->head;
 
     while (node != NULL) {
-        if (strcmp(deliver_name, node->deliver.name) == 0)
+        if (strcmp(deliver_id, node->deliver->id) == 0)
             return node;
         node = node->next;
     }
@@ -104,23 +110,8 @@ dd_search_node_by_name(const dllist_deliver list, const char *deliver_name) {
     return NULL;
 }
 
-deliver_node *
-dd_search_node_by_id(dllist_deliver list, const char *deliver_id) {
-    if (dd_is_empty(list))
-        return NULL;
-
-    deliver_node *node = list.head;
-
-    while (node != NULL) {
-        if (strcmp(deliver_id, node->deliver.id) == 0)
-            return node;
-        node = node->next;
-    }
-
-    return NULL;
-}
-
-deliver_node *dd_search_node_by_id_input(dllist_deliver list) {
+deliver_node *const dd_search_node_by_id_input(const dllist_deliver *const list
+) {
     char id[ID_LEN];
 
     printf("Input deliver's ID to search: ");
@@ -131,16 +122,16 @@ deliver_node *dd_search_node_by_id_input(dllist_deliver list) {
     return node;
 }
 
-deliver_node *dd_find_user(
-    const dllist_deliver list, const char *username, const char *password
+deliver_node *const dd_find_user(
+    const dllist_deliver *const list, const char *username, const char *password
 ) {
     if (dd_is_empty(list))
         return NULL;
 
-    for (deliver_node *runner = list.head; runner != NULL;
+    for (deliver_node *runner = list->head; runner != NULL;
          runner = runner->next) {
-        if (strcmp(runner->deliver.account.username, username) == 0
-            && strcmp(runner->deliver.account.password, password) == 0) {
+        if (strcmp(runner->deliver->account.username, username) == 0
+            && strcmp(runner->deliver->account.password, password) == 0) {
             return runner;
         }
     }
@@ -148,10 +139,10 @@ deliver_node *dd_find_user(
     return NULL;
 }
 
-bool dd_delete(dllist_deliver *list, deliver_node *node) {
-    if (dd_is_empty(*list))
+const bool dd_delete(dllist_deliver *const list, deliver_node *node) {
+    if (dd_is_empty(list))
         return false;
-    if (!(dd_is_in_list(*list, node->deliver)))
+    if (!(dd_is_in_list(list, node->deliver)))
         return false;
 
     if (list->head == node && list->tail == node) {
@@ -172,16 +163,19 @@ bool dd_delete(dllist_deliver *list, deliver_node *node) {
     return true;
 }
 
-void dd_free(dllist_deliver *list) {
-    if (dd_is_empty(*list))
+void dd_free(dllist_deliver *const list) {
+    if (dd_is_empty(list))
         return;
 
-    deliver_node *temp = list->head;
-    while (temp != NULL) {
-        deliver_node *new_temp = temp;
+    deliver_node *runner = list->head;
+    while (runner != NULL) {
+        deliver_node *temp = runner;
 
-        temp = temp->next;
-        free(new_temp);
+        runner = runner->next;
+
+        do_free(runner->deliver->orders);
+        free(temp->deliver);
+        free(temp);
     }
 
     list->head = list->tail = NULL;
