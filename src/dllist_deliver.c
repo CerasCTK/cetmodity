@@ -180,7 +180,6 @@ void dd_free(dllist_deliver *const list) {
 
         runner = runner->next;
 
-        do_free(runner->deliver->orders);
         free(temp->deliver);
         free(temp);
     }
