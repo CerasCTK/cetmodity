@@ -67,6 +67,12 @@ void edit_order_information(const dllist_order *const list);
  */
 void delete_order(dllist_order *const list);
 
+/**
+ * @brief Distribute order to deliver
+ *
+ * @param list_order List of order to distribute
+ * @param list_deliver List of deliver to distribute
+ */
 void distribute_order_to_deliver(
     dllist_order *const list_order, dllist_deliver *const list_deliver
 );
