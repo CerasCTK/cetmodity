@@ -62,11 +62,11 @@ void show_order_table_for_manager(
         printf("%*s|", RECEIVER_MAX_NAME_LEN, order->receiver.name);
         printf("%*s|", RECEIVER_MAX_PHONE_LEN, order->receiver.phone_number);
         printf(
-            "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.2lf, ", LOCATED_COL_WIDTH / 2 - 1,
             order->receiver.location.latitude
         );
         printf(
-            "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.2lf|", LOCATED_COL_WIDTH / 2 - 1,
             order->receiver.location.longitude
         );
 
@@ -163,11 +163,11 @@ void show_order_table_for_deliver(const deliver *const deliver) {
         printf("%*s|", SENDER_MAX_NAME_LEN, node->order->sender.name);
         printf("%*s|", RECEIVER_MAX_NAME_LEN, node->order->receiver.name);
         printf(
-            "%*.3lf, ", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.2lf, ", LOCATED_COL_WIDTH / 2 - 1,
             node->order->receiver.location.latitude
         );
         printf(
-            "%*.3lf|", LOCATED_COL_WIDTH / 2 - 1,
+            "%*.2lf|", LOCATED_COL_WIDTH / 2 - 1,
             node->order->receiver.location.longitude
         );
         printf(
