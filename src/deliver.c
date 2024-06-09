@@ -1,32 +1,38 @@
 #include "deliver.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "dllist_order.h"
 #include "io_util.h"
 #include "uuid_util.h"
 
-bool is_same_deliver(const deliver d1, const deliver d2) {
-    return strcmp(d1.id, d2.id) == 0;
+const bool is_same_deliver(const deliver *const d1, const deliver *const d2) {
+    return strcmp(d1->id, d2->id) == 0;
 }
 
-deliver create_deliver(
+deliver *const create_deliver(
     const char *name, const char *phone_number, const account account
 ) {
-    deliver new_deliver;
+    deliver *new_deliver = malloc(sizeof(deliver));
 
-    uuid(new_deliver.id);
-    strcpy(new_deliver.name, name);
-    strcpy(new_deliver.phone_number, phone_number);
-    strcpy(new_deliver.account.username, account.username);
-    strcpy(new_deliver.account.password, account.password);
+    if (new_deliver == NULL) {
+        printf("Memory not allocated\n");
+        return NULL;
+    }
 
-    do_init(&new_deliver.orders);
+    uuid(new_deliver->id);
+    strcpy(new_deliver->name, name);
+    strcpy(new_deliver->phone_number, phone_number);
+    strcpy(new_deliver->account.username, account.username);
+    strcpy(new_deliver->account.password, account.password);
+
+    do_init(new_deliver->orders);
     return new_deliver;
 }
 
-deliver create_deliver_input() {
+deliver *const create_deliver_input() {
     char name[DELIVER_MAX_NAME_LEN];
     char phone_number[DELIVER_MAX_PHONE_LEN];
 
@@ -39,7 +45,7 @@ deliver create_deliver_input() {
     return create_deliver(name, phone_number, create_account_input());
 }
 
-void deliver_information_change_input(deliver *deliver) {
+void change_deliver_information_input(deliver *const deliver) {
     printf("Change the deliver's information:\n");
     printf("\t- Input deliver's name: ");
     input_string(deliver->name, DELIVER_MAX_PHONE_LEN);
@@ -49,12 +55,12 @@ void deliver_information_change_input(deliver *deliver) {
     printf("Change deliver information successfully!\n");
 }
 
-void show_deliver_information(deliver deliver) {
-    printf("\t- Deliver's ID: %s\n", deliver.id);
-    printf("\t- Deliver's name: %s\n", deliver.name);
-    printf("\t- Deliver's phone number: %s\n", deliver.phone_number);
+void show_deliver_information(const deliver *const deliver) {
+    printf("\t- Deliver's ID: %s\n", deliver->id);
+    printf("\t- Deliver's name: %s\n", deliver->name);
+    printf("\t- Deliver's phone number: %s\n", deliver->phone_number);
 }
 
-void deliver_add_order(deliver *deliver, const order new_order) {
-    do_insert_end(&deliver->orders, new_order);
+void deliver_add_order(const deliver *const deliver, order *const new_order) {
+    do_insert(deliver->orders, new_order);
 }
