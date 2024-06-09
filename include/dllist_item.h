@@ -27,9 +27,9 @@ typedef struct dllist_item {
 /**
  * @brief Initialize a doubly linked list of items.
  *
- * @param list List to be initialized.
+ * @param list Pointer to the list to be initialized.
  */
-void di_init(dllist_item *const list);
+void di_init(dllist_item **const list);
 
 /**
  * @brief Check if the list is empty.

@@ -5,9 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-void di_init(dllist_item *const list) {
-    list->head = NULL;
-    list->tail = NULL;
+void di_init(dllist_item **const list) {
+    *list = malloc(sizeof(dllist_item));
+
+    (*list)->head = NULL;
+    (*list)->tail = NULL;
 }
 
 const bool di_is_empty(const dllist_item *const list) {
