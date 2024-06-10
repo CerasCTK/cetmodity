@@ -2,9 +2,11 @@
 
 #include <math.h>
 
-float degrees_to_radians(const double degrees) { return degrees * M_PI / 180; }
+const float degrees_to_radians(const double degrees) {
+    return degrees * M_PI / 180;
+}
 
-double calculate_distance(const coordinate c1, const coordinate c2) {
+const double calculate_distance(const coordinate c1, const coordinate c2) {
     const double distance_lat = degrees_to_radians(c1.latitude - c2.latitude);
     const double distance_lon = degrees_to_radians(c1.longitude - c2.longitude);
 

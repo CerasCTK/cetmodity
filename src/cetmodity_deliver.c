@@ -2,8 +2,9 @@
 
 #include <stdio.h>
 
-void complete_order(deliver *const deliver) {
+void complete_order(const deliver *const deliver) {
     order_node *node = do_search_by_id_input(deliver->orders);
+
     if (node == NULL) {
         printf("No order found with that ID!\n");
         return;

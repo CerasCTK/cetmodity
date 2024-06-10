@@ -111,7 +111,7 @@ void admin_manage_orders() {
     }
 }
 
-logout_state deliver_menu(deliver *const deliver) {
+logout_state deliver_menu(const deliver *const deliver) {
     int opt;
     while (true) {
         deliver_manage_menu(deliver);

@@ -35,6 +35,6 @@ void admin_manage_delivers();
  */
 void admin_manage_orders();
 
-logout_state deliver_menu(deliver *const deliver);
+logout_state deliver_menu(const deliver *const deliver);
 
 #endif // !CETMODITY_CETMODITY_H

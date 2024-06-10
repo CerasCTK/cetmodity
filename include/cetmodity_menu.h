@@ -6,7 +6,7 @@
 
 void logout_menu();
 
-const bool confirm_menu(char *msg);
+const bool confirm_menu(const char *const msg);
 
 void admin_manage_menu();
 

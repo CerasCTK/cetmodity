@@ -3,7 +3,6 @@
 
 #include "dllist_deliver.h"
 
-// Deliver
 /**
  * @brief Add new deliver to the list
  *
@@ -35,7 +34,6 @@ void edit_deliver_information(const dllist_deliver *const list);
  */
 void delete_deliver(dllist_deliver *const list);
 
-// Order
 /**
  * @brief Add new order to the list
  *

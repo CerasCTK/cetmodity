@@ -23,6 +23,19 @@ void logout_menu() {
     PRINTNL("\t2. Exit");
 }
 
+const bool confirm_menu(const char *const msg) {
+    int opt;
+    printf("%s\n", msg);
+    PRINTNL("\t1. Yes");
+    PRINTNL("\t2. No");
+    printf("Input your option: ");
+    scanf("%d", &opt);
+
+    getchar();
+
+    return opt == 1 ? true : false;
+}
+
 void admin_manage_menu() {
     SLEEP;
     CLRSCR;
@@ -66,17 +79,4 @@ void deliver_manage_menu(const deliver *const deliver) {
     PRINTNL("Deliver manage orders menu:");
     PRINTNL("\t1. Finish the order");
     PRINTNL("\t0. Logout");
-}
-
-const bool confirm_menu(char *msg) {
-    int opt;
-    printf("%s\n", msg);
-    PRINTNL("\t1. Yes");
-    PRINTNL("\t2. No");
-    printf("Input your option: ");
-    scanf("%d", &opt);
-
-    getchar();
-
-    return opt == 1 ? true : false;
 }

@@ -3,6 +3,6 @@
 
 #include "deliver.h"
 
-void complete_order(deliver *const deliver);
+void complete_order(const deliver *const deliver);
 
 #endif
