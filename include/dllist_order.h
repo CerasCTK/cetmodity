@@ -92,6 +92,8 @@ do_search_by_id(const dllist_order *const list, const char *order_id);
  */
 order_node *const do_search_by_id_input(const dllist_order *const list);
 
+void do_sort_by_distance(const dllist_order *const list);
+
 /**
  * @brief Delete an order from the list.
  *
