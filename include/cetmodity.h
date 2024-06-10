@@ -14,6 +14,11 @@ void cetmodity_init();
 void cetmodity_run();
 
 /**
+ * @brief Stop cetmodity application
+ */
+void cetmodity_stop();
+
+/**
  * @brief Menu for admin
  *
  * @return State of logout

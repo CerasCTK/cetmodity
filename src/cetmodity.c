@@ -19,10 +19,8 @@ dllist_order *orders;
 void cetmodity_init() {
     srand(time(NULL));
 
-    delivers = malloc(sizeof(dllist_deliver));
+    // Initialize the linked list
     dd_init(&delivers);
-
-    orders = malloc(sizeof(dllist_order));
     do_init(&orders);
 }
 
@@ -44,6 +42,10 @@ RELOGIN:
     if (state == cetmodity_logout)
         goto RELOGIN;
 
+    cetmodity_stop();
+}
+
+void cetmodity_stop() {
     dd_free(delivers);
     do_free(orders);
 }
