@@ -13,7 +13,8 @@ const bool is_same_deliver(const deliver *const d1, const deliver *const d2) {
 }
 
 deliver *const create_deliver(
-    const char *const name, const char *const phone_number, const account account
+    const char *const name, const char *const phone_number,
+    const account account
 ) {
     deliver *new_deliver = malloc(sizeof(deliver));
 

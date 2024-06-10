@@ -38,8 +38,10 @@ const bool is_same_deliver(const deliver *const d1, const deliver *const d2);
  * @param account Account of the deliver
  * @return New deliver with the given information
  */
-deliver *const
-create_deliver(const char *const name, const char *const phone_number, const account account);
+deliver *const create_deliver(
+    const char *const name, const char *const phone_number,
+    const account account
+);
 
 /**
  * @brief Create new deliver with input
