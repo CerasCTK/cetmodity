@@ -16,7 +16,7 @@ void show_order_table_for_manager(
 
 void show_order_table_for_deliver(const deliver *const deliver);
 
-void show_order_detail(const order *const order);
+void show_order_invoice_table(const order *const order);
 
 void show_deliver_table(const dllist_deliver *const list_deliver);
 

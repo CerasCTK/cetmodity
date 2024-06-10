@@ -180,7 +180,7 @@ void show_order_table_for_deliver(const deliver *const deliver) {
     PRINT_BORDER_X(border_width);
 }
 
-void show_order_detail(const order *const order) {
+void show_order_invoice_table(const order *const order) {
     int border_width = 50;
 
     PRINT_BORDER_X(border_width);
