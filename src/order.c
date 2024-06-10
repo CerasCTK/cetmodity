@@ -59,5 +59,5 @@ void show_order_information(const order *const order) {
 
     printf("Order's status: %s\n", status);
 
-    show_order_detail(order);
+    show_order_invoice_table(order);
 }
