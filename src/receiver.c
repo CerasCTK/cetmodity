@@ -19,8 +19,6 @@ receiver create_receiver_input() {
     char name[RECEIVER_MAX_NAME_LEN];
     char phone_number[RECEIVER_MAX_PHONE_LEN];
 
-    printf("-------------------------------------------------------------------"
-           "--\n");
     printf("Input information for new receiver:\n");
     printf("\t- Input receiver's name: ");
     input_string(name, RECEIVER_MAX_NAME_LEN);

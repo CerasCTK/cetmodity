@@ -97,7 +97,9 @@ void delete_deliver(dllist_deliver *const list) {
 
 // Order manage
 void add_new_order(dllist_order *const list) {
+    SEPERATE_LINE;
     sender sender = create_sender_input();
+    SEPERATE_LINE;
     receiver receiver = create_receiver_input();
 
     order *order = create_empty_order(sender, receiver);

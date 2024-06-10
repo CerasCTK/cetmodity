@@ -11,6 +11,8 @@
 #include <string.h>
 
 #define INDEX_COL_WIDTH 3
+#define SEPERATE_LINE                                                          \
+    (printf("-----------------------------------------------\n"))
 
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
@@ -22,8 +24,7 @@ void show_order_table_for_manager(
     // | INDEX | ID | SENDER | RECEIVER | PHONE | LOCATED | LIST ITEM | STATUS |
     if (do_is_empty(list_order)) {
         printf("Order list is empty, no order found!\n");
-        printf("---------------------------------------------------------------"
-               "------\n");
+        SEPERATE_LINE;
         return;
     }
 
@@ -227,7 +228,8 @@ void show_order_invoice_table(const order *const order) {
 void show_deliver_table(const dllist_deliver *const list_deliver) {
     if (dd_is_empty(list_deliver)) {
         printf("Deliver list is empty, no deliver found!\n");
-        printf("-----------------------------------------------\n");
+        SEPERATE_LINE;
+
         return;
     }
 
