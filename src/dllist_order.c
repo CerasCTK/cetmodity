@@ -81,7 +81,7 @@ order_node *const do_get_by_index(const dllist_order *const list, int index) {
         return list->tail;
 
     order_node *runner = list->head;
-    while (index-- != -1)
+    while (index-- != 0)
         runner = runner->next;
 
     return runner;
