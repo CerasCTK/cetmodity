@@ -47,6 +47,11 @@ const int do_size(const dllist_order *const list) {
 const bool do_insert(dllist_order *const list, order *const new_order) {
     order_node *new_node = malloc(sizeof(order_node));
 
+    if (new_node == NULL) {
+        printf("Memory not allocated\n");
+        return false;
+    }
+
     new_node->order = new_order;
     new_node->next = NULL;
 
