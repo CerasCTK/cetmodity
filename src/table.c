@@ -128,9 +128,10 @@ void show_order_table_for_deliver(const deliver *const deliver) {
     // | INDEX | ID | SENDER | RECEIVER | LOCATED | COUNT_PRICE | STATUS |
     const int COUNT_ITEMS_PRICE_WIDTH = 9;
     const int NUM_OF_SEPERATE = 8;
+    const int ORDER_STATUS_LENGTH_DELIVER = 12;
     int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
                        + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH
-                       + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_LENGTH
+                       + COUNT_ITEMS_PRICE_WIDTH + ORDER_STATUS_LENGTH_DELIVER
                        + NUM_OF_SEPERATE;
 
     PRINT_BORDER_X(border_width);
