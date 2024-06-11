@@ -7,12 +7,12 @@
 #include "string_converter.h"
 #include "uuid_util.h"
 
+#include <iso646.h>
 #include <stdio.h>
 #include <string.h>
 
 #define INDEX_COL_WIDTH 3
-#define SEPERATE_LINE                                                          \
-    (printf("-----------------------------------------------\n"))
+#define LOCATED_COL_WIDTH 22
 
 #define PRINT_BORDER_X(border_width)                                           \
     (printf("%.*s\n", border_width, TABLE_BORDER_X))
@@ -30,7 +30,6 @@ void show_order_table_for_manager(
 
     const int QUANTITY_ITEMS = 5;
     const int NUM_OF_SEPERATE = 9;
-    const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int border_width
         = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN + RECEIVER_MAX_NAME_LEN
           + RECEIVER_MAX_PHONE_LEN + LOCATED_COL_WIDTH + PRODUCT_MAX_NAME_LEN
@@ -128,7 +127,6 @@ void show_order_table_for_deliver(const deliver *const deliver) {
 
     // | INDEX | ID | SENDER | RECEIVER | LOCATED | COUNT_PRICE | STATUS |
     const int COUNT_ITEMS_PRICE_WIDTH = 9;
-    const int LOCATED_COL_WIDTH = 10 * 2 + 2;
     const int NUM_OF_SEPERATE = 8;
     int border_width = INDEX_COL_WIDTH + ID_LEN + SENDER_MAX_NAME_LEN
                        + RECEIVER_MAX_NAME_LEN + LOCATED_COL_WIDTH
@@ -182,47 +180,43 @@ void show_order_table_for_deliver(const deliver *const deliver) {
 }
 
 void show_order_invoice_table(const order *const order) {
-    int border_width = 50;
+    printf("\t%-20s", "Sender");
+    printf("Name: %s\n", order->sender.name);
+    printf("\t%-20s", "");
+    printf("Phone: %s\n", order->sender.phone_number);
+    printf("\t%-20s", "");
+    printf("Located: %.2f %.2f\n", order->sender.location.longitude, order->sender.location.latitude);
 
-    PRINT_BORDER_X(border_width);
+    printf("\t%-20s", "Receiver");
+    printf("Name: %s\n", order->receiver.name);
+    printf("\t%-20s", "");
+    printf("Phone: %s\n", order->receiver.phone_number);
+    printf("\t%-20s", "");
+    printf("Located: %.2f %.2f\n", order->receiver.location.longitude, order->receiver.location.latitude);
 
-    printf("\tSender's name: %s\n", order->sender.name);
-    printf(
-        "\tSender's location: %.2lf, %.2lf\n", order->sender.location.latitude,
-        order->sender.location.longitude
-    );
-    printf("\tPhone number: %s\n", order->sender.phone_number);
+    printf("\n\t%-20s", "List item");
 
-    PRINT_BORDER_X(border_width);
+    const dllist_item *item_list = order->item_list;
 
-    printf("\tReceiver's name: %s\n", order->receiver.name);
-    printf(
-        "\tReceiver's location: %.2lf, %.2lf\n",
-        order->receiver.location.latitude, order->receiver.location.longitude
-    );
-    printf("\tPhone number: %s\n", order->receiver.phone_number);
-
-    PRINT_BORDER_X(border_width);
-
-    printf("\tList items: \n");
-
-    for (int i = 0; i < di_size(order->item_list); i++) {
-        item_node *item_node = di_get_by_index(order->item_list, i);
-
-        printf(
-            "\t%d. %s - %u\n", i + 1, item_node->item->product_name,
-            item_node->item->quantity
-        );
+    const int item_list_size = di_size(item_list);
+    if (item_list_size == 0) {
+        printf("");
     }
 
-    PRINT_BORDER_X(border_width);
-    printf("\tOrder price: %lu\n", order->items_price);
-    printf("\tShipping fee: %u\n", order->shipping_fee);
-    printf(
-        "\tTotal order price: %lu\n", order->items_price + order->shipping_fee
-    );
+    char **item_info_array = list_item_to_strings(item_list);
+    printf("1. %s\n", item_info_array[0]);
 
-    PRINT_BORDER_X(border_width);
+    for (int i = 1; i < item_list_size; i++) {
+        printf("\t%-20s", "");
+        printf("%d. %s\n", i + 1, item_info_array[i]);
+    }
+
+    printf("\n\t%-20s", "Price: ");
+    printf("%lu\n", order->items_price);
+    printf("\t%-20s", "Ship: ");
+    printf("%u\n", order->shipping_fee);
+    printf("\t%-20s", "Total price: ");
+    printf("%lu\n", order->shipping_fee + order->items_price);
 }
 
 void show_deliver_table(const dllist_deliver *const list_deliver) {
