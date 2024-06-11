@@ -57,7 +57,8 @@ void show_order_information(const order *const order) {
         strcpy(status, "Delived");
     }
 
-    printf("Order's status: %s\n", status);
+    printf("\t%-20s", "Order's status");
+    printf("%s\n", status);
 
     show_order_invoice_table(order);
 }
