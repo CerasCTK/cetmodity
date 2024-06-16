@@ -49,7 +49,7 @@ RELOGIN:
 }
 
 void cetmodity_stop() {
-    stop_database();
+    save_data_to_database(delivers, orders);
 
     dd_free(delivers);
     do_free(orders);
