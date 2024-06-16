@@ -5,6 +5,7 @@
 #include "dllist_item.h"
 #include "receiver.h"
 #include "sender.h"
+#include "time_util.h"
 #include "uuid_util.h"
 
 #define SHIP_TAX 0.05
@@ -36,6 +37,9 @@ typedef struct order {
     unsigned int shipping_fee;
 
     order_status status;
+
+    char created_at[TIME_STRING_LEN];
+    char delivered_at[TIME_STRING_LEN];
 } order;
 
 /**
@@ -56,8 +60,9 @@ const bool is_same_order(const order *const o1, const order *const o2);
  */
 order *const create_empty_order(const sender sender, const receiver receiver);
 
-order *const create_empty_order_with_id(
-    const char *const id, const sender sender, const receiver receiver
+order *const create_empty_order_full_info(
+    const char *const id, const sender sender, const receiver receiver,
+    const char *const created_at, const char *const delivered_at
 );
 
 /**

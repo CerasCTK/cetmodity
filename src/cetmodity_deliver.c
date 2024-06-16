@@ -1,4 +1,5 @@
 #include "cetmodity_deliver.h"
+#include "time_util.h"
 
 #include <stdio.h>
 
@@ -11,6 +12,7 @@ void complete_order(const deliver *const deliver) {
     }
 
     node->order->status = delivered;
+    get_time_string(node->order->delivered_at);
 
     printf("Completed order successfully!\n");
 }

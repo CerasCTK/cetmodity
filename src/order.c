@@ -1,6 +1,7 @@
 #include "order.h"
 
 #include "dllist_item.h"
+#include "time_util.h"
 #include "uuid_util.h"
 
 #include <stdio.h>
@@ -29,11 +30,15 @@ order *const create_empty_order(const sender sender, const receiver receiver) {
 
     new_order->status = in_storage;
 
+    get_time_string(new_order->created_at);
+    strcpy(new_order->delivered_at, "");
+
     return new_order;
 }
 
-order *const create_empty_order_with_id(
-    const char *const id, const sender sender, const receiver receiver
+order *const create_empty_order_full_info(
+    const char *const id, const sender sender, const receiver receiver,
+    const char *const created_at, const char *const delivered_at
 ) {
     order *new_order = malloc(sizeof(order));
 
@@ -49,6 +54,9 @@ order *const create_empty_order_with_id(
     new_order->shipping_fee = 0;
 
     new_order->status = in_storage;
+
+    strcpy(new_order->created_at, created_at);
+    strcpy(new_order->delivered_at, delivered_at);
 
     return new_order;
 }
