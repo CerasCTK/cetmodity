@@ -108,6 +108,75 @@ void write_item_to_file(FILE *const file, const item *const item) {
     fprintf(file, "%lu\n", item->unit_price);
 }
 
+void write_linker_to_file(
+    const char *const file_name, const dllist_order *const list
+) {
+    FILE *const file = fopen(file_name, "w");
+
+    if (file == NULL) {
+        return;
+    }
+
+    int counter = 0;
+
+    for (order_node *runner = list->head; runner != NULL;
+         runner = runner->next) {
+        if (strlen(runner->order->deliver_id) != 0) {
+            counter++;
+            fprintf(file, "%s\n", runner->order->id);
+            fprintf(file, "%s\n", runner->order->deliver_id);
+            fprintf(file, "%d\n", runner->order->status);
+            fprintf(file, "%s\n", runner->order->delivered_at);
+        }
+    }
+
+    fclose(file);
+
+    append_number_to_first_line(file_name, counter);
+}
+
+void append_number_to_first_line(
+    const char *const file_name, const int number
+) {
+    // Read file
+    FILE *file = fopen(file_name, "r");
+
+    if (file == NULL) {
+        return;
+    }
+
+    // Determine the size of the file
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    // Keep current content file into buffer
+    char *buffer = malloc(file_size + 1);
+    if (buffer == NULL) {
+        perror("Memory allocation error");
+        fclose(file);
+        return;
+    }
+
+    fread(buffer, 1, file_size, file);
+    buffer[file_size] = '\0';
+
+    fclose(file);
+
+    // Reopen file to write
+    file = fopen(file_name, "w");
+    if (file == NULL) {
+        free(buffer);
+        return;
+    }
+
+    fprintf(file, "%d\n", number);
+    fwrite(buffer, 1, file_size, file);
+
+    fclose(file);
+    free(buffer);
+}
+
 void read_delivers_from_file(
     const char *const file_name, dllist_deliver *const list
 ) {

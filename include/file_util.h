@@ -39,6 +39,12 @@ void write_items_to_file(FILE *const file, const dllist_item *const list);
 
 void write_item_to_file(FILE *const file, const item *const item);
 
+void write_linker_to_file(
+    const char *const file_name, const dllist_order *const list
+);
+
+void append_number_to_first_line(const char *const file_name, const int number);
+
 void read_delivers_from_file(
     const char *const file_name, dllist_deliver *const list
 );
