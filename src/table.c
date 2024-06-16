@@ -138,7 +138,7 @@ void show_order_table_for_deliver(const deliver *const deliver) {
     printf("%*s|", ID_LEN, "ID");
     printf("%*s|", SENDER_MAX_NAME_LEN, "SENDER");
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
-    printf("%*s|", LOCATED_COL_WIDTH, "LOCATED");
+    printf("%*s|", LOCATED_COL_WIDTH, "RECEIVER LOC");
     printf("%*s|", COUNT_ITEMS_PRICE_WIDTH, "COUNT");
     printf("%*s|\n", ORDER_STATUS_LENGTH, "STATUS");
 
