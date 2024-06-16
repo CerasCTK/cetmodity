@@ -152,14 +152,14 @@ void append_number_to_first_line(
     fseek(file, 0, SEEK_SET);
 
     // Keep current content file into buffer
-    char *buffer = malloc(file_size + 1);
+    char *buffer = malloc(file_size);
     if (buffer == NULL) {
         perror("Memory allocation error");
         fclose(file);
         return;
     }
 
-    fread(buffer, 1, file_size, file);
+    fread(buffer, 1, file_size - 1, file);
     buffer[file_size] = '\0';
 
     fclose(file);
