@@ -33,12 +33,16 @@ void write_sender_to_file(FILE *const file, const sender sender);
 
 void write_receiver_to_file(FILE *const file, const receiver receiver);
 
-void write_coordinate_to_file(
-    FILE *const file, const coordinate coordinate
-);
+void write_coordinate_to_file(FILE *const file, const coordinate coordinate);
 
 void write_items_to_file(FILE *const file, const dllist_item *const list);
 
 void write_item_to_file(FILE *const file, const item *const item);
+
+void read_delivers_from_file(
+    const char *const file_name, dllist_deliver *const list
+);
+
+deliver *read_deliver_from_file(FILE *const file);
 
 #endif

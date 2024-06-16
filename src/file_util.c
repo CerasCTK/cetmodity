@@ -1,6 +1,12 @@
 #include "file_util.h"
-#include "dllist_item.h"
 
+#include "account.h"
+#include "deliver.h"
+#include "dllist_item.h"
+#include "dllist_order.h"
+
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 bool is_file_exist(const char *const file_name) {
@@ -100,4 +106,55 @@ void write_item_to_file(FILE *const file, const item *const item) {
     fprintf(file, "%s\n", item->product_name);
     fprintf(file, "%d\n", item->quantity);
     fprintf(file, "%lu\n", item->unit_price);
+}
+
+void read_delivers_from_file(
+    const char *const file_name, dllist_deliver *const list
+) {
+    int num_of_elements;
+
+    FILE *const file = fopen(file_name, "r");
+    if (file == NULL)
+        return;
+
+    char buffer[128];
+    fgets(buffer, sizeof(buffer), file);
+    num_of_elements = atoi(buffer);
+
+    for (int i = 0; i < num_of_elements; i++) {
+        deliver *deliver = read_deliver_from_file(file);
+        dd_insert(list, deliver);
+    }
+
+    fclose(file);
+}
+
+deliver *read_deliver_from_file(FILE *const file) {
+    deliver *deliver = malloc(sizeof(struct deliver));
+
+    char buffer[256];
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(deliver->id, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(deliver->name, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(deliver->phone_number, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(deliver->account.username, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(deliver->account.password, buffer);
+
+    do_init(&deliver->orders);
+
+    return deliver;
 }
