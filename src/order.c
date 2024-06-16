@@ -30,7 +30,7 @@ order *const create_empty_order(const sender sender, const receiver receiver) {
 
     new_order->status = in_storage;
 
-    get_time_string(new_order->created_at);
+    get_current_time(new_order->created_at);
     strcpy(new_order->delivered_at, "");
 
     return new_order;

@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-char *uuid(char dest[ID_LEN]) {
+void uuid(char dest[ID_LEN]) {
     char allowed_chars[]
         = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -14,6 +14,4 @@ char *uuid(char dest[ID_LEN]) {
     }
 
     dest[ID_LEN - 1] = '\0';
-
-    return dest;
 }

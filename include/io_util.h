@@ -11,12 +11,16 @@ void input_without_showing_char(char *dest, unsigned short dest_size);
  */
 void input_string(char *dest, unsigned short dest_size);
 
-void print_center(
-    unsigned short msg_len, unsigned short lines, char messages[lines][msg_len]
-);
-
+/**
+ * @brief Function to print a message to the bottom left of the screen
+ *
+ * @param message Message to be printed
+ */
 void print_message_bottom_left(const char *message);
 
+/**
+ * @brief Function to wait for the user to press enter
+ */
 void wait_for_enter();
 
 #endif // !CETMODITY_IO_UTIL_H

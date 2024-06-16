@@ -39,32 +39,6 @@ void input_string(char *dest, const unsigned short dest_size) {
     dest[counter] = '\0';
 }
 
-void print_center(
-    const unsigned short msg_len, const unsigned short lines,
-    char messages[lines][msg_len]
-) {
-    // Get columns and lines in output
-    struct winsize w;
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-
-    const int rows = w.ws_row;
-    const int cols = w.ws_col;
-
-    system("clear");
-
-    const int y = (rows - lines) / 2;
-    for (int i = 0; i < y; i++)
-        printf("\n");
-
-    for (int i = 0; i < lines; i++) {
-        int f_width = msg_len + (cols - msg_len) / 2;
-        printf("%*s\n", f_width, messages[i]);
-    }
-
-    for (int i = 0; i < y; i++)
-        printf("\n");
-}
-
 void print_message_bottom_left(const char *message) {
     // Save the cursor position
     printf("\033[s");

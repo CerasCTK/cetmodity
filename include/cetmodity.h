@@ -35,6 +35,12 @@ void admin_manage_delivers();
  */
 void admin_manage_orders();
 
+/**
+ * @brief Menu for deliver
+ *
+ * @param deliver Pointer of the deliver
+ * @return State of logout
+ */
 logout_state deliver_menu(const deliver *const deliver);
 
 #endif // !CETMODITY_CETMODITY_H

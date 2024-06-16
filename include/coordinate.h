@@ -11,8 +11,21 @@ typedef struct coordinate {
     double longitude;
 } coordinate;
 
+/**
+ * @brief Convert degrees to radians
+ *
+ * @param degrees Degrees to convert
+ * @return Radian value after conversion
+ */
 const float degrees_to_radians(const double degrees);
 
+/**
+ * @brief Calculate distance between two coordinates
+ *
+ * @param c1 First coordinate
+ * @param c2 Second coordinate
+ * @return Distance between two coordinates
+ */
 const double calculate_distance(const coordinate c1, const coordinate c2);
 
 #endif // !CETMODITY_COORDINATE_H

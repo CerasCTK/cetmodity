@@ -12,9 +12,22 @@ typedef struct sender {
     coordinate location;
 } sender;
 
+/**
+ * @brief Create new sender
+ *
+ * @param name Name of the sender
+ * @param phone_number Phone number of the sender
+ * @param location Location of the sender
+ * @return New sender with the given information
+ */
 sender
 create_sender(const char *name, const char *phone_number, coordinate location);
 
+/**
+ * @brief Create new sender with input
+ *
+ * @return New sender with the input information
+ */
 sender create_sender_input();
 
 #endif // !CETMODITY_SENDER_H

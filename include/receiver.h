@@ -12,12 +12,30 @@ typedef struct receiver {
     coordinate location;
 } receiver;
 
+/**
+ * @brief Create new receiver
+ *
+ * @param name Name of the receiver
+ * @param phone_number Phone number of the receiver
+ * @param location Location of the receiver
+ * @return New receiver with the given information
+ */
 receiver create_receiver(
     const char *name, const char *phone_number, coordinate location
 );
 
+/**
+ * @brief Create new receiver with input
+ *
+ * @return New receiver with the input information
+ */
 receiver create_receiver_input();
 
+/**
+ * @brief Update the location of the receiver with input
+ *
+ * @param receiver Receiver to update the location
+ */
 void receiver_update_coor_input(receiver *receiver);
 
 #endif // !CETMODITY_RECEIVER_H

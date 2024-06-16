@@ -12,7 +12,7 @@ void complete_order(const deliver *const deliver) {
     }
 
     node->order->status = delivered;
-    get_time_string(node->order->delivered_at);
+    get_current_time(node->order->delivered_at);
 
     printf("Completed order successfully!\n");
 }
