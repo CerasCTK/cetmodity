@@ -110,12 +110,18 @@ order_node *const do_search_by_id_input(const dllist_order *const list) {
 
 void do_sort_by_distance(const dllist_order *const list) {
     const int list_size = do_size(list);
-    if (list_size < 2) return;
+    if (list_size < 2)
+        return;
 
     for (order_node *i = list->head; i != list->tail; i = i->next) {
         for (order_node *j = list->tail; j != i; j = j->prev) {
-            const double node_distance = calculate_distance(j->order->sender.location, j->order->receiver.location);
-            const double node_prev_distance = calculate_distance(j->prev->order->sender.location, j->prev->order->receiver.location);
+            const double node_distance = calculate_distance(
+                j->order->sender.location, j->order->receiver.location
+            );
+            const double node_prev_distance = calculate_distance(
+                j->prev->order->sender.location,
+                j->prev->order->receiver.location
+            );
 
             if (node_distance < node_prev_distance) {
                 order *const tmp = j->order;

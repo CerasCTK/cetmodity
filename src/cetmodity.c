@@ -4,6 +4,7 @@
 #include "cetmodity_admin.h"
 #include "cetmodity_deliver.h"
 #include "cetmodity_menu.h"
+#include "database.h"
 #include "dllist_deliver.h"
 #include "dllist_order.h"
 
@@ -22,6 +23,8 @@ void cetmodity_init() {
     // Initialize the linked list
     dd_init(&delivers);
     do_init(&orders);
+
+    load_database(delivers, orders);
 }
 
 void cetmodity_run() {
@@ -46,6 +49,8 @@ RELOGIN:
 }
 
 void cetmodity_stop() {
+    stop_database();
+
     dd_free(delivers);
     do_free(orders);
 }

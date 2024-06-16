@@ -185,14 +185,20 @@ void show_order_invoice_table(const order *const order) {
     printf("\t%-20s", "");
     printf("Phone: %s\n", order->sender.phone_number);
     printf("\t%-20s", "");
-    printf("Located: %.2f %.2f\n", order->sender.location.longitude, order->sender.location.latitude);
+    printf(
+        "Located: %.2f %.2f\n", order->sender.location.longitude,
+        order->sender.location.latitude
+    );
 
     printf("\t%-20s", "Receiver");
     printf("Name: %s\n", order->receiver.name);
     printf("\t%-20s", "");
     printf("Phone: %s\n", order->receiver.phone_number);
     printf("\t%-20s", "");
-    printf("Located: %.2f %.2f\n", order->receiver.location.longitude, order->receiver.location.latitude);
+    printf(
+        "Located: %.2f %.2f\n", order->receiver.location.longitude,
+        order->receiver.location.latitude
+    );
 
     printf("\n\t%-20s", "List item");
 
