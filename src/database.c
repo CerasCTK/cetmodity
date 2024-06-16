@@ -6,7 +6,7 @@
 
 const char *const DB_DELIVER_FILE = "delivers.txt";
 const char *const DB_ORDER_FILE = "orders.txt";
-const char *const DB_LINKER_FILE = "link.txt";
+const char *const DB_LINKER_FILE = "linker.txt";
 
 void load_database(dllist_deliver *const delivers, dllist_order *const orders) {
     if (!is_file_exist(DB_DELIVER_FILE)) {
