@@ -362,7 +362,12 @@ void link_order_to_deliver_from_file(
         fgets(buffer, sizeof(buffer), file);
         buffer[strcspn(buffer, "\n")] = '\0';
         order_node *order_node = do_search_by_id(orders, buffer);
-        if (order_node->order->status == 1 || order_node->order->status == 2) {
+        if (order_node->order->status == in_transit) {
+            printf("Order has been shipped!\n");
+            continue;
+        }
+
+        if (order_node->order->status == delivered) {
             printf("Order has been delivered!\n");
             continue;
         }

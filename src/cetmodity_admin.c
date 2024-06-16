@@ -211,7 +211,13 @@ void distribute_order_to_deliver(
         printf("No order found with that ID!\n");
         return;
     }
-    if (order_node->order->status == 1 || order_node->order->status == 2) {
+
+    if (order_node->order->status == in_transit) {
+        printf("Order has been shipped!\n");
+        return;
+    }
+
+    if (order_node->order->status == delivered) {
         printf("Order has been delivered!\n");
         return;
     }
