@@ -193,7 +193,7 @@ void delete_order(dllist_order *const list) {
 }
 
 void distribute_order_to_deliver(
-    dllist_order *list_order, dllist_deliver *list_deliver
+    dllist_order *const list_order, dllist_deliver *const list_deliver
 ) {
     if (do_is_empty(list_order)) {
         printf("Order list is empty, nothing to ship!\n");
