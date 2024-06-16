@@ -141,14 +141,14 @@ void show_order_table_for_deliver(const deliver *const deliver) {
     printf("%*s|", RECEIVER_MAX_NAME_LEN, "RECEIVER");
     printf("%*s|", LOCATED_COL_WIDTH, "RECEIVER LOC");
     printf("%*s|", COUNT_ITEMS_PRICE_WIDTH, "COUNT");
-    printf("%*s|\n", ORDER_STATUS_LENGTH, "STATUS");
+    printf("%*s|\n", ORDER_STATUS_LENGTH_DELIVER, "STATUS");
 
     for (int i = 0; i < do_size(deliver->orders); i++) {
         PRINT_BORDER_X(border_width);
 
         order_node *node = do_get_by_index(deliver->orders, i);
 
-        char status[ORDER_STATUS_LENGTH];
+        char status[ORDER_STATUS_LENGTH_DELIVER];
 
         if (node->order->status == 0) {
             strcpy(status, "In storage");
@@ -174,14 +174,20 @@ void show_order_table_for_deliver(const deliver *const deliver) {
             "%*lu|", COUNT_ITEMS_PRICE_WIDTH,
             node->order->items_price + node->order->shipping_fee
         );
-        printf("%*s|\n", ORDER_STATUS_LENGTH, status);
+        printf("%*s|\n", ORDER_STATUS_LENGTH_DELIVER, status);
     }
 
     PRINT_BORDER_X(border_width);
 }
 
 void show_order_invoice_table(const order *const order) {
-    printf("\t%-20s", "Sender");
+    printf("\t%-20s", "Created at: ");
+    printf("%s\n", order->created_at);
+    if (order->status == delivered) {
+        printf("\t%-20s", "Delivered at: ");
+        printf("%s\n", order->delivered_at);
+    }
+    printf("\n\t%-20s", "Sender");
     printf("Name: %s\n", order->sender.name);
     printf("\t%-20s", "");
     printf("Phone: %s\n", order->sender.phone_number);
