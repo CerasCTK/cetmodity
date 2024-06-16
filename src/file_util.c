@@ -111,7 +111,7 @@ void write_item_to_file(FILE *const file, const item *const item) {
 void read_delivers_from_file(
     const char *const file_name, dllist_deliver *const list
 ) {
-    int num_of_elements;
+    int num_of_delivers;
 
     FILE *const file = fopen(file_name, "r");
     if (file == NULL)
@@ -119,9 +119,9 @@ void read_delivers_from_file(
 
     char buffer[128];
     fgets(buffer, sizeof(buffer), file);
-    num_of_elements = atoi(buffer);
+    num_of_delivers = atoi(buffer);
 
-    for (int i = 0; i < num_of_elements; i++) {
+    for (int i = 0; i < num_of_delivers; i++) {
         deliver *deliver = read_deliver_from_file(file);
         dd_insert(list, deliver);
     }
@@ -157,4 +157,118 @@ deliver *read_deliver_from_file(FILE *const file) {
     do_init(&deliver->orders);
 
     return deliver;
+}
+
+void read_orders_from_file(
+    const char *const file_name, dllist_order *const list
+) {
+    int num_of_orders;
+
+    FILE *const file = fopen(file_name, "r");
+    if (file == NULL)
+        return;
+
+    char buffer[128];
+    fgets(buffer, sizeof(buffer), file);
+    num_of_orders = atoi(buffer);
+
+    for (int i = 0; i < num_of_orders; i++) {
+        order *order = read_order_from_file(file);
+        do_insert(list, order);
+    }
+
+    fclose(file);
+}
+
+order *read_order_from_file(FILE *const file) {
+    order *order = malloc(sizeof(struct order));
+
+    char buffer[256];
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->id, buffer);
+
+    // Sender
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->sender.name, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->sender.phone_number, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    float sender_latitude = strtof(buffer, NULL);
+    order->sender.location.latitude = sender_latitude;
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    float sender_longitude = strtof(buffer, NULL);
+    order->sender.location.longitude = sender_longitude;
+
+    // Receiver
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->receiver.name, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->receiver.phone_number, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    float receiver_latitude = strtof(buffer, NULL);
+    order->receiver.location.latitude = receiver_latitude;
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    float receiver_longitude = strtof(buffer, NULL);
+    order->receiver.location.longitude = receiver_longitude;
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(order->created_at, buffer);
+
+    di_init(&order->item_list);
+
+    read_items_from_file(file, order->item_list);
+
+    return order;
+}
+
+void read_items_from_file(FILE *const file, dllist_item *const list) {
+    int num_of_items;
+
+    char buffer[128];
+    fgets(buffer, sizeof(buffer), file);
+    num_of_items = atoi(buffer);
+
+    for (int i = 0; i < num_of_items; i++) {
+        item *item = read_item_from_file(file);
+        di_insert(list, item);
+    }
+}
+
+item *read_item_from_file(FILE *const file) {
+    item *item = malloc(sizeof(struct item));
+
+    char buffer[256];
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    strcpy(item->product_name, buffer);
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    unsigned int quantity = strtoul(buffer, NULL, 10);
+    item->quantity = quantity;
+
+    fgets(buffer, sizeof(buffer), file);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    unsigned int unit_price = strtoul(buffer, NULL, 10);
+    item->unit_price = unit_price;
+
+    return item;
 }

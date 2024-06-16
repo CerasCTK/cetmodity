@@ -45,4 +45,14 @@ void read_delivers_from_file(
 
 deliver *read_deliver_from_file(FILE *const file);
 
+void read_orders_from_file(
+    const char *const file_name, dllist_order *const list
+);
+
+order *read_order_from_file(FILE *const file);
+
+void read_items_from_file(FILE *const file, dllist_item *const list);
+
+item *read_item_from_file(FILE *const file);
+
 #endif
