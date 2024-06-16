@@ -61,4 +61,9 @@ void read_items_from_file(FILE *const file, dllist_item *const list);
 
 item *read_item_from_file(FILE *const file);
 
+void link_order_to_deliver_from_file(
+    const char *const file_name, dllist_order *const orders,
+    dllist_deliver *const delivers
+);
+
 #endif

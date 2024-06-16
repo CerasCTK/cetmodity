@@ -4,6 +4,7 @@
 #include "deliver.h"
 #include "dllist_item.h"
 #include "dllist_order.h"
+#include "uuid_util.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -340,4 +341,38 @@ item *read_item_from_file(FILE *const file) {
     item->unit_price = unit_price;
 
     return item;
+}
+
+void link_order_to_deliver_from_file(
+    const char *const file_name, dllist_order *const orders,
+    dllist_deliver *const delivers
+) {
+    int num_of_links;
+
+    FILE *const file = fopen(file_name, "r");
+    if (file == NULL) {
+        return;
+    }
+
+    char buffer[128];
+    fgets(buffer, sizeof(buffer), file);
+    num_of_links = atoi(buffer);
+
+    for (int i = 0; i < num_of_links; i++) {
+        fgets(buffer, sizeof(buffer), file);
+        buffer[strcspn(buffer, "\n")] = '\0';
+        order_node *order_node = do_search_by_id(orders, buffer);
+        if (order_node->order->status == 1 || order_node->order->status == 2) {
+            printf("Order has been delivered!\n");
+            continue;
+        }
+
+        fgets(buffer, sizeof(buffer), file);
+        buffer[strcspn(buffer, "\n")] = '\0';
+        deliver_node *deliver_node = dd_search_node_by_id(delivers, buffer);
+
+        order_node->order->status = in_transit;
+        strcpy(order_node->order->deliver_id, deliver_node->deliver->id);
+        do_insert(deliver_node->deliver->orders, order_node->order);
+    }
 }
