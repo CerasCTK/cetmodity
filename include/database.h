@@ -6,6 +6,8 @@
 
 void load_database(dllist_deliver *const delivers, dllist_order *const orders);
 
-void stop_database();
+void save_data_to_database(
+    dllist_deliver *const delivers, dllist_order *const orders
+);
 
 #endif // !CETMODITY_DATABASE_H
