@@ -23,6 +23,11 @@ void load_database(dllist_deliver *const delivers, dllist_order *const orders) {
 void save_data_to_database(
     dllist_deliver *const delivers, dllist_order *const orders
 ) {
-    write_delivers_to_file(DB_DELIVER_FILE, delivers);
-    write_orders_to_file(DB_ORDER_FILE, orders);
+    if (dd_size(delivers) != 0) {
+        write_delivers_to_file(DB_DELIVER_FILE, delivers);
+    }
+
+    if (do_size(orders) != 0) {
+        write_orders_to_file(DB_ORDER_FILE, orders);
+    }
 }
