@@ -44,6 +44,20 @@ deliver *const create_deliver(
 );
 
 /**
+ * @brief Create new deliver with ID
+ *
+ * @param id ID of the deliver
+ * @param name Name of the deliver
+ * @param phone_number Phone number of the deliver
+ * @param account Account of the deliver
+ * @return New deliver with the given information
+ */
+deliver *const create_deliver_with_id(
+    const char *const id, const char *const name,
+    const char *const phone_number, const account account
+);
+
+/**
  * @brief Create new deliver with input
  *
  * @return New deliver with the input information

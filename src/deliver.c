@@ -33,6 +33,27 @@ deliver *const create_deliver(
     return new_deliver;
 }
 
+deliver *const create_deliver_with_id(
+    const char *const id, const char *const name,
+    const char *const phone_number, const account account
+) {
+    deliver *new_deliver = malloc(sizeof(deliver));
+
+    if (new_deliver == NULL) {
+        printf("Memory not allocated\n");
+        return NULL;
+    }
+
+    strcpy(new_deliver->id, id);
+    strcpy(new_deliver->name, name);
+    strcpy(new_deliver->phone_number, phone_number);
+    strcpy(new_deliver->account.username, account.username);
+    strcpy(new_deliver->account.password, account.password);
+
+    do_init(&new_deliver->orders);
+    return new_deliver;
+}
+
 deliver *const create_deliver_input() {
     char name[DELIVER_MAX_NAME_LEN];
     char phone_number[DELIVER_MAX_PHONE_LEN];
