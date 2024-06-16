@@ -56,6 +56,10 @@ const bool is_same_order(const order *const o1, const order *const o2);
  */
 order *const create_empty_order(const sender sender, const receiver receiver);
 
+order *const create_empty_order_with_id(
+    const char *const id, const sender sender, const receiver receiver
+);
+
 /**
  * @brief Add item to the order.
  *

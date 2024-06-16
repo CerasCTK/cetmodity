@@ -32,6 +32,27 @@ order *const create_empty_order(const sender sender, const receiver receiver) {
     return new_order;
 }
 
+order *const create_empty_order_with_id(
+    const char *const id, const sender sender, const receiver receiver
+) {
+    order *new_order = malloc(sizeof(order));
+
+    strcpy(new_order->id, id);
+    strcpy(new_order->deliver_id, "");
+
+    new_order->sender = sender;
+    new_order->receiver = receiver;
+
+    di_init(&new_order->item_list);
+
+    new_order->items_price = 0;
+    new_order->shipping_fee = 0;
+
+    new_order->status = in_storage;
+
+    return new_order;
+}
+
 void order_add_item(order *const order, item *const new_item) {
     di_insert(order->item_list, new_item);
 
