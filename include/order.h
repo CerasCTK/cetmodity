@@ -13,14 +13,14 @@
 
 /**
  * @typedef order_status
- * @brief Status of the order.
+ * @brief Status of the order
  *
  */
 typedef enum order_status { in_storage, in_transit, delivered } order_status;
 
 /**
  * @typedef order
- * @brief Struct of order.
+ * @brief Struct of order
  *
  */
 typedef struct order {
@@ -43,47 +43,57 @@ typedef struct order {
 } order;
 
 /**
- * @brief Compare two orders.
+ * @brief Compare two orders
  *
- * @param o1 First order to compare.
- * @param o2 Second order to compare.
- * @return true if the two orders has the same id, false otherwise.
+ * @param o1 First order to compare
+ * @param o2 Second order to compare
+ * @return true if the two orders has the same id, false otherwise
  */
 const bool is_same_order(const order *const o1, const order *const o2);
 
 /**
- * @brief Create new order with zero items.
+ * @brief Create new order with zero items
  *
- * @param sender Sender of the order.
- * @param receiver Receiver of the order.
- * @return New order with the given information.
+ * @param sender Sender of the order
+ * @param receiver Receiver of the order
+ * @return New order with the given information
  */
 order *const create_empty_order(const sender sender, const receiver receiver);
 
+/**
+ * @brief Create new empty order with full info
+ *
+ * @param id Id of the order
+ * @param sender Sender of the order
+ * @param receiver Receiver of the order
+ * @param created_at Created time of the order
+ * @param delivered_at Delivered time of the order
+ * @return New order with the given information
+ */
 order *const create_empty_order_full_info(
     const char *const id, const sender sender, const receiver receiver,
     const char *const created_at, const char *const delivered_at
 );
 
 /**
- * @brief Add item to the order.
+ * @brief Add item to the order
  *
- * @param order Order to add the item.
- * @param new_item New item to add.
+ * @param order Order to add the item
+ * @param new_item New item to add
  */
 void order_add_item(order *const order, item *const new_item);
 
 /**
- * @brief Add item to the order with input.
+ * @brief Add item to the order with input
  *
- * @param order Order to add the item.
+ * @param order Order to add the item
  */
 void order_add_item_input(order *const order);
 
 /**
- * @brief Show the information of the order.
+ * @brief Show the information of the order
  *
- * @param order Order to show the information.
+ * @param order Order to show the information
  */
 void show_order_information(const order *const order);
 
